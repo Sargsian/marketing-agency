@@ -20,7 +20,7 @@ const Button = ({ children, onClick, type, disabled, classNames }: Props) => {
       onClick={onClick}
       type={type}
       disabled={disabled}
-      className={`rounded-md px-[13px] text-sm transition-[background] hover:bg-[#AA6600] ${conditions} ${classNames}`}
+      className={`rounded-md px-[13px] text-sm transition-[background] hover:bg-[#AA6600] ${conditions} ${classNames || ''}`}
     >
       {children}
     </button>

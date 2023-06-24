@@ -72,7 +72,7 @@ const ApplicationForm = () => {
             <span className="relative flex-1 after:absolute after:right-0 after:top-[-1px] after:h-[1px] after:w-full after:bg-white after:bg-opacity-40 xl:hidden">
               <Dot verticalSide="top" side="right" />
             </span>
-            <Button classNames="flex-[2]" onClick={submitHandler} disabled={!message} type="submit">
+            <Button classNames="flex-[2]"  disabled={!message} type="submit">
               Send message
             </Button>
             <span className="relative flex-1 after:absolute after:right-0 after:top-[-1px] after:h-[1px] after:w-full after:bg-white after:bg-opacity-40 xl:hidden">
