@@ -1,0 +1,45 @@
+.bar {
+  position: absolute;
+  background-image: url("/icons/bar.svg");
+  background-repeat: no-repeat;
+  width: 35px;
+  z-index: 10;
+  height: 192px;
+}
+
+.bar {
+  animation: 3s infinite rotation;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  95% {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bar-1 {
+  animation-delay: 0.1s;
+}
+.bar-2 {
+  animation-delay: 0.17s;
+}
+.bar-3 {
+  animation-delay: 0.24s;
+}
+.bar-4 {
+  animation-delay: 0.31s;
+}
+.bar-5 {
+  animation-delay: 0.38s;
+}
+.bar-6 {
+  animation-delay: 0.45s;
+}
