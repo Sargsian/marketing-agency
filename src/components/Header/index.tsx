@@ -1,13 +1,16 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Button from "src/components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Listbox } from "@headlessui/react";
+import MobileMenu from "./MobileMenu";
+import Hamburger from "./Hamburger";
 
 const locales = [{ name: "eng" }, { name: "rus" }];
 
 const Header = () => {
   const router = useRouter();
+  const [open, setOpen] = useState(false);
 
   const switchLanguage = () => {
     const language = router.locale === "eng" ? "rus" : "eng";
@@ -19,13 +22,21 @@ const Header = () => {
     );
   };
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "auto";
+    }
+  }, [open]);
+
   return (
-    <header className="absolute left-0 right-0 flex justify-between px-10 pt-[30px]">
+    <header className="fixed left-0 right-0 z-50 flex h-[60px] items-center justify-between px-[18px] pt-[30px] sm:px-10">
       <div>
         <Image
           src="/logo.svg"
           alt="logo"
-          className="mr-[50px] inline-block"
+          className="mr-3 inline-block sm:mr-[50px]"
           width={59}
           height={18}
         />
@@ -53,7 +64,14 @@ const Header = () => {
           </Listbox>
         </div>
       </div>
-      <Button type="button">Close</Button>
+      <div className="flex h-full items-center gap-6">
+        <Button type="button">Close</Button>
+        <Hamburger
+          onClick={() => setOpen((prevState) => !prevState)}
+          open={open}
+        />
+        <MobileMenu open={open} />
+      </div>
     </header>
   );
 };

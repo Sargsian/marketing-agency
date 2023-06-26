@@ -8,7 +8,7 @@
 }
 
 .bar {
-  animation: 3s infinite rotation;
+  animation: 2s infinite rotation;
 }
 
 @keyframes rotation {
@@ -29,17 +29,17 @@
   animation-delay: 0.1s;
 }
 .bar-2 {
-  animation-delay: 0.17s;
+  animation-delay: 0.16s;
 }
 .bar-3 {
-  animation-delay: 0.24s;
+  animation-delay: 0.22s;
 }
 .bar-4 {
-  animation-delay: 0.31s;
+  animation-delay: 0.28s;
 }
 .bar-5 {
-  animation-delay: 0.38s;
+  animation-delay: 0.36s;
 }
 .bar-6 {
-  animation-delay: 0.45s;
+  animation-delay: 0.42s;
 }

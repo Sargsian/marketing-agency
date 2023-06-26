@@ -1,7 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
-import Button from "src/components/Button";
-import LinkButton from "src/components/LinkButton";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";

@@ -25,7 +25,7 @@ const Geo = () => {
         </span>
         <span className="mt-14 hidden flex-col gap-9 lg:flex">
           <Image
-            src="/icons/geo-bars.svg"
+            src="/assets/geo-bars.svg"
             alt="geo-statistics"
             width={283}
             height={76}
@@ -71,7 +71,7 @@ const Geo = () => {
           </div>
           <div className="absolute bottom-0 right-0 h-[90px] w-[90px] -rotate-[90deg]">
             <Image
-              src="/icons/triangle.png"
+              src="/assets/triangle.png"
               fill
               style={{ objectFit: "fill" }}
               alt="triangle"
@@ -79,7 +79,7 @@ const Geo = () => {
           </div>
         </div>
         <div className="h-fit w-fit aspect-auto overflow-hidden rounded-[10px] border border-white border-opacity-50">
-          <Image src="/icons/map.png" width={785} height={200} alt="map" />
+          <Image src="/assets/map.png" width={785} height={200} alt="map" />
         </div>
         <div className="flex h-full w-full flex-col justify-between md:w-[445px] md:min-w-[280px] lg:min-w-[350px]">
           <div className="">
@@ -97,7 +97,7 @@ const Geo = () => {
             ))}
           </div>
           <div className="flex h-[246px] mt-3 max-w-fit mx-auto rounded-md border border-accent">
-            <Image src="/icons/cubes.svg" width={436} height={243} alt="map" />
+            <Image src="/assets/cubes.svg" width={436} height={243} alt="map" />
           </div>
         </div>
       </div>
