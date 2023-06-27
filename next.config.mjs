@@ -18,5 +18,6 @@ const config = {
     defaultLocale: "eng",
     locales: ["eng", "rus"],
   },
+  transpilePackages: ["three"],
 };
 export default config;

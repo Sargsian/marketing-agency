@@ -42,8 +42,9 @@ export default function Home() {
       <div className="font-jost">
         {/* 3d scene and hero */}
         <Header />
+        {/* <Hero /> */}
         <Hero />
-        <main className="max-w-[1550px] px-3 sm:px-5 mx-auto">
+        <main id="main-content" className="mx-auto max-w-[1550px] px-3 sm:px-5">
           <ApplicationForm />
           <Company />
           <Geo />
