@@ -1,14 +1,13 @@
-import { useState } from "react";
-import Hamburger from "./Hamburger";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 
 const menuList = [
-  { name: "Работы" },
-  { name: "Новости" },
-  { name: "О нас" },
-  { name: "Услуги" },
-  { name: "Процесс" },
-  { name: "Контакты" },
+  { name: "portfolio" },
+  { name: "news" },
+  { name: "aboutUs" },
+  { name: "services" },
+  { name: "process" },
+  { name: "contacts" },
 ];
 
 const socials = [
@@ -20,6 +19,8 @@ const socials = [
 ];
 
 const MobileMenu = ({ open }: { open: boolean }) => {
+  const { t } = useTranslation("header");
+
   return (
     <div
       className={`duration-400 fixed left-0 top-0 -z-10 w-full overflow-hidden bg-black transition-all md:hidden ${
@@ -32,13 +33,13 @@ const MobileMenu = ({ open }: { open: boolean }) => {
             className="w-fit py-[6px] text-[32px] leading-[90%] tracking-[-0.96px] opacity-60 hover:cursor-pointer hover:text-accent hover:opacity-100"
             key={i}
           >
-            {list.name}
+            {t(list.name)}
           </li>
         ))}
       </ul>
       <div className="flex px-[18px] sm:px-10">
         <div className="mr-auto">
-          <span>Соцсети</span>
+          <span>{t('socials')}</span>
           <ul className="mt-4 cursor-default">
             {socials.map((social, i) => (
               <li className="hover:cursor-pointer hover:text-accent" key={i}>
@@ -48,7 +49,7 @@ const MobileMenu = ({ open }: { open: boolean }) => {
           </ul>
         </div>
         <div>
-          <span>Email</span>
+          <span>{t('email')}</span>
           <Link
             href="mailto:aumi.digital@gmail.com"
             className="mt-4 block hover:cursor-pointer hover:text-accent"

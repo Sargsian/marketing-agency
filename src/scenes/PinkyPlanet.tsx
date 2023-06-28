@@ -13,7 +13,7 @@ const PinkyPLanet = ({
   distanceFromSun: number;
 }) => {
   const gltf = useGLTF("/assets/models/pinkyPlanet/scene.glb");
-  const textureMap = useTexture("/assets/models/pinkyPlanet/pink_planet.png");
+  // const textureMap = useTexture("/assets/models/pinkyPlanet/pink_planet.png");
   // const fbx = useLoader(FBXLoader, '/assets/models/pinkyPlanet/scene.fbx')
 
   const { offset, scale } = useControls("Pinky Planet", {
@@ -36,8 +36,6 @@ const PinkyPLanet = ({
       dispose={null}
     >
       <primitive
-        map={textureMap}
-        material={textureMap}
         scale={scale * 0.5}
         object={gltf.scene}
       />

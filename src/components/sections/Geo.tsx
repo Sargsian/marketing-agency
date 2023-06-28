@@ -1,15 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import Dot from "src/components/Dot";
+import { useTranslation } from "next-i18next";
 
 const locations = [
-  { name: "Eastern Europe" },
-  { name: "Europe" },
-  { name: "Latin America" },
-  { name: "North America" },
+  { name: "region1" },
+  { name: "region2" },
+  { name: "region3" },
+  { name: "region4" },
 ];
 
+
 const Geo = () => {
+  const { t } = useTranslation("geo");
   return (
     <div className="mb-20 lg:mb-48">
       <div className="relative mb-6 flex justify-between border-t border-white border-opacity-20 lg:mb-[86px]">
@@ -17,10 +20,10 @@ const Geo = () => {
         <Dot side="right" verticalSide="top" />
         <span>
           <h1 className="mr-6 lg:mr-4 text-white inline-block py-6 uppercase tracking-tighter heading-1 xl:py-7 2xl:py-10">
-            Geo
+            {t('heading')}
           </h1>
           <Link className="uppercase link" href="#">
-            Full list of available GEOs
+            {t('fullList')}
           </Link>
         </span>
         <span className="mt-14 hidden flex-col gap-9 lg:flex">
@@ -52,15 +55,12 @@ const Geo = () => {
           </div>
           <div>
             <p className="text-justify font-medium uppercase leading-[140%] tracking-[-0.42px] text-black">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              {t('loadingInfo')}
             </p>
           </div>
           <div className="mt-auto">
             <span className="mb-[10px] inline-block uppercase text-black">
-              Lorem ipsum
+              {t('loadingFooter')}
             </span>
             <Image
               src="/icons/accordion.svg"
@@ -82,8 +82,8 @@ const Geo = () => {
           <Image src="/assets/images/map.png" width={785} height={200} alt="map" />
         </div>
         <div className="flex h-full w-full flex-col justify-between md:w-[445px] md:min-w-[280px] lg:min-w-[350px]">
-          <div className="">
-            <span className="mb-9 mt-6 md:mt-0 inline-block tag">Geo targeting</span>
+          <div>
+            <span className="mb-9 mt-6 md:mt-0 inline-block tag">{t('tag')}</span>
             {locations.map((location, i) => (
               <div
                 className="relative flex w-full items-center justify-between border-t border-white border-opacity-20 py-7 uppercase heading-3"
@@ -92,7 +92,7 @@ const Geo = () => {
                 <Dot side="left" verticalSide="top" />
                 <Dot side="right" verticalSide="top" />
                 <span className="opacity-60 heading-4">0{i + 1}</span>
-                <span>{location.name}</span>
+                <span>{t(location.name)}</span>
               </div>
             ))}
           </div>

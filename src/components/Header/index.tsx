@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 import { Listbox } from "@headlessui/react";
 import MobileMenu from "./MobileMenu";
 import Hamburger from "./Hamburger";
+import { useTranslation } from "next-i18next";
+import { Suspense } from "react";
 
 const locales = [{ name: "eng" }, { name: "rus" }];
 
 const Header = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation("header");
 
   const switchLanguage = () => {
     const language = router.locale === "eng" ? "rus" : "eng";
@@ -65,7 +68,14 @@ const Header = () => {
         </div>
       </div>
       <div className="flex h-full items-center gap-6">
-        <Button type="button">Close</Button>
+        <Button
+          type="button"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
+          {t('close')}
+        </Button>
         <Hamburger
           onClick={() => setOpen((prevState) => !prevState)}
           open={open}
@@ -73,6 +83,7 @@ const Header = () => {
         <MobileMenu open={open} />
       </div>
     </header>
+
   );
 };
 

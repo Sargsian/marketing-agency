@@ -1,0 +1,10 @@
+{
+    "heading": "Application form",
+    "name": "Name / Organization name",
+    "telegram": "Telegram / Skype",
+    "budget": "Budget",
+    "email": "Email",
+    "message": "Message",
+    "messagePlaceholder": "Your message goes here",
+    "button": "Send message"
+}

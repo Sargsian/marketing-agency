@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Dot from "src/components/Dot";
 import SocialMediaCard from "src/components/sections/Company/SocialMediaCard";
+import { useTranslation } from "next-i18next";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import { Navigation } from "swiper";
 import "swiper/css";
 
@@ -19,8 +21,9 @@ const socialMedias = [
 ];
 
 const Company = () => {
+  const { t } = useTranslation("company");
   return (
-    <div className="lg:mb-60 mb-20 text-white">
+    <div className="mb-20 text-white lg:mb-60">
       <div className="relative border-t border-white border-opacity-20">
         <Dot side="left" verticalSide="top" />
         <Dot side="right" verticalSide="top" />
@@ -48,13 +51,18 @@ const Company = () => {
             </div>
           </div>
         </div>
-        <h1 className="uppercase tracking-tighter heading-1 py-6 xl:py-7 2xl:py-10">
-          Company
+        <h1 className="py-6 uppercase tracking-tighter heading-1 xl:py-7 2xl:py-10">
+          {t("heading")}
         </h1>
       </div>
       <div className="hidden lg:flex">
         {socialMedias.map((social, i) => (
-          <SocialMediaCard name={social.name} number={i + 1} key={i} />
+          <SocialMediaCard
+            name={social.name}
+            info={t(`${social.name}Info`)}
+            number={i + 1}
+            key={i}
+          />
         ))}
       </div>
       <div className="lg:hidden">
@@ -73,7 +81,11 @@ const Company = () => {
         >
           {socialMedias.map((social, i) => (
             <SwiperSlide key={i}>
-              <SocialMediaCard name={social.name} number={i + 1} />
+              <SocialMediaCard
+                name={social.name}
+                info={t(`${social.name}Info`)}
+                number={i + 1}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

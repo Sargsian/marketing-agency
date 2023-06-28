@@ -10,8 +10,9 @@ import Geo from "src/components/sections/Geo";
 import Advantages from "src/components/sections/Advantages";
 import PriceList from "src/components/sections/PriceList";
 import HowToStart from "src/components/sections/HowToStart";
+import SmoothScroll from "src/components/SmoothScroll";
 
-export const getStaticProps = async ({ locale = "en" }) => {
+export const getStaticProps = async ({ locale = "rus" }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale)),
@@ -40,6 +41,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="font-jost">
+        <SmoothScroll />
         {/* 3d scene and hero */}
         <Header />
         {/* <Hero /> */}

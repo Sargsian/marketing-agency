@@ -4,8 +4,10 @@ import Scenes from "src/scenes";
 import { useControls } from "leva";
 import { ZodAny } from "zod";
 import { Leva } from 'leva'
+import { useTranslation } from "next-i18next";
 
 const Hero = () => {
+  const { t } = useTranslation("header");
   const scroller = (element: HTMLElement) => {
     window.scrollTo({
       top: element.offsetTop - 60,
@@ -30,9 +32,8 @@ const Hero = () => {
     <>
       <Leva
         collapsed
-
       />
-      <div className="relative h-screen bg-cover bg-center">
+      <div className="relative h-[calc(100vh+1px)] bg-cover bg-center">
         <Canvas
           shadows
           camera={{ fov: fov, near: 0.1, far: 1000, position: [x, y, z] }}
@@ -47,9 +48,9 @@ const Hero = () => {
         </Canvas>
         <button
           onClick={() => handleScroll("main-content")}
-          className="absolute bottom-[44px] left-1/2 -translate-x-1/2 text-white opacity-60"
+          className="absolute bottom-[144px] left-1/2 -translate-x-1/2 text-white opacity-60"
         >
-          scroll down
+          {t('scroll')}
         </button>
       </div>
     </>
