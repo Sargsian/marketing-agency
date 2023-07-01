@@ -1,8 +1,6 @@
-import Head from "next/head";
-import Script from "next/script";
 import { useEffect } from "react";
-
-const config = { className: ".os-theme-light" };
+import { useOverlayScrollbars } from "overlayscrollbars-react";
+import "overlayscrollbars/overlayscrollbars.css";
 
 type SmoothScrollargs = {
   animationTime: number;
@@ -23,8 +21,16 @@ declare global {
   }
 }
 
-const SmoothScrollbar = () => {
-  useEffect(() => {
+const SmoothScrollbar = ({ open }: { open: boolean }) => {
+  const [initialize, instance] = useOverlayScrollbars({
+    options: {
+      scrollbars: { theme: "os-theme-light" },
+      overflow: { x: "visible-hidden" },
+    },
+    defer: true,
+  });
+
+  const initializeSmoothScroll = () => {
     const script = document.createElement("script");
     script.src =
       "https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js";
@@ -42,6 +48,17 @@ const SmoothScrollbar = () => {
       pulseScale: 4,
       pulseNormalize: 1,
       touchpadSupport: true,
+    });
+  };
+
+  useEffect(() => {
+    initializeSmoothScroll();
+    initialize({
+      target: document.body,
+      cancel: {
+        nativeScrollbarsOverlaid: true,
+        body: null,
+      },
     });
   }, []);
 

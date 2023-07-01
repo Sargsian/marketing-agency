@@ -6,15 +6,12 @@ html {
   background-color: black;
   color: white;
 }
-body {
-  overflow: overlay !important;
-}
 
 body::-webkit-scrollbar-thumb {
   cursor: grab !important;
-  background-color: rgba(255, 255, 255, 0.507);
+  background-color: rgba(255, 255, 255, 0.44);
   border-radius: 10px;
-  border: 6px solid rgba(0, 0, 0, 0);
+  border: 2px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
 }
 
@@ -24,7 +21,7 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar {
   cursor: grab !important;
-  width: 20px;
+  width: 10px;
   background-color: transparent;
 }
 
