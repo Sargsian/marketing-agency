@@ -10,10 +10,10 @@ export const getStaticProps = async ({ locale = "rus" }) => {
     },
   };
 };
-export default function Home() {
-  return <Page companyName="Tiktok" />;
+export default function Meta() {
+  return <Page companyName="Meta" />;
 }
 
-Home.getLayout = function getLayout(page: ReactElement) {
-  return <PrimaryLayout>{page}</PrimaryLayout>;
+Meta.getLayout = function getLayout(page: ReactElement) {
+  return <PrimaryLayout title="Boost – Meta">{page}</PrimaryLayout>;
 };

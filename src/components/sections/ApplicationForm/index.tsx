@@ -14,7 +14,7 @@ const ApplicationForm = () => {
 
   return (
     <div className="mb-10 flex flex-col text-white lg:mb-20 xl:mb-32 xl:flex-row 2xl:mb-44">
-      <div className="relative inline-block flex-1 border-b border-t border-white border-opacity-20">
+      <div className="relative inline-block flex-1 xl:min-w-[623px] border-b border-t border-white border-opacity-20">
         <Dot side="left" verticalSide="top" />
         <Dot side="right" verticalSide="top" />
         <Dot
@@ -42,7 +42,6 @@ const ApplicationForm = () => {
         />
         <form
           className="mx-auto flex max-w-[600px] flex-col gap-[59px] py-[66px]"
-          action=""
         >
           <div className="flex flex-col gap-10 sm:flex-row sm:gap-5">
             <Input name="name" />

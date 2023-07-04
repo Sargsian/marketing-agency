@@ -2,9 +2,18 @@
   "heading": "Price-list",
   "tag1": "Products",
   "tag2": "Payment Methods",
-  "card1": "Product: commisiion from 5%",
-  "card2": "Gray verticals (arbitrage): commission from 10%",
-  "card3": "Capitalist eur, usd, rur",
-  "card4": "USDT (TRC20)",
-  "card5": "Wire transfer(min. 500$)"
+  "tiktokProduct1": "Product: Commission from 5%",
+  "tiktokProduct2": "Gray verticals (arbitrage): Commission from 10%",
+  "bigoProduct1": "Product: Commission from 5%",
+  "bigoProduct2": "Gray verticals (arbitrage): Commission from 10%",
+  "metaProduct1": "Product: Commission from 15%",
+  "tiktokPayment1": "Capitalist EUR, USD, RUR",
+  "tiktokPayment2": "USDT (TRC20)",
+  "tiktokPayment3": "Wire Transfer (min. 500$)",
+  "bigoPayment1": "Capitalist EUR, USD, RUR",
+  "bigoPayment2": "USDT (TRC20)",
+  "bigoPayment3": "Wire Transfer (min. 500$)",
+  "metaPayment1": "Capitalist EUR, USD, RUR",
+  "metaPayment2": "USDT (TRC20)",
+  "metaPayment3": "Wire Transfer (min. 500$)"
 }

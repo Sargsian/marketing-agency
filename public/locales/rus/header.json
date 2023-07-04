@@ -1,12 +1,7 @@
 {
     "close": "Закрыть",
-    "portfolio": "Работы",
-    "news": "Новости",
-    "aboutUs": "О нас",
-    "services": "Услуги",
-    "process": "Процесс",
-    "contacts": "Контакты",
     "socials": "Соцсети",
     "email": "Почта",
-    "scroll": "прокрутить вниз"
+    "scroll": "прокрутить вниз",
+    "telegram": "Telegram"
 }

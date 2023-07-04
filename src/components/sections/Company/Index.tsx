@@ -1,29 +1,75 @@
 import Image from "next/image";
 import Dot from "src/components/Dot";
-import SocialMediaCard from "src/components/sections/Company/SocialMediaCard";
+import TiktokCard from "src/components/sections/Company/TiktokCard";
+import MetaCard from "src/components/sections/Company/MetaCard";
 import { useTranslation } from "next-i18next";
-
+import type { CompanyTypes } from "src/components/Page";
+import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Navigation } from "swiper";
 import "swiper/css";
+import SliderCard from "src/components/sections/Company/SliderCard";
+import BigoCard from "src/components/sections/Company/BigoCard";
 
-const socialMedias = [
+const tiktokMedia = [
   {
+    title: "Tiktok",
     name: "tiktok",
   },
   {
+    title: "Bundle",
     name: "bundle",
   },
   {
+    title: "Pangle",
     name: "pangle",
   },
 ];
 
-const Company = () => {
+const bigoMedia = [
+  {
+    title: "Likee",
+    name: "likee",
+  },
+  {
+    title: "IMO Messenger",
+    name: "imo",
+  },
+];
+
+const metaMedia = [
+  {
+    title: "Facebook",
+    name: "facebook",
+  },
+  {
+    title: "Instagram",
+    name: "instagram",
+  },
+  {
+    title: "Meta Audience Network",
+    name: "meta",
+  },
+  {
+    title: "Messenger",
+    name: "messenger",
+  },
+];
+
+const Company = ({ companyName }: CompanyTypes) => {
   const { t } = useTranslation("company");
+
+  const socialMedia =
+    companyName === "Tiktok"
+      ? tiktokMedia
+      : companyName === "Bigo"
+      ? bigoMedia
+      : companyName === "Meta"
+      ? metaMedia
+      : [];
+
   return (
-    <div className="mb-20 text-white lg:mb-60">
+    <div className="mb-20 text-white lg:mb-[190px]">
       <div className="relative border-t border-white border-opacity-20">
         <Dot side="left" verticalSide="top" />
         <Dot side="right" verticalSide="top" />
@@ -55,16 +101,43 @@ const Company = () => {
           {t("heading")}
         </h1>
       </div>
-      <div className="hidden lg:flex">
-        {socialMedias.map((social, i) => (
-          <SocialMediaCard
-            name={social.name}
-            info={t(`${social.name}Info`)}
-            number={i + 1}
-            key={i}
-          />
-        ))}
-      </div>
+      {companyName === "Tiktok" ? (
+        <div className="hidden lg:flex">
+          {socialMedia.map((social, i) => (
+            <TiktokCard
+              name={social.name}
+              title={social.title}
+              info={t(`${social.name}Info`)}
+              number={i + 1}
+              key={i}
+            />
+          ))}
+        </div>
+      ) : companyName === "Meta" ? (
+        <div className="hidden grid-cols-2 lg:grid">
+          {socialMedia.map((social, i) => (
+            <MetaCard
+              name={social.name}
+              title={social.title}
+              info={t(`${social.name}Info`)}
+              number={i + 1}
+              key={i}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="hidden grid-cols-2 lg:grid">
+          {socialMedia.map((social, i) => (
+            <BigoCard
+              name={social.name}
+              title={social.title}
+              info={t(`${social.name}Info`)}
+              number={i + 1}
+              key={i}
+            />
+          ))}
+        </div>
+      )}
       <div className="lg:hidden">
         <Swiper
           modules={[Navigation]}
@@ -73,16 +146,18 @@ const Company = () => {
             prevEl: ".swiper-button-prev",
           }}
           breakpoints={{
-            650: {
+            640: {
               slidesPerView: 2,
             },
           }}
+          className=""
           slidesPerView={1}
         >
-          {socialMedias.map((social, i) => (
+          {socialMedia.map((social, i) => (
             <SwiperSlide key={i}>
-              <SocialMediaCard
+              <SliderCard
                 name={social.name}
+                title={social.title}
                 info={t(`${social.name}Info`)}
                 number={i + 1}
               />

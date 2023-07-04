@@ -35,7 +35,7 @@ const Sun = () => {
   useFrame(() => rotateSun());
   return (
     <group
-      onPointerOver={() => console.log('hovered on sun')}
+      // onPointerOver={() => console.log('hovered on sun')}
       ref={sunRef}
       dispose={null}
     >

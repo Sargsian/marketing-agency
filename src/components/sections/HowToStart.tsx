@@ -16,7 +16,7 @@ const instructions = [
 const HowToStart = () => {
   const { t } = useTranslation("howToStart");
   return (
-    <div className="relative mb-9 border-t border-white border-opacity-20 lg:mb-24">
+    <div className="relative mb-20 border-t border-white border-opacity-20 lg:mb-32">
       <Dot side="left" verticalSide="top" />
       <Dot side="right" verticalSide="top" />
       <div className="mb-9 flex justify-between lg:mb-[100px]">

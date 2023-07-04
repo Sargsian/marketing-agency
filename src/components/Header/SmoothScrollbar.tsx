@@ -21,7 +21,7 @@ declare global {
   }
 }
 
-const SmoothScrollbar = ({ open }: { open: boolean }) => {
+const SmoothScrollbar = () => {
   const [initialize, instance] = useOverlayScrollbars({
     options: {
       scrollbars: { theme: "os-theme-light" },

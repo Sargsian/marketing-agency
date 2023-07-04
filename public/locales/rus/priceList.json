@@ -2,9 +2,18 @@
   "heading": "Прайс-лист",
   "tag1": "Продукты",
   "tag2": "Способы оплаты",
-  "card1": "Товар: Комиссия от 5%",
-  "card2": "Серые вертикали (арбитраж): Комиссия от 10%",
-  "card3": "Capitalist eur, usd, rur",
-  "card4": "USDT (TRC20)",
-  "card5": "Банковский перевод (мин. 500$)"
+  "tiktokProduct1": "Товар: Комиссия от 5%",
+  "tiktokProduct2": "Серые вертикали (арбитраж): Комиссия от 10%",
+  "bigoProduct1": "Товар: Комиссия от 5%",
+  "bigoProduct2": "Серые вертикали (арбитраж): Комиссия от 10%",
+  "metaProduct1": "Товар: Комиссия от 15%",
+  "tiktokPayment1": "Capitalist EUR, USD, RUR",
+  "tiktokPayment2": "USDT (TRC20)",
+  "tiktokPayment3": "Wire Transfer (min. 500$)",
+  "bigoPayment1": "Capitalist EUR, USD, RUR",
+  "bigoPayment2": "USDT (TRC20)",
+  "bigoPayment3": "Wire Transfer (min. 500$)",
+  "metaPayment1": "Capitalist EUR, USD, RUR",
+  "metaPayment2": "USDT (TRC20)",
+  "metaPayment3": "Wire Transfer (min. 500$)"
 }

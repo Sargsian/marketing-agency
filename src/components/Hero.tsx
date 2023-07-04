@@ -32,6 +32,7 @@ const Hero = () => {
     <>
       <Leva
         collapsed
+        hidden
       />
       <div className="relative h-[calc(100vh+1px)] bg-cover bg-center">
         <Canvas

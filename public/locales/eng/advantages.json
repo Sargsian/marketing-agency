@@ -1,10 +1,20 @@
 {
     "heading": "Advantages",
     "tag": "Advantages",
-    "card1": "Individual approach to each project",
-    "card2": "Direct support from tiktok staff",
-    "card3": "Refund in case of account blocking",
-    "card4": "Access to all geos in tiktok",
-    "card5": "No vat",
-    "card6": "Fast moderation"
+    "tiktok1": "Individual approach to each project",
+    "tiktok2": "Direct support from tiktok staff",
+    "tiktok3": "Refund in case of account blocking",
+    "tiktok4": "Access to all geos in tiktok",
+    "tiktok5": "No vat",
+    "tiktok6": "Fast moderation",
+    "bigo1": "Individual approach to each project",
+    "bigo2": "Direct support from TikTok staff",
+    "bigo3": "Access to all GEOs in BIGO",
+    "bigo4": "No VAT",
+    "bigo5": "Fast moderation",
+    "meta1": "Individual approach to each project",
+    "meta2": "Direct support from Meta staff",
+    "meta3": "Access to all GEOs in Meta",
+    "meta4": "No VAT",
+    "meta5": "Fast moderation"
 }

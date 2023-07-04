@@ -8,7 +8,7 @@ const Hamburger = ({
   return (
     <button
       onClick={onClick}
-      className="relative h-6 w-6 lg:hidden text-white focus:outline-none"
+      className="relative z-50 h-6 w-6 text-white focus:outline-none"
     >
       <span className="sr-only invisible">Open main menu</span>
       <div className="absolute top-1/2 h-[10px] w-full -translate-y-1/2 ">

@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Button from "src/components/Button";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Listbox } from "@headlessui/react";
 import MobileMenu from "./MobileMenu";
 import Hamburger from "./Hamburger";
 import { useTranslation } from "next-i18next";
 import SmoothScrollbar from "./SmoothScrollbar";
+import Sidebar from "src/components/Header/Sidebar";
 
 const locales = [{ name: "eng" }, { name: "rus" }];
 
@@ -24,20 +25,11 @@ const Header = () => {
       { locale: language, scroll: false }
     );
   };
-
-  console.log(open);
-
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflowY = "hidden";
-    } else {
-      document.body.style.overflowY = "auto";
-    }
-  }, [open]);
+ 
 
   return (
     <>
-      <SmoothScrollbar open={open} />
+      <SmoothScrollbar />
       <header className="fixed left-0 right-0 z-50 flex h-[60px] items-center justify-between px-[18px] pt-[30px] sm:px-10">
         <div>
           <Image
@@ -84,7 +76,8 @@ const Header = () => {
             onClick={() => setOpen((prevState) => !prevState)}
             open={open}
           />
-          <MobileMenu open={open} />
+          <MobileMenu closeMenu={() => setOpen(false)} open={open} />
+          <Sidebar closeMenu={() => setOpen(false)} open={open} />
         </div>
       </header>
     </>

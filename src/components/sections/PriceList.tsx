@@ -1,24 +1,63 @@
 import Image from "next/image";
 import Dot from "src/components/Dot";
 import InfoCard from "src/components/InfoCard";
+import type { CompanyTypes } from "src/components/Page";
 import { useTranslation } from "next-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 
-const productsList = [
-  { text: "card1" },
-  { text: "card2" },
+const tiktokProducts = [
+  { text: "tiktokProduct1" },
+  { text: "tiktokProduct2" },
 ];
 
-const paymentMethodsList = [
-  { text: "card3" },
-  { text: "card4" },
-  { text: "card5" },
+const bigoProducts = [
+  { text: "bigoProduct1" },
+  { text: "bigoProduct2" },
 ];
 
-const PriceList = () => {
+const metaProducts = [
+  { text: "metaProduct1" },
+];
+
+const tiktokPayments = [
+  { text: "tiktokPayment1" },
+  { text: "tiktokPayment2" },
+  { text: "tiktokPayment3" },
+];
+const bigoPayments = [
+  { text: "bigoPayment1" },
+  { text: "bigoPayment2" },
+  { text: "bigoPayment3" },
+];
+const metaPayments = [
+  { text: "metaPayment1" },
+  { text: "metaPayment2" },
+  { text: "metaPayment3" },
+];
+
+const PriceList = ({ companyName }: CompanyTypes) => {
   const { t } = useTranslation("priceList");
+
+  const productsList =
+  companyName === "Tiktok"
+    ? tiktokProducts
+    : companyName === "Bigo"
+    ? bigoProducts
+    : companyName === "Meta"
+    ? metaProducts
+    : [];
+
+    const paymentMethodsList =
+    companyName === "Tiktok"
+      ? tiktokPayments
+      : companyName === "Bigo"
+      ? bigoPayments
+      : companyName === "Meta"
+      ? metaPayments
+      : [];
+
   return (
     <div className="relative mb-20 border-t border-white border-opacity-20 lg:mb-48">
       <Dot side="left" verticalSide="top" />

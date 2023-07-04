@@ -1,22 +1,49 @@
 import Image from "next/image";
 import Dot from "src/components/Dot";
 import InfoCard from "src/components/InfoCard";
-import { Swiper, SwiperSlide } from "swiper/react";
+import type { CompanyTypes } from "src/components/Page";
 import { useTranslation } from "next-i18next";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 
-const infoList = [
-  { text: "card1" },
-  { text: "card2" },
-  { text: "card3" },
-  { text: "card4" },
-  { text: "card5" },
-  { text: "card6" },
+const tiktokInfo = [
+  { text: "tiktok1" },
+  { text: "tiktok2" },
+  { text: "tiktok3" },
+  { text: "tiktok4" },
+  { text: "tiktok5" },
+  { text: "tiktok6" },
 ];
 
-const Advantages = () => {
+const bigoInfo = [
+  { text: "bigo1" },
+  { text: "bigo2" },
+  { text: "bigo3" },
+  { text: "bigo4" },
+  { text: "bigo5" },
+];
+
+const metaInfo = [
+  { text: "meta1" },
+  { text: "meta2" },
+  { text: "meta3" },
+  { text: "meta4" },
+  { text: "meta5" },
+];
+
+const Advantages = ({ companyName }: CompanyTypes) => {
   const { t } = useTranslation("advantages");
+
+  const infoList =
+    companyName === "Tiktok"
+      ? tiktokInfo
+      : companyName === "Bigo"
+      ? bigoInfo
+      : companyName === "Meta"
+      ? metaInfo
+      : [];
+
   return (
     <div className="relative mb-20 border-t border-white border-opacity-20 lg:mb-48">
       <Dot side="left" verticalSide="top" />

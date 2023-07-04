@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const menuList = [
-  { name: "portfolio" },
-  { name: "news" },
-  { name: "aboutUs" },
-  { name: "services" },
-  { name: "process" },
-  { name: "contacts" },
+  { name: "Tiktok", link: "/" },
+  { name: "Bigo", link: "/bigo" },
+  { name: "Meta", link: "/meta" },
 ];
 
 const socials = [
@@ -18,23 +17,41 @@ const socials = [
   { name: "YouTube" },
 ];
 
-const MobileMenu = ({ open }: { open: boolean }) => {
+const MobileMenu = ({
+  open,
+  closeMenu,
+}: {
+  open: boolean;
+  closeMenu: () => void;
+}) => {
   const { t } = useTranslation("header");
+  const { pathname } = useRouter();
+
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = "auto";
+    };
+  }, []);
 
   return (
     <div
-      className={`duration-400 fixed left-0 top-0 -z-10 w-full overflow-hidden  bg-black transition-all lg:hidden ${
+      className={`duration-400 fixed left-0 top-0 -z-10 w-full overflow-hidden bg-black transition-all lg:hidden ${
         open ? "bottom-0" : "bottom-[100%]"
       }`}
     >
-      <div className="flex h-screen overflow-auto flex-col justify-between">
+      <div className="flex h-screen flex-col justify-between overflow-auto">
         <ul className="mt-[60px] cursor-default p-[18px] sm:p-10">
-          {menuList.map((list, i) => (
+          {menuList.map((item, i) => (
             <li
+              onClick={closeMenu}
+              style={
+                item.link === pathname ? { color: "#FFA217", opacity: 1 } : {}
+              }
               className="w-fit py-[6px] text-[32px] leading-[90%] tracking-[-0.96px] opacity-60 hover:cursor-pointer hover:text-accent hover:opacity-100"
               key={i}
             >
-              {t(list.name)}
+              <Link href={item.link}>{item.name}</Link>
             </li>
           ))}
         </ul>
@@ -50,13 +67,25 @@ const MobileMenu = ({ open }: { open: boolean }) => {
             </ul>
           </div>
           <div>
-            <span>{t("email")}</span>
-            <Link
-              href="mailto:aumi.digital@gmail.com"
-              className="mt-4 block hover:cursor-pointer hover:text-accent"
-            >
-              aumi.digital@gmail.com
-            </Link>
+            <div>
+              <span>{t("email")}</span>
+              <Link
+                href="mailto:boostads.org@gmail.com"
+                className="mt-2 block hover:cursor-pointer hover:text-accent"
+              >
+                boostads.org@gmail.com
+              </Link>
+            </div>
+            <div className="mt-6">
+              <span>{t("telegram")}</span>
+              <a
+                href="https://t.me/dmitriiboost"
+                target="_blank"
+                className="mt-2 block hover:cursor-pointer hover:text-accent"
+              >
+                @dmitriiboost
+              </a>
+            </div>
           </div>
         </div>
       </div>
