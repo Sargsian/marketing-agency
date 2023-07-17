@@ -9,8 +9,8 @@ const Footer = () => {
   return (
     <footer className="font-jetbrains text-base font-medium tracking-[-1px] md:text-lg">
       <div className="mx-auto px-5 py-16 sm:px-10">
-        <div className="grid grid-cols-2 gap-y-14 lg:grid-cols-5 lg:gap-8">
-          <div className="order-2 lg:order-none">
+        <div className="grid grid-cols-2 gap-y-14 xl:grid-cols-5 xl:gap-8">
+          <div className="order-2 xl:order-none">
             <Image src="/logo.svg" width={84} height={26} alt="logo" />
             <span className="mt-3 inline-block font-jetbrains text-base font-medium uppercase tracking-[-1px] text-white text-opacity-60 sm:mt-7">
               Boost {year} &copy;
@@ -81,11 +81,11 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="order-3 flex items-end flex-col font-jetbrains font-medium sm:text-lg lg:order-none">
-            <p className="text-white w-fit text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100">
+          <div className="order-3 flex sm:whitespace-nowrap space-y-3 items-end flex-col font-jetbrains font-medium sm:text-lg xl:order-none">
+            <p className="text-white leading-none sm:leading-normal text-right text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100">
               {t("privacyPolicy")}
             </p>
-            <p className="text-white w-fit text-right text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100">
+            <p className="text-white leading-none sm:leading-normal text-right text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100">
               {t("terms")}
             </p>
           </div>

@@ -16,7 +16,7 @@ const BigoCard = ({
 }) => {
   return (
     <div
-      className={`group relative flex flex-1 items-center justify-center border-white border-opacity-20 py-9 sm:py-[70px] lg:[&:nth-child(-n+2)]:border-t [&:nth-child(even)]:pl-4 [&:nth-child(odd)]:pr-4 `}
+      className={`group relative flex flex-1 items-center justify-center border-white border-opacity-20 py-9 sm:py-[70px] lg:[&:nth-child(-n+2)]:border-t even:pl-4 odd:pr-4 `}
     >
       {number === 1 && (
         <>
@@ -30,7 +30,7 @@ const BigoCard = ({
         </>
       )}
 
-      <span className="absolute top-0 h-full w-[62%] group-[&:nth-child(even)]:right-0 group-[&:nth-child(odd)]:left-0">
+      <span className="absolute top-0 h-full w-[62%] group-even:right-0 group-odd:left-0">
         {number === 1 && (
           <>
             <Dot side="right" verticalSide="top" />
@@ -45,7 +45,7 @@ const BigoCard = ({
         )}
       </span>
 
-      <div className="flex gap-8 group-[&:nth-child(even)]:ml-auto group-[&:nth-child(odd)]:mr-auto">
+      <div className="flex gap-8 group-even:ml-auto group-odd:mr-auto">
         <div className="flex">
           <Image
             src={`/icons/${name}.svg`}

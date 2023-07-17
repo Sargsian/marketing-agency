@@ -2,25 +2,20 @@ import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Scenes from "src/scenes";
 import { useControls } from "leva";
-import { ZodAny } from "zod";
-import { Leva } from 'leva'
+import { Leva } from "leva";
 import { useTranslation } from "next-i18next";
+import { useState } from "react";
 
 const Hero = () => {
   const { t } = useTranslation("header");
+  const [pauseRotation, setPauseRotation] = useState(true);
+
   const scroller = (element: HTMLElement) => {
     window.scrollTo({
       top: element.offsetTop - 60,
       behavior: "smooth",
     });
   };
-
-  const { x, y, z, fov } = useControls("Camera", {
-    x: 32,
-    y: 17,
-    z: 85,
-    fov: 45,
-  });
 
   const handleScroll = (id: string) => {
     const el = document.getElementById(id);
@@ -32,26 +27,26 @@ const Hero = () => {
     <>
       <Leva
         collapsed
-        hidden
+        // hidden
       />
-      <div className="relative h-[calc(100vh+1px)] bg-cover bg-center">
+      <div className="relative h-screen bg-cover bg-center">
         <Canvas
           shadows
-          camera={{ fov: fov, near: 0.1, far: 1000, position: [x, y, z] }}
+          camera={{ fov: 45, near: 1, far: 1000, position: [32, 17, 85] }}
         >
-          <OrbitControls
-            minDistance={20}
-            maxDistance={250}
-            //  maxPolarAngle={Math.PI / 2.63}
-            //   minPolarAngle={Math.PI / 2.63}
-          />
-          <Scenes />
+          <Scenes pause={pauseRotation} />
         </Canvas>
+        <button
+          onClick={() => setPauseRotation((prevState) => !prevState)}
+          className="absolute bottom-[100px] left-[100px] text-white"
+        >
+          {pauseRotation ? "play" : "pause"}
+        </button>
         <button
           onClick={() => handleScroll("main-content")}
           className="absolute bottom-[144px] left-1/2 -translate-x-1/2 text-white opacity-60"
         >
-          {t('scroll')}
+          {t("scroll")}
         </button>
       </div>
     </>

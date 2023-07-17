@@ -7,28 +7,10 @@ html {
   color: white;
 }
 
-/* body::-webkit-scrollbar-thumb {
-  cursor: grab !important;
-  background-color: rgba(255, 255, 255, 0.44);
-  border-radius: 10px;
-  border: 2px solid rgba(0, 0, 0, 0);
-  background-clip: padding-box;
-}
-
-body::-webkit-scrollbar {
-  cursor: grab !important;
-}
-
-body::-webkit-scrollbar {
-  cursor: grab !important;
-  width: 10px;
-  background-color: transparent;
-}
-
 .swiper-button-disabled {
   opacity: 0.4;
   pointer-events: none;
-} */
+}
 
 @import url("./loadingAnimation.css");
 

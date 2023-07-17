@@ -14,7 +14,7 @@ interface PrimaryLayoutProps extends React.PropsWithChildren {
 
 export const PrimaryLayout = ({
   children,
-  title = "Boost – Tiktok",
+  title = "Boost Agency",
   description = "Маркетинговое агентство - Boost",
   keywords = "маркетинг, продвижение",
   type = "website",
@@ -47,7 +47,7 @@ export const PrimaryLayout = ({
       >
         {children}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

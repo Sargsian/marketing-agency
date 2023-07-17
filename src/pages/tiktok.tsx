@@ -1,4 +1,5 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Page from "src/components/Page";
 import type { ReactElement } from "react";
 import { PrimaryLayout } from "src/components/Layouts/Primary/PrimaryLayout";
 
@@ -9,10 +10,10 @@ export const getStaticProps = async ({ locale = "rus" }) => {
     },
   };
 };
-export default function Home() {
-  return <></>;
+export default function Tiktok() {
+  return <Page companyName="Tiktok" />;
 }
 
-Home.getLayout = function getLayout(page: ReactElement) {
-  return <PrimaryLayout>{page}</PrimaryLayout>;
+Tiktok.getLayout = function getLayout(page: ReactElement) {
+  return <PrimaryLayout title="Boost – Tiktok">{page}</PrimaryLayout>;
 };

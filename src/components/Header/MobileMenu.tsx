@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const menuList = [
-  { name: "Tiktok", link: "/" },
+  { name: "Tiktok", link: "/tiktok" },
   { name: "Bigo", link: "/bigo" },
   { name: "Meta", link: "/meta" },
 ];

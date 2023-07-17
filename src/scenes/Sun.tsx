@@ -23,13 +23,13 @@ const Sun = () => {
   ) as GLTFResult;
 
   const { scale } = useControls('Sun', {
-    scale: 0.05,
+    scale: 0.08,
   });
 
   // A failed attempt to solve the lag issue on hover
   const rotateSun = useCallback(() => {
     if (!sunRef.current) return;
-    sunRef.current.rotation.y -= 0.002;
+    sunRef.current.rotation.y -= 0.0007;
   }, []);
 
   useFrame(() => rotateSun());
@@ -60,7 +60,7 @@ const Sun = () => {
         emmissiveMap={sunTexture}
         scale={0.5}
       /> */}
-      <pointLight castShadow intensity={2} />
+      <pointLight castShadow intensity={1.5} />
     </group>
   );
 };
