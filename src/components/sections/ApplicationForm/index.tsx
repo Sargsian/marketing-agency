@@ -98,7 +98,7 @@ const ApplicationForm = () => {
           showAt="xl"
         />
         <form
-          onSubmit={handleSubmit(submitData)}
+          onSubmit={void handleSubmit(submitData)}
           className="mx-auto flex max-w-[600px] flex-col gap-[59px] py-[66px]"
         >
           <div className="flex flex-col gap-10 sm:flex-row sm:gap-5">

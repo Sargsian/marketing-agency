@@ -53,7 +53,7 @@ const BudgedSelect = ({ selectedBudget, setSelectedBudget }: Props) => {
                         }`}
                       >
                         <span className="mr-auto inline-block">Budget</span>
-                        {item.amount}
+                        {item.budget}
                       </span>
                       {selected ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"></span>
