@@ -12,7 +12,7 @@ import SliderCard from "src/components/sections/Company/SliderCard";
 import BigoCard from "src/components/sections/Company/BigoCard";
 import { PointerEvent, useContext, useEffect, useRef, useState } from "react";
 import { useIsVisible } from "src/hooks/useInvisible";
-import { pixelColorHandler } from "src/utils";
+// import { pixelColorHandler } from "src/utils";
 import html2canvas from "html2canvas";
 import { CanvasContext } from "src/components/Layouts/Primary/PrimaryLayout";
 
