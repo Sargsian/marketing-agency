@@ -1,5 +1,3 @@
-import { FormEvent } from "react";
-
 type Props = {
   children: string;
   type: "submit" | "button";

@@ -1,7 +1,7 @@
 import Dot from "src/components/Dot";
 import Button from "src/components/Button";
 import { useTranslation } from "next-i18next";
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useState, SyntheticEvent } from "react";
 import BudgedSelect from "src/components/sections/ApplicationForm/BudgetSelect";
 import { ZodType, z } from "zod";
 import { useForm } from "react-hook-form";
@@ -23,7 +23,7 @@ export type submitType = formData & BudgetType;
 const ApplicationForm = () => {
   const { t } = useTranslation("form");
   const [selectedBudget, setSelectedBudget] = useState({ budget: "500$" });
-  const [termsAccepted, setTermsAccepted] = useState("terms");
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const schema: ZodType<formData> = z.object({
     name: z.string().min(2),
@@ -49,11 +49,10 @@ const ApplicationForm = () => {
     },
   });
 
-  const submitData = async (data: formData, e: FormEvent) => {
-    e.preventDefault();
+  const submitData = async (data: formData) => {
     console.log(data);
     // return;
-    if (isValid) {
+    if (isValid && termsAccepted) {
       await fetch("/api/formSender", {
         method: "POST",
         body: JSON.stringify({
@@ -62,8 +61,12 @@ const ApplicationForm = () => {
             message: data.message,
             name: data.name,
             telegram: data.telegram,
+            budget: selectedBudget.budget,
           },
         }),
+        headers: {
+          "Content-type": "application/json",
+        },
       });
     }
     reset();
@@ -98,7 +101,8 @@ const ApplicationForm = () => {
           showAt="xl"
         />
         <form
-          onSubmit={void handleSubmit(submitData)}
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          onSubmit={handleSubmit(submitData)}
           className="mx-auto flex max-w-[600px] flex-col gap-[59px] py-[66px]"
         >
           <div className="flex flex-col gap-10 sm:flex-row sm:gap-5">
@@ -264,14 +268,16 @@ const ApplicationForm = () => {
             )}
             <div className="flex items-center gap-[10px]">
               <input
-                id="checked-checkbox"
+                id="agree"
                 type="checkbox"
-                value="terms"
-                onChange={(e) => console.log(e.target.value, "checkbox")}
+                onChange={(e) => (
+                  setTermsAccepted(e.target.checked),
+                  console.log(e.target.checked)
+                )}
                 className="h-4 w-4 rounded accent-accent sm:h-[18px] sm:w-[18px]"
               />
               <label
-                htmlFor="checked-checkbox"
+                htmlFor="agree"
                 className="text-white text-opacity-60 subtitle"
               >
                 I agree to all Term, Privacy Policy
@@ -283,7 +289,11 @@ const ApplicationForm = () => {
             <span className="relative flex-1 after:absolute after:right-0 after:top-[-1px] after:h-[1px] after:w-full after:bg-white after:bg-opacity-40 xl:hidden">
               <Dot verticalSide="top" side="right" />
             </span>
-            <Button classNames="flex-[2]" disabled={!isValid} type="submit">
+            <Button
+              classNames="flex-[2]"
+              disabled={!isValid || !termsAccepted}
+              type="submit"
+            >
               {t("button")}
             </Button>
             <span className="relative flex-1 after:absolute after:right-0 after:top-[-1px] after:h-[1px] after:w-full after:bg-white after:bg-opacity-40 xl:hidden">
