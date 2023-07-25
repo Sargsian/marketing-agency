@@ -11,15 +11,14 @@ export type BudgetType = {
   budget: string;
 };
 
- type formData = {
+type formData = {
   name: string;
   email: string;
   telegram: string;
   message: string;
 };
 
-export type submitType = formData & BudgetType
-
+export type submitType = formData & BudgetType;
 
 const ApplicationForm = () => {
   const { t } = useTranslation("form");
@@ -50,11 +49,12 @@ const ApplicationForm = () => {
     },
   });
 
-  const submitData = async (data: formData) => {
+  const submitData = async (data: formData, e: FormEvent) => {
+    e.preventDefault();
     console.log(data);
     // return;
     if (isValid) {
-      await fetch("https://marketing-agency-eosin.vercel.app/api/formSender", {
+      await fetch("/api/formSender", {
         method: "POST",
         body: JSON.stringify({
           data: {
