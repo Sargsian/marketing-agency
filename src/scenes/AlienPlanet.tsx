@@ -6,6 +6,7 @@ import type { GLTF } from "three-stdlib";
 import type { Group } from "three";
 import { useControls } from "leva";
 import { useRouter } from "next/router";
+import PlanetTitleHover from "src/components/PlanetTitleHover";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -80,13 +81,16 @@ const AlienPlanet = ({ pause }: { pause: boolean }) => {
       {active && (
         <Html distanceFactor={40} center as="div" className="h-20 bg-red-300">
           <span className="group absolute bottom-16 right-16 inline-block h-[8px] w-[8px] rounded-full outline outline-1 outline-offset-1 outline-[#ffffff77] before:absolute before:left-1/2 before:top-1/2 before:h-[6px] before:w-[6px] before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-white before:transition-all before:delay-100 hover:before:h-[10px] before:hover:w-[10px]">
-            <span className="absolute right-1 top-1/4 h-[1px] w-[100px] origin-right rotate-[32deg] rounded bg-white opacity-0 delay-300 group-hover:opacity-100">
+            <span className="absolute right-1 top-1/4 h-[1px] w-[100px] origin-right rotate-[32deg] rounded bg-white opacity-100 delay-300 group-hover:opacity-100">
               <span
                 // eslint-disable-next-line @typescript-eslint/no-misused-promises
                 onClick={() => router.push("/tiktok")}
-                className="absolute bottom-[-24px] right-[100%] inline-block h-5 min-w-[100px] -rotate-[32deg] font-jetbrains text-sm font-medium tracking-[-1.4px] hover:cursor-pointer"
+                className="absolute bottom-[-24px] right-[100%] inline-block h-5 min-w-[100px] -rotate-[32deg]"
               >
-                TikTok Planet
+                <span className="font-jetbrains text-sm font-medium tracking-[-1.4px] hover:cursor-pointer">
+                  {/* TikTok Planet */}
+                  <PlanetTitleHover>Tiktok Planet</PlanetTitleHover>
+                </span>
                 <span className="absolute bottom-[-5px] left-[1px] h-[1px] w-[calc(100%)] cursor-auto rounded bg-white"></span>
               </span>
             </span>

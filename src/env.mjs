@@ -8,6 +8,7 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
+    NEXT_TELEGRAM_TOKEN: z.enum(["6446752010:AAHCkWH5-jJaCVt_aFp8mugyVWQX1htik3I", "6446752010:AAHCkWH5-jJaCVt_aFp8mugyVWQX1htik3I", "6446752010:AAHCkWH5-jJaCVt_aFp8mugyVWQX1htik3I"]),
   },
 
   /**
@@ -25,6 +26,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+    NEXT_TELEGRAM_TOKEN: process.env.NEXT_TELEGRAM_TOKEN,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

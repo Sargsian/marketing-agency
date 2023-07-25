@@ -1,11 +1,6 @@
-import {
-  Environment,
-  OrbitControls,
-  useEnvironment,
-  useTexture,
-} from "@react-three/drei";
-import { RefObject, useEffect, useRef, useState } from "react";
-import { Vector3, type Group } from "three";
+import { CameraControls, useEnvironment, useProgress } from "@react-three/drei";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { type Group } from "three";
 import { Perf } from "r3f-perf";
 import { type ThreeEvent, useFrame } from "@react-three/fiber";
 import AlienPlanet from "src/scenes/AlienPlanet";
@@ -17,33 +12,30 @@ import AnimatedStars from "src/scenes/AnimatedStars";
 import Sun from "src/scenes/Sun";
 import * as THREE from "three";
 import MarsPlanet from "src/scenes/MarsPlanet";
-import {
-  useSpring,
-  animated,
-  config,
-  useSpringRef,
-  useSpringValue,
-} from "@react-spring/three";
+import { useSpring, animated, config } from "@react-spring/three";
 import { useControls } from "leva";
 
 const Scenes = ({ pause }: { pause: boolean }) => {
   const envMap = useEnvironment({ files: "/assets/models/galaxy2.hdr" });
-  const groupRef = useRef<Group>(null);
   const [posY, setPosY] = useState(0);
   const [enableCamera, setEnableCamera] = useState(true);
+
+  const groupRef = useRef<Group>(null);
+  const cameraRef = useRef<CameraControls>(null);
 
   const vec = new THREE.Vector3();
 
   const [{ rotation }, api] = useSpring(() => ({
-    onRest: () => (setEnableCamera(true), console.log("animation ended")),
+    onRest: () => (setEnableCamera(true), console.log("animated")),
     from: { rotation: 0 },
-    config: { tension: 50, friction: 20, precision: 0.0001 },
+    config: { tension: 80, friction: 20, precision: 0.0001 },
+    // config: {...config.wobbly, precision: 0.0001},
   }));
+
+  const { active } = useProgress();
 
   const handleRotate = (e: ThreeEvent<MouseEvent>) => {
     if (!e.object.parent || !enableCamera) return;
-
-    setEnableCamera(false);
 
     const cameraAngle = Math.atan2(
       +e.camera?.position.x,
@@ -55,40 +47,52 @@ const Scenes = ({ pause }: { pause: boolean }) => {
       +e.object.parent.getWorldPosition(vec).z
     );
 
-    console.log(planetAngle, "planetAngle");
-    console.log(cameraAngle, "cameraAngle");
-    // return
+    const sun = new THREE.Vector3(0, 0, 0);
+    const distanceToSun =
+      e.object.parent.getWorldPosition(vec).distanceTo(sun) + 40;
 
+    void cameraRef.current?.rotatePolarTo(Math.PI / 2.1, true);
+    void cameraRef.current?.dollyTo(distanceToSun, true);
+
+    void cameraRef.current?.rotateAzimuthTo(planetAngle, true);
+    // return;
     if (cameraAngle - planetAngle < -Math.PI) {
-      console.log(-Math.PI, "minus PI");
       const rotateAngle = cameraAngle - planetAngle + 2 * Math.PI;
-      api.start({
-        to: {
-          rotation: rotateAngle + posY,
-        },
-      });
+      // api.start({
+      //   to: {
+      //     rotation: rotateAngle + posY,
+      //   },
+      // });
       setPosY(rotateAngle + posY);
-      return;
     } else if (cameraAngle - planetAngle > Math.PI) {
-      console.log(-Math.PI, "minus PI");
       const rotateAngle = cameraAngle - planetAngle - 2 * Math.PI;
-      api.start({
-        to: {
-          rotation: rotateAngle + posY,
-        },
-      });
-      setPosY(rotateAngle + posY);
-      return;
+      // api.start({
+        //   to: {
+          //     rotation: rotateAngle + posY,
+          //   },
+          // });
+          
+          setPosY(rotateAngle + posY);
+        } else {
+          // api.start({
+          //   to: {
+          //     rotation: cameraAngle - planetAngle + posY,
+          //   },
+          // });
+      setPosY(cameraAngle - planetAngle + posY);
     }
-
-    api.start({
-      to: {
-        rotation: cameraAngle - planetAngle + posY,
-      },
-    });
-
-    setPosY(cameraAngle - planetAngle + posY);
+    // setEnableCamera(false);
   };
+
+  useEffect(() => {
+    if (active) return;
+    console.log(cameraRef, "cameraRef");
+    setTimeout(() => {
+      void cameraRef.current?.rotatePolarTo(Math.PI / 2.4, true);
+      void cameraRef.current?.rotateAzimuthTo(Math.PI, true);
+      void cameraRef.current?.dollyTo(200, true);
+    }, 100);
+  }, [active]);
 
   useFrame(() => {
     if (!groupRef.current) return;
@@ -101,17 +105,16 @@ const Scenes = ({ pause }: { pause: boolean }) => {
   return (
     <>
       {/* <Perf /> */}
-      <OrbitControls
-        rotation={[0, posY, 0]}
-        enableRotate
+      <CameraControls
         enabled={enableCamera}
         minDistance={20}
+        polarAngle={Math.PI * 2}
         maxDistance={250}
-        // makeDefault
-        // maxPolarAngle={Math.PI / 2}
-        // minPolarAngle={Math.PI / 2}
+        distance={5000}
+        minZoom={0}
+        maxZoom={3}
+        ref={cameraRef}
       />
-
       <animated.mesh rotation-y={rotation}>
         <sphereGeometry args={[600, 600, 600]} />
         <meshStandardMaterial side={THREE.BackSide} map={envMap} />
@@ -121,6 +124,7 @@ const Scenes = ({ pause }: { pause: boolean }) => {
         {/* <Environment background={"only"} map={envMap} /> */}
         <Sun />
         <group onClick={handleRotate} ref={groupRef}>
+          {/* <ambientLight intensity={2} /> */}
           <AlienPlanet pause={pause} />
           <BrownPlanet pause={pause} />
           <LavaPlanet pause={pause} />

@@ -1,14 +1,21 @@
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, useProgress, Loader } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Scenes from "src/scenes";
 import { useControls } from "leva";
 import { Leva } from "leva";
 import { useTranslation } from "next-i18next";
-import { useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 
-const Hero = () => {
+const Hero = ({
+  setThreeIsLoaded,
+}: {
+  setThreeIsLoaded: (arg: boolean) => void;
+}) => {
   const { t } = useTranslation("header");
   const [pauseRotation, setPauseRotation] = useState(true);
+  const { active } = useProgress();
+
 
   const scroller = (element: HTMLElement) => {
     window.scrollTo({
@@ -27,15 +34,19 @@ const Hero = () => {
     <>
       <Leva
         collapsed
-        // hidden
+        hidden
       />
       <div className="relative h-screen bg-cover bg-center">
         <Canvas
           shadows
-          camera={{ fov: 45, near: 1, far: 1000, position: [32, 17, 85] }}
+          camera={{ fov: 45, near: 1, far: 5000, position: [0, 0, 185] }}
         >
-          <Scenes pause={pauseRotation} />
+          <Suspense fallback={null}>
+            <Scenes pause={pauseRotation} />
+          </Suspense>
         </Canvas>
+        <Loader dataInterpolation={(span) => `Loading ${span.toFixed(0)}%`} />
+
         <button
           onClick={() => setPauseRotation((prevState) => !prevState)}
           className="absolute bottom-[100px] left-[100px] text-white"
@@ -53,4 +64,6 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default dynamic(() => Promise.resolve(Hero), {
+  ssr: false,
+});
