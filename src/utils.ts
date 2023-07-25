@@ -30,25 +30,25 @@ const getCanvasPixelColor = (
   };
 };
 
-function getElementPosition(canvas: HTMLCanvasElement) {
-  let curleft = 0,
-    curtop = 0;
-  if (canvas.offsetParent) {
-    do {
-      curleft += canvas.offsetLeft;
-      curtop += canvas.offsetTop;
-    } while ((canvas = canvas.offsetParent));
-    return { x: curleft, y: curtop };
-  }
-  return { x: 0, y: 0 };
-}
+// function getElementPosition(canvas: HTMLCanvasElement) {
+//   let curleft = 0,
+//     curtop = 0;
+//   if (canvas.offsetParent) {
+//     do {
+//       curleft += canvas.offsetLeft;
+//       curtop += canvas.offsetTop;
+//     } while ((canvas = canvas.offsetParent));
+//     return { x: curleft, y: curtop };
+//   }
+//   return { x: 0, y: 0 };
+// }
 
-export const pixelColorHandler = (e: MouseEvent) => {
-  const element = document.getElementById(
-    "screenshot-root"
-  ) as HTMLCanvasElement;
-  const pos = getElementPosition(element);
+// export const pixelColorHandler = (e: MouseEvent) => {
+//   const element = document.getElementById(
+//     "screenshot-root"
+//   ) as HTMLCanvasElement;
+//   const pos = getElementPosition(element);
 
-  const color = getCanvasPixelColor(element, e.pageX - pos.x, e.pageY - pos.y);
-  return color;
-};
+//   const color = getCanvasPixelColor(element, e.pageX - pos.x, e.pageY - pos.y);
+//   return color;
+// };
