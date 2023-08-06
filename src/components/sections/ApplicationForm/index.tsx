@@ -270,10 +270,7 @@ const ApplicationForm = () => {
               <input
                 id="agree"
                 type="checkbox"
-                onChange={(e) => (
-                  setTermsAccepted(e.target.checked),
-                  console.log(e.target.checked)
-                )}
+                onChange={(e) => setTermsAccepted(e.target.checked)}
                 className="h-4 w-4 rounded accent-accent sm:h-[18px] sm:w-[18px]"
               />
               <label

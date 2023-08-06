@@ -1,0 +1,32 @@
+import { useEffect, useRef } from "react";
+import { useScene } from "src/store/SceneContext";
+
+export function useOffset() {
+  const { pause } = useScene();
+
+  const timeRef = useRef({ time: 0 });
+  const offsetTimeRef = useRef({ time: 0 });
+
+  useEffect(() => {
+    timeRef.current.time = new Date().getTime() / 1000;
+  }, []);
+
+  useEffect(() => {
+    if (pause) {
+      offsetTimeRef.current.time =
+        new Date().getTime() / 1000 - offsetTimeRef.current.time;
+    } else if (offsetTimeRef.current.time !== 0) {
+      offsetTimeRef.current.time =
+        new Date().getTime() / 1000 - offsetTimeRef.current.time;
+    }
+  }, [pause]);
+
+  const animationTime = () => {
+    const time = new Date().getTime() / 1000;
+    const newTime = time - timeRef.current.time - offsetTimeRef.current.time;
+    return newTime;
+  };
+
+
+  return animationTime;
+}

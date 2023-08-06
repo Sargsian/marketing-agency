@@ -1,8 +1,7 @@
 import Head from "next/head";
-import Footer from "src/components/Footer";
 import Header from "src/components/Header";
 import Hero from "src/components/Hero";
-import { createContext, useState } from "react";
+import { SceneProvider } from "src/store/SceneContext";
 
 interface PrimaryLayoutProps extends React.PropsWithChildren {
   title?: string;
@@ -12,7 +11,6 @@ interface PrimaryLayoutProps extends React.PropsWithChildren {
   url?: string;
   image?: string;
 }
-export const CanvasContext = createContext(false);
 
 export const PrimaryLayout = ({
   children,
@@ -23,8 +21,6 @@ export const PrimaryLayout = ({
   url = "https://boost.ru",
   image,
 }: PrimaryLayoutProps) => {
-  const [threeIsLoaded, setThreeIsLoaded] = useState(false);
-
   return (
     <>
       <Head>
@@ -42,17 +38,17 @@ export const PrimaryLayout = ({
 
         <link rel="icon" href="/logo.svg" />
       </Head>
-      <CanvasContext.Provider value={threeIsLoaded}>
-        <Header />
-        {/* 3d scene and hero */}
-        <Hero setThreeIsLoaded={setThreeIsLoaded} />
-        <main
-          id="main-content"
-          className="mx-auto max-w-[1550px] px-3 font-jost sm:px-5"
-        >
-          {children}
-        </main>
-      </CanvasContext.Provider>
+      <Header />
+      {/* 3d scene and hero */}
+      <SceneProvider>
+        <Hero />
+      </SceneProvider>
+      <main
+        id="main-content"
+        className="mx-auto max-w-[1550px] px-3 font-jost sm:px-5"
+      >
+        {children}
+      </main>
     </>
   );
 };

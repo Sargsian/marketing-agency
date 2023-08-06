@@ -1,7 +1,8 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Page from "src/components/Page";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { PrimaryLayout } from "src/components/Layouts/Primary/PrimaryLayout";
+import Footer from "src/components/Footer";
 
 export const getStaticProps = async ({ locale = "rus" }) => {
   return {
@@ -15,5 +16,10 @@ export default function Tiktok() {
 }
 
 Tiktok.getLayout = function getLayout(page: ReactElement) {
-  return <PrimaryLayout title="Boost – Tiktok">{page}</PrimaryLayout>;
+  return (
+    <PrimaryLayout title="Boost – Tiktok">
+      {page}
+      <Footer />
+    </PrimaryLayout>
+  );
 };

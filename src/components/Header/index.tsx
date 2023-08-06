@@ -8,6 +8,7 @@ import Hamburger from "./Hamburger";
 import { useTranslation } from "next-i18next";
 import SmoothScrollbar from "./SmoothScrollbar";
 import Sidebar from "src/components/Header/Sidebar";
+import Link from "next/link";
 
 const locales = [{ name: "eng" }, { name: "rus" }];
 
@@ -25,22 +26,22 @@ const Header = () => {
       { locale: language, scroll: false }
     );
   };
- 
 
   return (
     <>
       <SmoothScrollbar />
       <header className="fixed left-0 right-0 z-50 flex h-[60px] items-center justify-between px-[18px] pt-[30px] sm:px-10">
         <div>
-          <Image
-            src="/logo.svg"
-            alt="logo"
-            className="mr-3 inline-block sm:mr-[50px]"
-            width={59}
-            height={18}
-          />
-
-          <div className="relative inline-block">
+          <Link href={"/"}>
+            <Image
+              src="/logo.svg"
+              alt="logo"
+              className="inline-block"
+              width={59}
+              height={18}
+            />
+          </Link>
+          <div className="relative ml-3 inline-block sm:ml-[50px]">
             <Listbox value={router.locale} onChange={switchLanguage}>
               <Listbox.Button className="capitalize tracking-[-0.032px] text-accent hover:cursor-pointer">
                 {router.locale}

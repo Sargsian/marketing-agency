@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -11,7 +12,9 @@ const Footer = () => {
       <div className="mx-auto px-5 py-16 sm:px-10">
         <div className="grid grid-cols-2 gap-y-14 xl:grid-cols-5 xl:gap-8">
           <div className="order-2 xl:order-none">
-            <Image src="/logo.svg" width={84} height={26} alt="logo" />
+            <Link href={"/"}>
+              <Image src="/logo.svg" width={84} height={26} alt="logo" />
+            </Link>
             <span className="mt-3 inline-block font-jetbrains text-base font-medium uppercase tracking-[-1px] text-white text-opacity-60 sm:mt-7">
               Boost {year} &copy;
             </span>
@@ -81,11 +84,11 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="order-3 flex sm:whitespace-nowrap space-y-3 items-end flex-col font-jetbrains font-medium sm:text-lg xl:order-none">
-            <p className="text-white leading-none sm:leading-normal text-right text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100">
+          <div className="order-3 flex flex-col items-end space-y-3 font-jetbrains font-medium sm:whitespace-nowrap sm:text-lg xl:order-none">
+            <p className="text-right leading-none text-white text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100 sm:leading-normal">
               {t("privacyPolicy")}
             </p>
-            <p className="text-white leading-none sm:leading-normal text-right text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100">
+            <p className="text-right leading-none text-white text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100 sm:leading-normal">
               {t("terms")}
             </p>
           </div>
