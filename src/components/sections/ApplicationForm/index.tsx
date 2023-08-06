@@ -6,6 +6,7 @@ import BudgedSelect from "src/components/sections/ApplicationForm/BudgetSelect";
 import { ZodType, z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/router";
 
 export type BudgetType = {
   budget: string;
@@ -24,6 +25,7 @@ const ApplicationForm = () => {
   const { t } = useTranslation("form");
   const [selectedBudget, setSelectedBudget] = useState({ budget: "500$" });
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const router = useRouter();
 
   const schema: ZodType<formData> = z.object({
     name: z.string().min(2),
@@ -53,7 +55,7 @@ const ApplicationForm = () => {
     console.log(data);
     // return;
     if (isValid && termsAccepted) {
-      await fetch("/api/formSender", {
+      const res = await fetch("/api/formSender", {
         method: "POST",
         body: JSON.stringify({
           data: {
@@ -68,8 +70,13 @@ const ApplicationForm = () => {
           "Content-type": "application/json",
         },
       });
+      
+      reset();
+
+      if (res.status === 200) {
+        void router.push("/success");
+      }
     }
-    reset();
   };
 
   return (

@@ -29,8 +29,7 @@ const telegramBot = async (
     `https://api.telegram.org/bot${bot}/sendMessage?chat_id=${"1026137309"}&text=${message}&parse_mode=HTML`
   );
 
-  console.log("ret", ret);
-  res.status(200).send("OK");
+  return ret;
 };
 
 export default telegramBot;
