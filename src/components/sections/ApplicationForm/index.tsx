@@ -70,12 +70,14 @@ const ApplicationForm = () => {
           "Content-type": "application/json",
         },
       });
-      
-      reset();
 
-      if (res.status === 200) {
+      if (res.ok) {
         void router.push("/success");
       }
+
+      console.log(res, "response");
+
+      reset();
     }
   };
 
