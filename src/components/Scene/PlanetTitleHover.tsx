@@ -91,7 +91,7 @@ const PlanetTitleHover = ({
   return (
     <span
       onClick={onClick}
-      className="cursor-pointer"
+      className="cursor-pointer absolute [backface-visibility:hidden] subpixel-antialiased rotate-[0.1deg]"
       onMouseEnter={shuffleChars}
     >
       {children.split("").map((char, i) => (

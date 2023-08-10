@@ -25,7 +25,7 @@ const KeplerPlanet = ({
     "Kepler Planet",
     {
       offset: {
-        value: 1.7,
+        value: 1.256,
         min: 0,
         max: Math.PI * 2,
         step: 0.01,
@@ -42,15 +42,6 @@ const KeplerPlanet = ({
   useFrame(() => {
     if (!keplerRef.current) return;
     keplerRef.current.rotation.y -= 0.003;
-
-    if (pause) {
-      return;
-    }
-    keplerRef.current.position.x =
-      Math.sin(animationTime() * (speed / 4) + offset) * x * distanceFromSun;
-
-    keplerRef.current.position.z =
-      Math.cos(animationTime() * (speed / 4) + offset) * x * distanceFromSun;
   });
 
   return (

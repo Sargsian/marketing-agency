@@ -6,6 +6,7 @@ import {
   Sparkles,
   useEnvironment,
   useProgress,
+  useTexture,
 } from "@react-three/drei";
 import { RefObject, Suspense, use, useEffect, useRef, useState } from "react";
 import { type Group } from "three";
@@ -25,6 +26,7 @@ import JupiterPlanet from "src/scene/JupiterPlanet";
 import TerraformedPlanet from "src/scene/TerraformedPlanet";
 import KeplerPlanet from "src/scene/KeplerPlanet";
 import { useOffset } from "src/hooks/useOffset";
+import PlanetHtml from "src/components/Scene/PlanetHtml";
 
 const Scene = ({ pause }: { pause: boolean }) => {
   const router = useRouter();
@@ -46,6 +48,7 @@ const Scene = ({ pause }: { pause: boolean }) => {
   const cameraRef = useRef<CameraControls>(null);
   const alienRef = useRef<Group>(null);
   const lavaRef = useRef<Group>(null);
+  const terraformedRef = useRef<Group>(null);
 
   const sun = new THREE.Vector3(0, 0, 0);
   const vec = new THREE.Vector3();
@@ -54,14 +57,18 @@ const Scene = ({ pause }: { pause: boolean }) => {
     if (!cameraRef.current) return;
     if (interaction === "disable") {
       cameraRef.current.mouseButtons.left = 0;
-      cameraRef.current.mouseButtons.right = 0;
       cameraRef.current.mouseButtons.wheel = 0;
       cameraRef.current.mouseButtons.middle = 0;
+      cameraRef.current.touches.one = 0;
+      cameraRef.current.touches.two = 0;
+      cameraRef.current.touches.three = 0;
     } else if (interaction === "enable") {
       cameraRef.current.mouseButtons.left = 1;
-      cameraRef.current.mouseButtons.right = 2;
       cameraRef.current.mouseButtons.wheel = 8;
       cameraRef.current.mouseButtons.middle = 8;
+      cameraRef.current.touches.one = 32;
+      // cameraRef.current.touches.two = 1;
+      // cameraRef.current.touches.three = 471;
     }
   };
 
@@ -74,37 +81,47 @@ const Scene = ({ pause }: { pause: boolean }) => {
       void router.push(`/${route}`);
   };
 
-  console.log('rerender')
+  console.log("rerender");
 
-  const handleRotate = (e: ThreeEvent<MouseEvent>) => {
-    if (!e.object.parent || !enableCamera || !cameraRef.current || scroll)
-      return;
-    dispatch({ type: "pause", payload: { pause: true } });
+  useFrame(() => {
+    if (!groupRef.current) return;
+    if (pause) return;
+    groupRef.current.rotation.y += 0.001;
+  });
 
-    const planetAngle = Math.atan2(
-      +e.object.parent.getWorldPosition(vec).x,
-      +e.object.parent.getWorldPosition(vec).z
-    );
+  // const handleRotate = (e: ThreeEvent<MouseEvent>) => {
+  //   if (
+  //     !e.object.parent ||
+  //     !enableCamera ||
+  //     !cameraRef.current ||
+  //     scroll ||
+  //     true
+  //   )
+  //   dispatch({ type: "pause", payload: { pause: true } });
+  //   e.stopPropagation();
 
-    const distanceToSun =
-      e.object.parent.getWorldPosition(vec).distanceTo(sun) + 40;
-    setCurrentPlanet(e.object.parent);
+  //   const planetAngle = Math.atan2(
+  //     +e.object.parent.getWorldPosition(vec).x,
+  //     +e.object.parent.getWorldPosition(vec).z
+  //   );
 
-    void cameraRef.current?.rotatePolarTo(Math.PI / 2.02, true);
-    void cameraRef.current?.dollyTo(distanceToSun, true);
+  //   const distanceToSun =
+  //     e.object.parent.getWorldPosition(vec).distanceTo(sun) + 40;
+  //   setCurrentPlanet(e.object.parent);
 
-    const angle = planetAngle - cameraRef.current.azimuthAngle;
-    const absoluteAngle =
-      THREE.MathUtils.euclideanModulo(angle + Math.PI, Math.PI * 2) - Math.PI;
+  //   void cameraRef.current?.rotatePolarTo(Math.PI / 2.02, true);
+  //   void cameraRef.current?.dollyTo(distanceToSun, true);
 
-    void cameraRef.current?.rotateAzimuthTo(
-      cameraRef.current.azimuthAngle + absoluteAngle,
-      true
-    );
-    cameraRef.current.addEventListener("rest", () =>
-      dispatch({ type: "preview", payload: { preview: true } })
-    );
-  };
+  //   const angle = planetAngle - cameraRef.current.azimuthAngle;
+  //   const absoluteAngle =
+  //     THREE.MathUtils.euclideanModulo(angle + Math.PI, Math.PI * 2) - Math.PI;
+
+  //   void cameraRef.current?.rotateAzimuthTo(
+  //     cameraRef.current.azimuthAngle + absoluteAngle,
+  //     true
+  //   );
+  //   dispatch({ type: "preview", payload: { preview: true } });
+  // };
 
   const panToPlanet = (planetRef: RefObject<Group>) => {
     if (!planetRef.current || !cameraRef.current) return;
@@ -144,7 +161,12 @@ const Scene = ({ pause }: { pause: boolean }) => {
   };
 
   useEffect(() => {
-    if (active) return;
+    if (active || !cameraRef.current) return;
+    cameraRef.current.mouseButtons.right = 0;
+    console.log(cameraRef.current.touches.one, "one");
+    console.log(cameraRef.current.touches.two, "two");
+    console.log(cameraRef.current.touches.three, "three");
+
     setTimeout(() => {
       void cameraRef.current?.rotatePolarTo(Math.PI / 2.4, true);
       void cameraRef.current?.rotateAzimuthTo(Math.PI, true);
@@ -173,9 +195,17 @@ const Scene = ({ pause }: { pause: boolean }) => {
     if (!loaded) return;
     if (!alienRef.current || !cameraRef.current || isFirstRender) return;
     if (router.pathname === "/tiktok") {
-      panToPlanet(alienRef);
+      setTimeout(() => {
+        panToPlanet(alienRef);
+      }, 500);
     } else if (router.pathname === "/bigo") {
-      panToPlanet(lavaRef);
+      setTimeout(() => {
+        panToPlanet(lavaRef);
+      }, 1000);
+    } else if (router.pathname === "/meta") {
+      setTimeout(() => {
+        panToPlanet(terraformedRef);
+      }, 1000);
     } else if (router.pathname === "/") {
       cameraRef.current.removeAllEventListeners();
       dispatch({ type: "scroll", payload: { scroll: false } });
@@ -189,17 +219,19 @@ const Scene = ({ pause }: { pause: boolean }) => {
         alienRef.current.getWorldPosition(vec).distanceTo(sun) + 80;
       void cameraRef.current.dollyTo(distanceToSun, true);
       void cameraRef.current?.rotatePolarTo(Math.PI / 2.1, true);
-      dispatch({ type: "pause", payload: { pause: false } });
+
+      setTimeout(() => {
+        dispatch({ type: "pause", payload: { pause: false } });
+      }, 500);
     }
     // }, 2000);
   }, [router.pathname, loaded, isFirstRender]);
 
   return (
     <>
-      <Perf />
+      {/* <Perf /> */}
       <CameraControls
         enabled={enableCamera}
-        // minDistance={20}
         polarAngle={Math.PI * 2}
         maxDistance={5000}
         distance={5000}
@@ -209,6 +241,7 @@ const Scene = ({ pause }: { pause: boolean }) => {
       <directionalLight castShadow intensity={1} />
 
       <Environment background map={envMap} />
+
       <Html
         as="div"
         center
@@ -221,20 +254,19 @@ const Scene = ({ pause }: { pause: boolean }) => {
       <group>
         <AnimatedStars />
         <Sparkles
-          count={1010}
+          count={3010}
           opacity={0.1}
           scale={1224 * 5}
           size={4426}
           speed={10.4}
         />
-        <Environment background={"only"} map={envMap} />
         <Sun />
-        <group onClick={handleRotate} ref={groupRef}>
+        <group ref={groupRef}>
           {/* <ambientLight intensity={0.5} /> */}
           <AlienPlanet
             onClick={() => handleRoute("tiktok")}
             ref={alienRef}
-            rotationSpeed={0.3}
+            rotationSpeed={router.pathname === "/tiktok" ? 0.2 : 1}
             animationTime={animationTime}
           />
           <MarsPlanet animationTime={animationTime} rotationSpeed={0.3} />
@@ -242,15 +274,17 @@ const Scene = ({ pause }: { pause: boolean }) => {
             animationTime={animationTime}
             onClick={() => handleRoute("bigo")}
             ref={lavaRef}
-            rotationSpeed={0.3}
+            rotationSpeed={router.pathname === "/bigo" ? 0.2 : 1}
           />
           {/* <KeplerPlanet pause={pause} /> */}
           <TerraformedPlanet
             animationTime={animationTime}
-            rotationSpeed={0.3}
+            rotationSpeed={router.pathname === "/meta" ? 0.2 : 1}
+            ref={terraformedRef}
+            onClick={() => handleRoute("meta")}
           />
-          {/* <JupiterPlanet pause={pause} /> */}
-          <PinkyPlanet animationTime={animationTime} rotationSpeed={0.3} />
+          <JupiterPlanet rotationSpeed={0.3} />
+          {/* <PinkyPlanet animationTime={animationTime} rotationSpeed={0.3} /> */}
         </group>
       </group>
     </>
@@ -258,3 +292,5 @@ const Scene = ({ pause }: { pause: boolean }) => {
 };
 
 export default Scene;
+
+useTexture.preload("/assets/models/galaxy2.hdr");

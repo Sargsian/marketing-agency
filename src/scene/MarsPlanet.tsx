@@ -29,7 +29,7 @@ const MarsPlanet = ({
 
   const { offset, scale, distanceFromSun, speed } = useControls("Mars Planet", {
     offset: {
-      value: 1.2,
+      value: 2.512,
       min: 0,
       max: Math.PI * 2,
       step: 0.01,
@@ -45,15 +45,6 @@ const MarsPlanet = ({
   useFrame(() => {
     if (!marsRef.current) return;
     marsRef.current.rotation.y -= 0.003;
-
-    if (pause) {
-      return;
-    }
-    marsRef.current.position.x =
-      Math.sin(animationTime() * (speed / 4) + offset) * x * distanceFromSun;
-
-    marsRef.current.position.z =
-      Math.cos(animationTime() * (speed / 4) + offset) * x * distanceFromSun;
   });
 
   const { nodes, materials } = useGLTF(
@@ -105,4 +96,4 @@ const MarsPlanet = ({
 
 export default MarsPlanet;
 
-useGLTF.preload("/assets/models/marsPlanet/scene4.glb");
+useGLTF.preload("/assets/models/marsPlanet/scene3.glb");

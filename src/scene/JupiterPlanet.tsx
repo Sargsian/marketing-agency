@@ -14,13 +14,9 @@ type GLTFResult = GLTF & {
 };
 
 const JupiterPlanet = ({
-  pause,
   rotationSpeed,
-  animationTime,
 }: {
-  pause: boolean;
   rotationSpeed: number;
-  animationTime: () => number;
 }) => {
   const { nodes, materials } = useGLTF(
     "/assets/models/jupiterPlanet/scene.glb"
@@ -32,7 +28,7 @@ const JupiterPlanet = ({
     "Jupiter Planet",
     {
       offset: {
-        value: 1,
+        value: 5.024,
         min: 0,
         max: Math.PI * 2,
         step: 0.01,
@@ -49,15 +45,6 @@ const JupiterPlanet = ({
   useFrame(() => {
     if (!crystalRef.current) return;
     crystalRef.current.rotation.y -= 0.003;
-
-    if (pause) {
-      return;
-    }
-    crystalRef.current.position.x =
-      Math.sin(animationTime() * speed + offset) * x * distanceFromSun;
-
-    crystalRef.current.position.z =
-      Math.cos(animationTime() * speed + offset) * x * distanceFromSun;
   });
 
   return (

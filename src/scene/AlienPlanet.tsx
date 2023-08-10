@@ -1,4 +1,4 @@
-import React, { type RefObject, forwardRef, useState } from "react";
+import React, { type RefObject, forwardRef, useState, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
@@ -34,7 +34,7 @@ const AlienPlanet = forwardRef(function AlienPlanet(
   const { nodes, materials } = useGLTF(
     "/assets/models/alienPlanet/scene3.glb"
   ) as GLTFResult;
-  const [active, setActive] = useState(false);
+
   const [hovered, setHovered] = useState(false);
 
   const { preview, pause, companyIsChosen } = useScene();
@@ -52,7 +52,7 @@ const AlienPlanet = forwardRef(function AlienPlanet(
       },
       scale: { value: 0, min: 0, max: 20, step: 0.01 },
       distanceFromSun: { value: 4.2, min: 1, max: 10, step: 0.1 },
-      speed: { value: 1.34 * rotationSpeed, min: 0.01, max: 10, step: 0.005 },
+      speed: { value: 1.34, min: 0.01, max: 10, step: 0.005 },
     }
   );
 
@@ -61,47 +61,40 @@ const AlienPlanet = forwardRef(function AlienPlanet(
 
   useFrame(() => {
     if (!alienRef.current) return;
-    alienRef.current.rotation.y -= 0.003;
-
-    if (pause) {
-      return;
-    }
-    alienRef.current.position.x =
-      Math.sin(animationTime() * (speed / 4) + offset) * x * distanceFromSun;
-
-    alienRef.current.position.z =
-      Math.cos(animationTime() * (speed / 4) + offset) * x * distanceFromSun;
+    alienRef.current.rotation.y -= 0.003 * rotationSpeed;
   });
 
   return (
-    <group
-      position={[
-        Math.sin(offset) * distanceFromSun * x,
-        0,
-        Math.cos(offset) * distanceFromSun * z,
-      ]}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
-      scale={5 + scale}
-      onClick={() => setActive(true)}
-      ref={alienRef}
-      dispose={null}
-    >
-      {active && preview && !companyIsChosen && (
-        <PlanetHtml
-          hovered={hovered}
-          onClick={onClick}
-          setHovered={setHovered}
-          name="Tiktok"
+    <>
+      <group
+        position={[
+          Math.sin(offset) * distanceFromSun * x,
+          0,
+          Math.cos(offset) * distanceFromSun * z,
+        ]}
+        onPointerOver={() => setHovered(true)}
+        onPointerOut={() => setHovered(false)}
+        scale={5 + scale}
+        onClick={() => (onClick(), setHovered(false))}
+        ref={alienRef}
+        dispose={null}
+      >
+        {!companyIsChosen && (
+          <PlanetHtml
+            hovered={hovered}
+            onClick={onClick}
+            setHovered={setHovered}
+            name="Tiktok"
+          />
+        )}
+        <mesh geometry={nodes.Object_4.geometry} material={materials.Planet} />
+        <mesh
+          geometry={nodes.Object_6.geometry}
+          material={materials.Clouds}
+          scale={1.025}
         />
-      )}
-      <mesh geometry={nodes.Object_4.geometry} material={materials.Planet} />
-      <mesh
-        geometry={nodes.Object_6.geometry}
-        material={materials.Clouds}
-        scale={1.025}
-      />
-    </group>
+      </group>
+    </>
   );
 });
 export default AlienPlanet;

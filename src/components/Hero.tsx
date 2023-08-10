@@ -4,16 +4,19 @@ import Scene from "src/scene";
 import { useControls } from "leva";
 import { Leva } from "leva";
 import { useTranslation } from "next-i18next";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useScene, useSceneDispatch } from "src/store/SceneContext";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import Image from "next/image";
 
 const Hero = () => {
   const { t } = useTranslation("header");
   const { preview, pause, scroll } = useScene();
   const router = useRouter();
   const dispatch = useSceneDispatch();
+  const [muteSong, setMuteSong] = useState(false);
 
   const currentTitle =
     router.pathname === "/tiktok"
@@ -26,7 +29,7 @@ const Hero = () => {
 
   return (
     <>
-      <Leva collapsed  />
+      <Leva collapsed hidden />
       <div className="relative h-screen bg-cover bg-center">
         <Canvas
           shadows
@@ -38,17 +41,35 @@ const Hero = () => {
         </Canvas>
         <Loader dataInterpolation={(span) => `Loading ${span.toFixed(0)}%`} />
         {/* <div className="h-full bg-white"></div> */}
-        <button
-          onClick={() =>
-            dispatch({ type: "pause", payload: { pause: !pause } })
-          }
-          className="absolute bottom-[100px] left-[100px] text-white"
-        >
-          {pause ? "play" : "pause"}
+        <button className="absolute z-20 bottom-[100px] left-8 md:left-[100px] cursor-default text-white">
+          <Link
+            className={`flex items-center gap-2 transition-opacity duration-500 hover:opacity-40 ${
+              router.pathname === "/"
+                ? "pointer-events-none opacity-10"
+                : "opacity-60"
+            }`}
+            href={"/"}
+          >
+            <Image
+              width={13}
+              height={13}
+              alt="return"
+              className="opacity-60"
+              src={"/icons/return.svg"}
+            />
+            <span className="font-jost">Back</span>
+          </Link>
         </button>
-
+        <div
+          onClick={() => setMuteSong((prevState) => !prevState)}
+          className={`musicBarsIcon right-10 md:right-[100px] ${muteSong ? "muteSong" : ""}`}
+        >
+          <span />
+          <span />
+          <span />
+        </div>
         <span
-          className={`absolute bottom-[244px] left-1/2 text-white -translate-x-1/2 transition-all font-jost text-[96px] font-semibold tracking-tighter ${
+          className={`absolute bottom-[244px] left-1/2 -translate-x-1/2 font-jost text-[96px] font-semibold tracking-tighter text-white transition-all ${
             scroll ? "opacity-100" : "opacity-0"
           }`}
         >

@@ -33,10 +33,10 @@ const LavaPlanet = forwardRef(function LavaPlanet(
   const [hovered, setHovered] = useState(false);
 
   const { offset, scale, distanceFromSun, speed } = useControls("Lava Planet", {
-    offset: { value: 2.09, min: 0, max: Math.PI * 2, step: 0.01 },
+    offset: { value: 1.256, min: 0, max: Math.PI * 2, step: 0.01 },
     scale: { value: 3.1, min: 0, max: 20, step: 0.01 },
     distanceFromSun: { value: 2.4, min: 1, max: 10, step: 0.1 },
-    speed: { value: 3.61 * rotationSpeed, min: 0.01, max: 10, step: 0.005 },
+    speed: { value: 3.61, min: 0.01, max: 10, step: 0.005 },
   });
 
   const { preview, pause, companyIsChosen } = useScene();
@@ -52,16 +52,7 @@ const LavaPlanet = forwardRef(function LavaPlanet(
 
   useFrame(() => {
     if (!lavaRef.current) return;
-    lavaRef.current.rotation.y -= 0.003;
-
-    if (pause) {
-      return;
-    }
-    lavaRef.current.position.x =
-      Math.sin(animationTime() * (speed / 4) + offset) * x * distanceFromSun;
-
-    lavaRef.current.position.z =
-      Math.cos(animationTime() * (speed / 4) + offset) * x * distanceFromSun;
+    lavaRef.current.rotation.y -= 0.003 * rotationSpeed;
   });
 
   return (
@@ -69,7 +60,7 @@ const LavaPlanet = forwardRef(function LavaPlanet(
       scale={2 + scale}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
-      onClick={() => setActive(true)}
+      onClick={() => (onClick(), setHovered(false))}
       ref={lavaRef}
       position={[
         distanceFromSun * x * Math.sin(offset),
@@ -78,7 +69,7 @@ const LavaPlanet = forwardRef(function LavaPlanet(
       ]}
       dispose={null}
     >
-      {active && preview && !companyIsChosen && (
+      {!companyIsChosen && (
         <PlanetHtml
           hovered={hovered}
           onClick={onClick}

@@ -20,7 +20,7 @@ const PinkyPLanet = ({
   const { offset, scale, distanceFromSun, speed } = useControls(
     "Pinky Planet",
     {
-      offset: { value: 5.232, min: 0, max: Math.PI * 2, step: 0.01 },
+      offset: { value: 3.768, min: 0, max: Math.PI * 2, step: 0.01 },
       scale: { value: 4.9, min: 0, max: 20, step: 0.01 },
       distanceFromSun: { value: 3.6, min: 1, max: 10, step: 0.1 },
       speed: { value: 2.48 * rotationSpeed, min: 0.01, max: 10, step: 0.005 },
@@ -33,15 +33,6 @@ const PinkyPLanet = ({
   useFrame(() => {
     if (!pinkyRef.current) return;
     pinkyRef.current.rotation.y -= 0.003;
-
-    if (pause) {
-      return;
-    }
-    pinkyRef.current.position.x =
-      Math.sin(animationTime() * (speed / 4) + offset) * x * distanceFromSun;
-
-    pinkyRef.current.position.z =
-      Math.cos(animationTime() * (speed / 4) + offset) * x * distanceFromSun;
   });
 
   return (

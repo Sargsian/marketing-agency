@@ -1,9 +1,10 @@
 import type { Group } from "three";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
+import { useSceneDispatch } from "src/store/SceneContext";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -26,14 +27,26 @@ const Sun = () => {
     scale: 0.08,
   });
 
+  const dispatch = useSceneDispatch();
+
   // A failed attempt to solve the lag issue on hover
+
+  useEffect(() => {
+    if (!sunRef.current) return;
+    dispatch({ type: "sunRef", payload: { sunRef: sunRef } });
+  }, []);
 
   useFrame(() => {
     if (!sunRef.current) return;
     sunRef.current.rotation.y += 0.0007;
   });
   return (
-    <group position={[0, 0, 0]} ref={sunRef} dispose={null}>
+    <group
+      position={[0, 0, 0]}
+      onClick={(e) => e.stopPropagation()}
+      ref={sunRef}
+      dispose={null}
+    >
       <mesh
         geometry={nodes.Planeta009_09Sun_0.geometry}
         material={materials["09.Sun"]}
