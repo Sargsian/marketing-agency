@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useOverlayScrollbars } from "overlayscrollbars-react";
 import "overlayscrollbars/overlayscrollbars.css";
-import { useScene } from "src/store/SceneContext";
 
 type SmoothScrollargs = {
   animationTime: number;
@@ -23,8 +22,6 @@ declare global {
 }
 
 const SmoothScrollbar = () => {
-  const { scroll } = useScene();
-
   const [initialize, instance] = useOverlayScrollbars({
     options: {
       scrollbars: { theme: "os-theme-light" },
@@ -59,7 +56,7 @@ const SmoothScrollbar = () => {
         body: null,
       },
     });
-  }, [scroll]);
+  }, []);
 
   return null;
 };

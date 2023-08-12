@@ -1,7 +1,6 @@
 import { Loader } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Scene from "src/scene";
-import { useControls } from "leva";
 import { Leva } from "leva";
 import { useTranslation } from "next-i18next";
 import { Suspense, useEffect, useState } from "react";

@@ -1,9 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { type ReactElement } from "react";
 import Header from "src/components/Header";
-import { PrimaryLayout } from "src/components/Layouts/Primary/PrimaryLayout";
 
 export default function Custom404() {
   return (

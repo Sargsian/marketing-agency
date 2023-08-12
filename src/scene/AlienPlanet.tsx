@@ -38,7 +38,6 @@ const AlienPlanet = forwardRef(function AlienPlanet(
   const { preview, pause, companyIsChosen } = useScene();
 
   const alienRef = ref as RefObject<Group>;
-  const clockRef = useRef(new Clock());
 
   const { offset, scale, distanceFromSun, speed } = useControls(
     "Alien Planet",

@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Dot from "src/components/Dot";
-import InfoCard from "src/components/InfoCard";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { useTranslation } from "next-i18next";
 
 import "swiper/css";

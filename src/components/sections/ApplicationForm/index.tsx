@@ -1,9 +1,9 @@
 import Dot from "src/components/Dot";
 import Button from "src/components/Button";
 import { useTranslation } from "next-i18next";
-import { type FormEvent, useState, SyntheticEvent } from "react";
+import { useState } from "react";
 import BudgedSelect from "src/components/sections/ApplicationForm/BudgetSelect";
-import { ZodType, z } from "zod";
+import { type ZodType, z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
@@ -110,8 +110,7 @@ const ApplicationForm = () => {
           showAt="xl"
         />
         <form
-          // eslint-disable-next-line @typescript-eslint/no-misused-promises
-          onSubmit={handleSubmit(submitData)}
+          onSubmit={void handleSubmit(submitData)}
           className="mx-auto flex max-w-[600px] flex-col gap-[59px] py-[66px]"
         >
           <div className="flex flex-col gap-10 sm:flex-row sm:gap-5">

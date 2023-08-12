@@ -1,10 +1,9 @@
 import type { Group } from "three";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
-import { useSceneDispatch } from "src/store/SceneContext";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -27,14 +26,7 @@ const Sun = () => {
     scale: 0.08,
   });
 
-  const dispatch = useSceneDispatch();
-
   // A failed attempt to solve the lag issue on hover
-
-  useEffect(() => {
-    if (!sunRef.current) return;
-    dispatch({ type: "sunRef", payload: { sunRef: sunRef } });
-  }, []);
 
   useFrame(() => {
     if (!sunRef.current) return;

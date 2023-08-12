@@ -1,5 +1,4 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
-import { useScene } from "src/store/SceneContext";
 
 export function useOffset(pause?: boolean) {
   const timeRef = useRef({ time: 0 });

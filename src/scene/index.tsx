@@ -1,7 +1,6 @@
 import {
   CameraControls,
   Environment,
-  Html,
   PerformanceMonitor,
   Sparkles,
   useEnvironment,
