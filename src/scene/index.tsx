@@ -25,10 +25,10 @@ import { useRouter } from "next/router";
 import JupiterPlanet from "src/scene/JupiterPlanet";
 import TerraformedPlanet from "src/scene/TerraformedPlanet";
 import KeplerPlanet from "src/scene/KeplerPlanet";
-import { useOffset } from "src/hooks/useOffset";
 import PlanetHtml from "src/components/Scene/PlanetHtml";
+import { useOffset } from "src/hooks/useOffset";
 
-const Scene = ({ pause }: { pause: boolean }) => {
+const Scene = () => {
   const router = useRouter();
   const dispatch = useSceneDispatch();
   const { scroll, companyIsChosen } = useScene();
@@ -42,8 +42,11 @@ const Scene = ({ pause }: { pause: boolean }) => {
     null
   );
 
-  const animationTime = useOffset();
+  const [pause, setPause] = useState(false);
 
+  const animationTime = useOffset(pause);
+
+  const clockRef = useRef(new THREE.Clock());
   const groupRef = useRef<Group>(null);
   const cameraRef = useRef<CameraControls>(null);
   const alienRef = useRef<Group>(null);
@@ -55,22 +58,28 @@ const Scene = ({ pause }: { pause: boolean }) => {
 
   const userInteraction = (interaction: "enable" | "disable") => {
     if (!cameraRef.current) return;
-    if (interaction === "disable") {
-      cameraRef.current.mouseButtons.left = 0;
-      cameraRef.current.mouseButtons.wheel = 0;
-      cameraRef.current.mouseButtons.middle = 0;
-      cameraRef.current.touches.one = 0;
-      cameraRef.current.touches.two = 0;
-      cameraRef.current.touches.three = 0;
-    } else if (interaction === "enable") {
-      cameraRef.current.mouseButtons.left = 1;
-      cameraRef.current.mouseButtons.wheel = 8;
-      cameraRef.current.mouseButtons.middle = 8;
-      cameraRef.current.touches.one = 32;
-      // cameraRef.current.touches.two = 1;
-      // cameraRef.current.touches.three = 471;
-    }
+    // if (interaction === "disable") {
+    //   cameraRef.current.mouseButtons.left = 0;
+    //   cameraRef.current.mouseButtons.wheel = 0;
+    //   cameraRef.current.mouseButtons.middle = 0;
+    //   cameraRef.current.touches
+    //   cameraRef.current.touches.one = 0;
+    //   cameraRef.current.touches.two = 0;
+    //   cameraRef.current.touches.three = 0;
+    // } else if (interaction === "enable") {
+    //   cameraRef.current.mouseButtons.left = 1;
+    //   cameraRef.current.mouseButtons.wheel = 8;
+    //   cameraRef.current.mouseButtons.middle = 8;
+    //   cameraRef.current.touches.one = 32;
+    //   // cameraRef.current.touches.two = 1;
+    //   // cameraRef.current.touches.three = 471;
+    // }
   };
+
+  useEffect(() => {
+    if (!cameraRef.current) return;
+    // cameraRef.current.touches.two = 256
+  }, []);
 
   const handleRoute = (route: "tiktok" | "bigo" | "meta") => {
     userInteraction("disable");
@@ -86,7 +95,7 @@ const Scene = ({ pause }: { pause: boolean }) => {
   useFrame(() => {
     if (!groupRef.current) return;
     if (pause) return;
-    groupRef.current.rotation.y += 0.001;
+    groupRef.current.rotation.y = animationTime() / 14;
   });
 
   // const handleRotate = (e: ThreeEvent<MouseEvent>) => {
@@ -125,7 +134,8 @@ const Scene = ({ pause }: { pause: boolean }) => {
 
   const panToPlanet = (planetRef: RefObject<Group>) => {
     if (!planetRef.current || !cameraRef.current) return;
-    dispatch({ type: "pause", payload: { pause: true } });
+    // dispatch({ type: "pause", payload: { pause: true } });
+    setPause(true);
     cameraRef.current.removeAllEventListeners();
     const planetAngle = Math.atan2(
       planetRef.current.getWorldPosition(vec).x,
@@ -161,7 +171,7 @@ const Scene = ({ pause }: { pause: boolean }) => {
   };
 
   useEffect(() => {
-    if (active || !cameraRef.current) return;
+    if (active || !cameraRef.current || !isFirstRender) return;
     cameraRef.current.mouseButtons.right = 0;
     console.log(cameraRef.current.touches.one, "one");
     console.log(cameraRef.current.touches.two, "two");
@@ -173,7 +183,7 @@ const Scene = ({ pause }: { pause: boolean }) => {
       void cameraRef.current?.dollyTo(200, true);
       setIsFirstRender(false);
     }, 500);
-  }, [active]);
+  }, [active, dispatch, isFirstRender]);
 
   // useEffect(() => {
   //   if (currentPlanet && companyIsChosen && cameraRef.current) {
@@ -195,17 +205,11 @@ const Scene = ({ pause }: { pause: boolean }) => {
     if (!loaded) return;
     if (!alienRef.current || !cameraRef.current || isFirstRender) return;
     if (router.pathname === "/tiktok") {
-      setTimeout(() => {
-        panToPlanet(alienRef);
-      }, 500);
+      panToPlanet(alienRef);
     } else if (router.pathname === "/bigo") {
-      setTimeout(() => {
-        panToPlanet(lavaRef);
-      }, 1000);
+      panToPlanet(lavaRef);
     } else if (router.pathname === "/meta") {
-      setTimeout(() => {
-        panToPlanet(terraformedRef);
-      }, 1000);
+      panToPlanet(terraformedRef);
     } else if (router.pathname === "/") {
       cameraRef.current.removeAllEventListeners();
       dispatch({ type: "scroll", payload: { scroll: false } });
@@ -221,7 +225,8 @@ const Scene = ({ pause }: { pause: boolean }) => {
       void cameraRef.current?.rotatePolarTo(Math.PI / 2.1, true);
 
       setTimeout(() => {
-        dispatch({ type: "pause", payload: { pause: false } });
+        // dispatch({ type: "pause", payload: { pause: false } });
+        setPause(false);
       }, 500);
     }
     // }, 2000);
@@ -234,6 +239,7 @@ const Scene = ({ pause }: { pause: boolean }) => {
         enabled={enableCamera}
         polarAngle={Math.PI * 2}
         maxDistance={5000}
+        touches={{ one: 32, two: 256, three: 64 }}
         distance={5000}
         ref={cameraRef}
       />
@@ -241,15 +247,6 @@ const Scene = ({ pause }: { pause: boolean }) => {
       <directionalLight castShadow intensity={1} />
 
       <Environment background map={envMap} />
-
-      <Html
-        as="div"
-        center
-        zIndexRange={[10, 0]}
-        className={`bg-red-00 h-screen w-[200vw] shadow-[0px_-200px_200px_100px_rgba(0,_0,_0,_0.7)_inset] transition-opacity duration-500 ${
-          scroll ? "visible absolute opacity-100" : "invisible opacity-0"
-        }`}
-      ></Html>
 
       <group>
         <AnimatedStars />
@@ -267,24 +264,21 @@ const Scene = ({ pause }: { pause: boolean }) => {
             onClick={() => handleRoute("tiktok")}
             ref={alienRef}
             rotationSpeed={router.pathname === "/tiktok" ? 0.2 : 1}
-            animationTime={animationTime}
           />
-          <MarsPlanet animationTime={animationTime} rotationSpeed={0.3} />
+          <MarsPlanet rotationSpeed={0.3} />
           <LavaPlanet
-            animationTime={animationTime}
             onClick={() => handleRoute("bigo")}
             ref={lavaRef}
             rotationSpeed={router.pathname === "/bigo" ? 0.2 : 1}
           />
           {/* <KeplerPlanet pause={pause} /> */}
           <TerraformedPlanet
-            animationTime={animationTime}
             rotationSpeed={router.pathname === "/meta" ? 0.2 : 1}
             ref={terraformedRef}
             onClick={() => handleRoute("meta")}
           />
           <JupiterPlanet rotationSpeed={0.3} />
-          {/* <PinkyPlanet animationTime={animationTime} rotationSpeed={0.3} /> */}
+          {/* <PinkyPlanet rotationSpeed={0.3} /> */}
         </group>
       </group>
     </>

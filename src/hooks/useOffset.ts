@@ -1,9 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useScene } from "src/store/SceneContext";
 
-export function useOffset() {
-  const { pause } = useScene();
-
+export function useOffset(pause?: boolean) {
   const timeRef = useRef({ time: 0 });
   const offsetTimeRef = useRef({ time: 0 });
 
@@ -11,7 +9,7 @@ export function useOffset() {
     timeRef.current.time = new Date().getTime() / 1000;
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (pause) {
       offsetTimeRef.current.time =
         new Date().getTime() / 1000 - offsetTimeRef.current.time;
@@ -26,7 +24,6 @@ export function useOffset() {
     const newTime = time - timeRef.current.time - offsetTimeRef.current.time;
     return newTime;
   };
-
 
   return animationTime;
 }

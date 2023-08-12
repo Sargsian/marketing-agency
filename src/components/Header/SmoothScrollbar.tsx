@@ -51,6 +51,7 @@ const SmoothScrollbar = () => {
 
   useEffect(() => {
     initializeSmoothScroll();
+    console.log('scrollEvent')
     initialize({
       target: document.body,
       cancel: {

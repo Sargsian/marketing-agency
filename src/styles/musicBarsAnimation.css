@@ -12,12 +12,12 @@
 .musicBarsIcon > span {
   content: "";
   width: 3px;
-  height: 100%;
+  height: 10%;
   background-color: #ffa217;
   border-radius: 3px;
+  align-self: flex-end;
   transform-origin: bottom;
   transition: all 0.2s ease-in-out;
-  animation: bounce 2.2s ease infinite alternate;
   transition: background-color 0.2s ease-out;
   -webkit-transition: background-color 0.2s ease-out;
   -moz-transition: background-color 0.2s ease-out;
@@ -32,12 +32,6 @@
   animation-delay: -3.7s; /* Start mid-way of return of animation */
 }
 
-.muteSong > span {
-  background-color: gray;
-  animation-play-state: paused;
-  opacity: 70%;
-}
-
 .muteSong::before {
   content: "";
   height: 19px;
@@ -50,6 +44,17 @@
   transform-origin: top left;
   background-color: white;
   position: absolute;
+}
+
+.startPlaying > span {
+  height: 100%;
+  animation: bounce 2.2s ease infinite alternate;
+}
+
+.muteSong > span {
+  background-color: gray;
+  animation-play-state: paused;
+  opacity: 70%;
 }
 
 @keyframes bounce {

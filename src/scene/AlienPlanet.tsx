@@ -1,8 +1,8 @@
-import React, { type RefObject, forwardRef, useState, useEffect } from "react";
+import React, { type RefObject, forwardRef, useState, useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
-import type { Group } from "three";
+import { Clock, Group} from "three";
 import { useControls } from "leva";
 
 import { useScene } from "src/store/SceneContext";
@@ -23,11 +23,9 @@ const AlienPlanet = forwardRef(function AlienPlanet(
   {
     onClick,
     rotationSpeed,
-    animationTime,
   }: {
     onClick: () => void;
     rotationSpeed: number;
-    animationTime: () => number;
   },
   ref
 ) {
@@ -40,6 +38,7 @@ const AlienPlanet = forwardRef(function AlienPlanet(
   const { preview, pause, companyIsChosen } = useScene();
 
   const alienRef = ref as RefObject<Group>;
+  const clockRef = useRef(new Clock());
 
   const { offset, scale, distanceFromSun, speed } = useControls(
     "Alien Planet",
@@ -72,13 +71,25 @@ const AlienPlanet = forwardRef(function AlienPlanet(
           0,
           Math.cos(offset) * distanceFromSun * z,
         ]}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
+        onPointerOver={() => {
+          if (companyIsChosen) return;
+          setHovered(true);
+        }}
+        onPointerOut={() => {
+          if (companyIsChosen) return;
+          setHovered(false);
+        }}
         scale={5 + scale}
         onClick={() => (onClick(), setHovered(false))}
         ref={alienRef}
         dispose={null}
       >
+        <mesh geometry={nodes.Object_4.geometry} material={materials.Planet} />
+        <mesh
+          geometry={nodes.Object_6.geometry}
+          material={materials.Clouds}
+          scale={1.025}
+        />
         {!companyIsChosen && (
           <PlanetHtml
             hovered={hovered}
@@ -87,12 +98,6 @@ const AlienPlanet = forwardRef(function AlienPlanet(
             name="Tiktok"
           />
         )}
-        <mesh geometry={nodes.Object_4.geometry} material={materials.Planet} />
-        <mesh
-          geometry={nodes.Object_6.geometry}
-          material={materials.Clouds}
-          scale={1.025}
-        />
       </group>
     </>
   );

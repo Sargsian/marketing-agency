@@ -6,6 +6,7 @@ import { useFrame } from "@react-three/fiber";
 import { useScene } from "src/store/SceneContext";
 import { Clock, type Group, type Mesh } from "three";
 import PlanetHtml from "src/components/Scene/PlanetHtml";
+import { useOffset } from "src/hooks/useOffset";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -22,11 +23,9 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
   {
     rotationSpeed,
     onClick,
-    animationTime,
   }: {
     rotationSpeed: number;
     onClick: () => void;
-    animationTime: () => number;
   },
   ref
 ) {
@@ -40,6 +39,8 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
   const clockRef = useRef(new Clock());
 
   const [hovered, setHovered] = useState(false);
+
+  const animationTime = useOffset();
 
   const { preview, pause, companyIsChosen } = useScene();
   const textureMap = useTexture("/assets/models/moon.jpg");
@@ -66,8 +67,8 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
     if (!TerraformedRef.current || !moonRef.current || !moonGroupRef.current)
       return;
     TerraformedRef.current.rotation.y -= 0.003 * rotationSpeed;
-    moonRef.current.rotation.y -= 0.01;
-    moonGroupRef.current.rotation.y -= 0.01;
+    moonRef.current.rotation.y = animationTime() / 4;
+    moonGroupRef.current.rotation.y = animationTime() / 4;
   });
 
   return (

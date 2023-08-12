@@ -21,15 +21,12 @@ const LavaPlanet = forwardRef(function LavaPlanet(
   {
     onClick,
     rotationSpeed,
-    animationTime,
   }: {
     onClick: () => void;
     rotationSpeed: number;
-    animationTime: () => number;
   },
   ref
 ) {
-  const [active, setActive] = useState(false);
   const [hovered, setHovered] = useState(false);
 
   const { offset, scale, distanceFromSun, speed } = useControls("Lava Planet", {

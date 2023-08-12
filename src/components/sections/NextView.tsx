@@ -31,7 +31,7 @@ const NextView = ({ companyName }: CompanyTypes) => {
                 ? "/bigo"
                 : companyName === "Bigo"
                 ? "/meta"
-                : "/"
+                : "/tiktok"
             }`}
             className="group absolute right-0 top-1/2 -translate-y-1/2 whitespace-nowrap font-jetbrains text-base font-normal uppercase tracking-[-1.2px] text-accent md:text-xl xl:text-2xl"
           >

@@ -27,13 +27,6 @@ const MobileMenu = ({
   const { t } = useTranslation("header");
   const { pathname } = useRouter();
 
-  useEffect(() => {
-    document.body.style.overflowY = "hidden";
-    return () => {
-      document.body.style.overflowY = "auto";
-    };
-  }, []);
-
   return (
     <div
       className={`duration-400 fixed left-0 top-0 -z-10 w-full overflow-hidden bg-black transition-all lg:hidden ${

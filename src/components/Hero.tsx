@@ -6,17 +6,19 @@ import { Leva } from "leva";
 import { useTranslation } from "next-i18next";
 import { Suspense, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { useScene, useSceneDispatch } from "src/store/SceneContext";
+import { useScene } from "src/store/SceneContext";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 
 const Hero = () => {
   const { t } = useTranslation("header");
-  const { preview, pause, scroll } = useScene();
+  const { scroll } = useScene();
   const router = useRouter();
-  const dispatch = useSceneDispatch();
   const [muteSong, setMuteSong] = useState(false);
+  const [userInteracted, setUserInteracted] = useState(false);
+
+  const [audio] = useState(new Audio("/assets/sounds/sound.mp3"));
 
   const currentTitle =
     router.pathname === "/tiktok"
@@ -27,27 +29,49 @@ const Hero = () => {
       ? "Meta"
       : "";
 
+  useEffect(() => {
+    if (!userInteracted) return;
+    if (muteSong) {
+      void audio.pause();
+    } else {
+      void audio.play();
+      console.log("play song");
+    }
+  }, [muteSong, audio, userInteracted]);
+
   return (
     <>
       <Leva collapsed hidden />
-      <div className="relative h-screen bg-cover bg-center">
+      <div
+        onMouseDown={() => {
+          if (!userInteracted) {
+            setUserInteracted(true);
+          }
+        }}
+        className="relative h-screen bg-cover bg-center"
+      >
+        <div
+          className={`fixed left-0 top-0 z-10 h-screen w-full shadow-[0px_-200px_200px_0px_rgba(0,_0,_0,_0.7)_inset] transition-opacity duration-500 ${
+            scroll ? "visible absolute opacity-100" : "invisible opacity-0"
+          }`}
+        />
         <Canvas
           shadows
+          dpr={[1, 1]}
           camera={{ fov: 45, near: 1, far: 5000, position: [0, 0, 185] }}
         >
           <Suspense fallback={null}>
-            <Scene pause={pause} />
+            <Scene />
           </Suspense>
         </Canvas>
         <Loader dataInterpolation={(span) => `Loading ${span.toFixed(0)}%`} />
-        {/* <div className="h-full bg-white"></div> */}
-        <button className="absolute z-20 bottom-[100px] left-8 md:left-[100px] cursor-default text-white">
+        <button
+          className={`absolute bottom-[100px] left-8 z-20 text-white hover:cursor-pointer md:left-[100px] ${
+            router.pathname === "/" ? "opacity-10 pointer-events-none" : "opacity-60"
+          }`}
+        >
           <Link
-            className={`flex items-center gap-2 transition-opacity duration-500 hover:opacity-40 ${
-              router.pathname === "/"
-                ? "pointer-events-none opacity-10"
-                : "opacity-60"
-            }`}
+            className="flex items-center gap-2 transition-opacity duration-500 hover:opacity-40"
             href={"/"}
           >
             <Image
@@ -62,7 +86,9 @@ const Hero = () => {
         </button>
         <div
           onClick={() => setMuteSong((prevState) => !prevState)}
-          className={`musicBarsIcon right-10 md:right-[100px] ${muteSong ? "muteSong" : ""}`}
+          className={`musicBarsIcon right-10 md:right-[100px] ${
+            muteSong ? "muteSong" : ""
+          } ${userInteracted ? "startPlaying" : ""}`}
         >
           <span />
           <span />
@@ -76,7 +102,7 @@ const Hero = () => {
           {currentTitle}
         </span>
         <span
-          className={`pointer-events-none absolute bottom-[144px] left-1/2 z-10 flex -translate-x-1/2 text-white transition-all duration-500 ${
+          className={`absolute bottom-[144px] left-1/2 z-10 flex -translate-x-1/2 text-white transition-all duration-500 ${
             scroll ? "visible opacity-60" : "invisible opacity-0"
           }`}
         >

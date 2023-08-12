@@ -1,12 +1,10 @@
 import {
   type ReactNode,
   type Dispatch,
-  type RefObject,
   createContext,
   useReducer,
   useContext,
 } from "react";
-import { type Group } from "three";
 
 // Initial state
 const initialScene = {
@@ -14,13 +12,6 @@ const initialScene = {
   preview: false,
   pause: false,
   companyIsChosen: false,
-  sunRef: null,
-} as {
-  scroll: boolean;
-  preview: boolean;
-  pause: boolean;
-  companyIsChosen: boolean;
-  sunRef: null | RefObject<Group>;
 };
 
 // Context
@@ -60,8 +51,7 @@ type ACTIONTYPE =
   | { type: "scroll"; payload: { scroll: boolean } }
   | { type: "preview"; payload: { preview: boolean } }
   | { type: "pause"; payload: { pause: boolean } }
-  | { type: "companyIsChosen"; payload: { companyIsChosen: boolean } }
-  | { type: "sunRef"; payload: { sunRef: RefObject<Group> } };
+  | { type: "companyIsChosen"; payload: { companyIsChosen: boolean } };
 
 // Reducer function
 function sceneReducer(scene: typeof initialScene, action: ACTIONTYPE) {
@@ -78,10 +68,6 @@ function sceneReducer(scene: typeof initialScene, action: ACTIONTYPE) {
 
     case "companyIsChosen": {
       return { ...scene, companyIsChosen: action.payload.companyIsChosen };
-    }
-
-    case "sunRef": {
-      return { ...scene, sunRef: action.payload.sunRef };
     }
 
     default:

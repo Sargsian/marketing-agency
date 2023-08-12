@@ -18,10 +18,8 @@ type GLTFResult = GLTF & {
 
 const MarsPlanet = ({
   rotationSpeed,
-  animationTime,
 }: {
   rotationSpeed: number;
-  animationTime: () => number;
 }) => {
   const marsRef = useRef<Group>(null);
 
