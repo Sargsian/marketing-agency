@@ -40,7 +40,7 @@ const Sidebar = ({
           <div className="fixed bottom-0 right-0 top-0 -z-10 flex w-[660px] flex-col bg-[#111] py-[95px] font-jost shadow-2xl">
             <div className="ml-[136px] flex h-full w-[435px] flex-col justify-between">
               <div className="mb-14 w-full border-b pb-1 uppercase text-white opacity-30 heading-5">
-                <span className="cursor-default">Navigation</span>
+                <span className="cursor-default">{t('navigation')}</span>
               </div>
               <div>
                 <ul>
@@ -62,7 +62,7 @@ const Sidebar = ({
               </div>
               <div className="mt-auto uppercase">
                 <div className="mb-[30px] cursor-default opacity-30 heading-5">
-                  Contacts
+                  {t('contacts')}
                 </div>
                 <div className="flex justify-between">
                   <Link

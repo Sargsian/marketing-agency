@@ -53,7 +53,7 @@ const Geo = ({ companyName }: CompanyTypes) => {
           />
           <div className="relative h-[72px] w-[72px] self-end">
             <Image
-              src="icons/down-arrow.svg"
+              src="/icons/down-arrow.svg"
               fill
               style={{ objectFit: "cover" }}
               alt="down-arrow"

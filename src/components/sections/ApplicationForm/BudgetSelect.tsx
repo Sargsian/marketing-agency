@@ -6,23 +6,37 @@ const budget = [{ budget: "500$" }, { budget: "1000$" }, { budget: "10000$" }];
 
 type Props = {
   selectedBudget: BudgetType;
+  isValid: boolean;
   setSelectedBudget: (budget: BudgetType) => void;
 };
 
-const BudgedSelect = ({ selectedBudget, setSelectedBudget }: Props) => {
-
+const BudgedSelect = ({
+  selectedBudget,
+  setSelectedBudget,
+  isValid,
+}: Props) => {
   return (
     <Listbox value={selectedBudget} onChange={setSelectedBudget}>
       {({ open }) => (
         <div className="relative mb-1 flex flex-1 flex-col font-jetbrains">
-          <span className="inline-block subtitle">
+          <span
+            className={`inline-block subtitle ${
+              isValid ? "text-green-500" : ""
+            }`}
+          >
             Бюджет
             <span className="absolute top-[-7px] pl-1">*</span>
           </span>
-          <span className="absolute bottom-2 right-0  text-xs font-medium">
+          <span className={`absolute bottom-2 right-0 text-xs font-medium ${
+              isValid ? "text-green-500" : ""
+            }`}>
             {open ? "[-]" : "[+]"}
           </span>
-          <Listbox.Button className="border-b border-white border-opacity-40 bg-transparent py-2 text-start text-sm text-white outline-none">
+          <Listbox.Button
+            className={`border-b border-opacity-40 bg-transparent py-2 text-start text-sm outline-none ${
+              isValid ? "text-green-500 border-green-500" : "text-white border-white"
+            }`}
+          >
             {selectedBudget?.budget}
           </Listbox.Button>
           <Transition

@@ -22,9 +22,9 @@ type formData = {
 export type submitType = formData & BudgetType;
 
 const ApplicationForm = () => {
-  const { t } = useTranslation("form");
   const [selectedBudget, setSelectedBudget] = useState({ budget: "500$" });
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const { t } = useTranslation("form");
   const router = useRouter();
 
   const schema: ZodType<formData> = z.object({
@@ -130,12 +130,12 @@ const ApplicationForm = () => {
                 {t("name")} <span className="absolute top-[-7px] pl-1">*</span>
                 {errors.name && (
                   <span className="absolute right-0 top-[0px] pl-1 text-red-500">
-                    Wrong
+                    {t("wrongInput")}
                   </span>
                 )}
               </label>
               <input
-                className={`border-b border-white border-opacity-40 bg-transparent py-2 text-sm text-white placeholder-white placeholder-opacity-50 outline-none ${
+                className={`negateAutofillStyles border-b border-opacity-40 bg-transparent py-2 text-sm placeholder-white placeholder-opacity-50 outline-none ${
                   dirtyFields.name &&
                   !errors.name &&
                   !getFieldState("name").invalid
@@ -147,9 +147,7 @@ const ApplicationForm = () => {
                 {...register("name")}
               />
               {errors.name && (
-                <span className="pl-1 text-red-500">
-                  Name must be at least 2 characters long
-                </span>
+                <span className="pl-1 text-red-500">{t("nameError")}</span>
               )}
             </div>
             <div className="relative flex flex-1 flex-col">
@@ -169,12 +167,12 @@ const ApplicationForm = () => {
                 <span className="absolute top-[-7px] pl-1">*</span>
                 {errors.telegram && (
                   <span className="absolute right-0 top-[0px] pl-1 text-red-500">
-                    Wrong
+                    {t("wrongInput")}
                   </span>
                 )}
               </label>
               <input
-                className={`border-b border-opacity-40 bg-transparent py-2 text-sm placeholder-white placeholder-opacity-50 outline-none ${
+                className={`negateAutofillStyles border-b border-opacity-40 bg-transparent py-2 text-sm placeholder-white placeholder-opacity-50 outline-none ${
                   dirtyFields.telegram &&
                   !errors.telegram &&
                   !getFieldState("telegram").invalid
@@ -186,10 +184,7 @@ const ApplicationForm = () => {
                 {...register("telegram")}
               />
               {errors.telegram && (
-                <span className="pl-1 text-red-500">
-                  username must start with &quot;@&quot; and be at least 5
-                  characters long
-                </span>
+                <span className="pl-1 text-red-500">{t("usernameError")}</span>
               )}
             </div>
           </div>
@@ -197,6 +192,7 @@ const ApplicationForm = () => {
             <BudgedSelect
               selectedBudget={selectedBudget}
               setSelectedBudget={setSelectedBudget}
+              isValid={isValid}
             />
             <div className="relative flex flex-1 flex-col">
               <label
@@ -214,12 +210,12 @@ const ApplicationForm = () => {
                 {t("email")} <span className="absolute top-[-7px] pl-1">*</span>
                 {errors.email && (
                   <span className="absolute right-0 top-[0px] pl-1 text-red-500">
-                    Wrong
+                    {t("wrongInput")}
                   </span>
                 )}
               </label>
               <input
-                className={`border-b border-opacity-40 bg-transparent py-2 text-sm placeholder-white placeholder-opacity-50 outline-none ${
+                className={`negateAutofillStyles border-b border-opacity-40 bg-transparent py-2 text-sm placeholder-white placeholder-opacity-50 outline-none ${
                   dirtyFields.email &&
                   !errors.email &&
                   !getFieldState("email").invalid
@@ -249,7 +245,7 @@ const ApplicationForm = () => {
               <span className="absolute top-[-7px] pl-1">*</span>
               {errors.message && (
                 <span className="absolute right-0 top-[0px] pl-1 text-red-500">
-                  Wrong
+                  {t("wrongInput")}
                 </span>
               )}
             </label>
@@ -271,7 +267,7 @@ const ApplicationForm = () => {
             ></textarea>
             {errors.message && (
               <span className="mb-[32px] mt-[-32px] pl-1 text-red-500">
-                Message must be at least 10 characters long
+                {t("messageError")}
               </span>
             )}
             <div className="flex items-center gap-[10px]">
@@ -285,7 +281,7 @@ const ApplicationForm = () => {
                 htmlFor="agree"
                 className="text-white text-opacity-60 subtitle"
               >
-                I agree to all Term, Privacy Policy
+                {t("terms")}
               </label>
             </div>
           </div>

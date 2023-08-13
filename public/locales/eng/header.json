@@ -1,7 +1,8 @@
 {
-    "close": "Close",
-    "socials": "Socials",
-    "email": "Email",
-    "scroll": "scroll down",
-    "telegram": "Telegram"
+  "close": "Close",
+  "socials": "Socials",
+  "email": "Email",
+  "telegram": "Telegram",
+  "navigation": "Navigation",
+  "contacts": "Contacts"
 }

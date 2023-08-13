@@ -27,6 +27,14 @@ const Header = () => {
     );
   };
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "auto";
+    }
+  }, [open]);
+
   return (
     <>
       <SmoothScrollbar />

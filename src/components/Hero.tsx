@@ -11,11 +11,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 const Hero = () => {
-  const { t } = useTranslation("header");
   const { scroll } = useScene();
   const router = useRouter();
   const [muteSong, setMuteSong] = useState(false);
   const [userInteracted, setUserInteracted] = useState(false);
+  const { t } = useTranslation("hero");
 
   const [audio] = useState(new Audio("/assets/sounds/sound.mp3"));
 
@@ -80,7 +80,7 @@ const Hero = () => {
               className="opacity-60"
               src={"/icons/return.svg"}
             />
-            <span className="font-jost">Back</span>
+            <span className="font-jost">{t('back')}</span>
           </Link>
         </button>
         <div
@@ -101,7 +101,7 @@ const Hero = () => {
           {currentTitle}
         </span>
         <span
-          className={`absolute bottom-[144px] left-1/2 z-10 flex -translate-x-1/2 text-white transition-all duration-500 ${
+          className={`absolute bottom-[144px] font-jost left-1/2 z-10 flex -translate-x-1/2 text-white transition-all duration-500 ${
             scroll ? "visible opacity-60" : "invisible opacity-0"
           }`}
         >

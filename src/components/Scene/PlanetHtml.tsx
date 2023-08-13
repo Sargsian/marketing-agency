@@ -1,5 +1,6 @@
 import { Html } from "@react-three/drei";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import PlanetTitleHover from "src/components/Scene/PlanetTitleHover";
 import { type Camera, type Object3D, Vector3 } from "three";
 
@@ -12,6 +13,7 @@ type Props = {
 
 const PlanetHtml = ({ hovered, onClick, setHovered, name }: Props) => {
   const v1 = new Vector3();
+  const { t } = useTranslation("hero");
 
   const overrideCalculatePosition = (
     el: Object3D,
@@ -80,7 +82,7 @@ const PlanetHtml = ({ hovered, onClick, setHovered, name }: Props) => {
               {/* TikTok Planet */}
               <span className="[backface-visibility:hidden]">
                 <PlanetTitleHover onClick={onClick}>
-                  {`${name} Planet`}
+                  {`${t('planet')} ${name}`}
                 </PlanetTitleHover>
               </span>
               <div className="absolute top-[30px] w-full rounded-sm bg-white p-1 text-[10px] leading-[14px] text-black [backface-visibility:hidden]">

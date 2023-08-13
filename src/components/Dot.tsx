@@ -72,7 +72,7 @@ const Dot = ({
             [side]: "-1px",
             height: `calc(50% - ${offset}px)`,
           }}
-          className={`absolute w-[1px] bg-white bg-opacity-20 ${
+          className={`absolute z-50 w-[1px] bg-white bg-opacity-20 ${
             showAtBreakpoints[showAt || "all"]
           }`}
         />
@@ -85,7 +85,7 @@ const Dot = ({
 
           backgroundColor: "#FFA217",
         }}
-        className={`absolute h-[3px] w-[3px] bg-accent ${
+        className={`absolute z-50 h-[3px] w-[3px] bg-accent ${
           showAtBreakpoints[showAt || "all"]
         } ${hideAt ? hideAtBreakpoints[hideAt] : ""}`}
       />
