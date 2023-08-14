@@ -9,7 +9,6 @@ import {
 // Initial state
 const initialScene = {
   scroll: false,
-  preview: false,
   pause: false,
   companyIsChosen: false,
 };
@@ -49,7 +48,6 @@ export function SceneProvider({ children }: { children: ReactNode }) {
 
 type ACTIONTYPE =
   | { type: "scroll"; payload: { scroll: boolean } }
-  | { type: "preview"; payload: { preview: boolean } }
   | { type: "pause"; payload: { pause: boolean } }
   | { type: "companyIsChosen"; payload: { companyIsChosen: boolean } };
 
@@ -59,9 +57,7 @@ function sceneReducer(scene: typeof initialScene, action: ACTIONTYPE) {
     case "scroll": {
       return { ...scene, scroll: action.payload.scroll };
     }
-    case "preview": {
-      return { ...scene, preview: action.payload.preview };
-    }
+
     case "pause": {
       return { ...scene, pause: action.payload.pause };
     }

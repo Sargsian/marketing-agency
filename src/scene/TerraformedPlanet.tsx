@@ -1,10 +1,10 @@
-import React, { RefObject, forwardRef, useRef, useState } from "react";
+import React, { type RefObject, forwardRef, useRef, useState } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
 import { useScene } from "src/store/SceneContext";
-import { Clock, type Group, type Mesh } from "three";
+import { type Group, type Mesh } from "three";
 import PlanetHtml from "src/components/Scene/PlanetHtml";
 import { useOffset } from "src/hooks/useOffset";
 
@@ -36,13 +36,12 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
   const TerraformedRef = ref as RefObject<Group>;
   const moonRef = useRef<Mesh>(null);
   const moonGroupRef = useRef<Group>(null);
-  const clockRef = useRef(new Clock());
 
   const [hovered, setHovered] = useState(false);
 
   const animationTime = useOffset();
 
-  const { preview, pause, companyIsChosen } = useScene();
+  const { companyIsChosen } = useScene();
   const textureMap = useTexture("/assets/models/moon.jpg");
 
   const { offset, scale, distanceFromSun, speed } = useControls(

@@ -36,10 +36,10 @@ const LavaPlanet = forwardRef(function LavaPlanet(
     speed: { value: 3.61, min: 0.01, max: 10, step: 0.005 },
   });
 
-  const { preview, pause, companyIsChosen } = useScene();
+  const { companyIsChosen } = useScene();
 
   const { nodes, materials } = useGLTF(
-    "/assets/models/lavaPlanet/scene2.glb"
+    "/assets/models/lavaPlanet/scene.glb"
   ) as GLTFResult;
 
   const lavaRef = ref as RefObject<Group>;
@@ -84,4 +84,4 @@ const LavaPlanet = forwardRef(function LavaPlanet(
 
 export default LavaPlanet;
 
-useGLTF.preload("/assets/models/lavaPlanet/scene2.glb");
+useGLTF.preload("/assets/models/lavaPlanet/scene.glb");

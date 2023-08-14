@@ -32,6 +32,8 @@ const telegramBot = async (
   if (ret.status === 200) {
     return res.redirect("/success");
   }
+
+  
 };
 
 export default telegramBot;

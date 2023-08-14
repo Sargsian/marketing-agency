@@ -19,7 +19,7 @@ type GLTFResult = GLTF & {
 const Sun = () => {
   const sunRef = useRef<Group>(null);
   const { nodes, materials } = useGLTF(
-    "/assets/models/sun/scene3.glb"
+    "/assets/models/sun/scene.glb"
   ) as GLTFResult;
 
   const { scale } = useControls("Sun", {
@@ -36,6 +36,7 @@ const Sun = () => {
     <group
       position={[0, 0, 0]}
       onClick={(e) => e.stopPropagation()}
+      onPointerOver={(e) => e.stopPropagation()}
       ref={sunRef}
       dispose={null}
     >

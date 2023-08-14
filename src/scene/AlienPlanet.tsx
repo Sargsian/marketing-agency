@@ -1,8 +1,8 @@
-import React, { type RefObject, forwardRef, useState, useEffect, useRef } from "react";
+import React, { type RefObject, forwardRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
-import { Clock, Group} from "three";
+import { type Group} from "three";
 import { useControls } from "leva";
 
 import { useScene } from "src/store/SceneContext";
@@ -30,12 +30,12 @@ const AlienPlanet = forwardRef(function AlienPlanet(
   ref
 ) {
   const { nodes, materials } = useGLTF(
-    "/assets/models/alienPlanet/scene3.glb"
+    "/assets/models/alienPlanet/scene.glb"
   ) as GLTFResult;
 
   const [hovered, setHovered] = useState(false);
 
-  const { preview, pause, companyIsChosen } = useScene();
+  const { companyIsChosen } = useScene();
 
   const alienRef = ref as RefObject<Group>;
 
@@ -103,4 +103,4 @@ const AlienPlanet = forwardRef(function AlienPlanet(
 });
 export default AlienPlanet;
 
-useGLTF.preload("/assets/models/alienPlanet/scene3.glb");
+useGLTF.preload("/assets/models/alienPlanet/scene.glb");
