@@ -8,7 +8,6 @@ import dynamic from "next/dynamic";
 import { useScene } from "src/store/SceneContext";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Image from "next/image";
 
 const Hero = () => {
   const { scroll } = useScene();
@@ -66,21 +65,16 @@ const Hero = () => {
         <Loader dataInterpolation={(span) => `Loading ${span.toFixed(0)}%`} />
         <button
           className={`absolute bottom-[100px] left-8 z-20 text-white hover:cursor-pointer md:left-[100px] ${
-            router.pathname === "/" ? "opacity-10 pointer-events-none" : "opacity-60"
+            router.pathname === "/"
+              ? "pointer-events-none opacity-10"
+              : "opacity-60"
           }`}
         >
           <Link
-            className="flex items-center gap-2 transition-opacity duration-500 hover:opacity-40"
+            className="font-jost transition-opacity duration-500 hover:opacity-40"
             href={"/"}
           >
-            <Image
-              width={13}
-              height={13}
-              alt="return"
-              className="opacity-60"
-              src={"/icons/return.svg"}
-            />
-            <span className="font-jost">{t('back')}</span>
+            {t("back")}
           </Link>
         </button>
         <div
@@ -101,7 +95,7 @@ const Hero = () => {
           {currentTitle}
         </span>
         <span
-          className={`absolute bottom-[144px] font-jost left-1/2 z-10 flex -translate-x-1/2 text-white transition-all duration-500 ${
+          className={`absolute bottom-[144px] left-1/2 z-10 flex -translate-x-1/2 font-jost text-white transition-all duration-500 ${
             scroll ? "visible opacity-60" : "invisible opacity-0"
           }`}
         >
