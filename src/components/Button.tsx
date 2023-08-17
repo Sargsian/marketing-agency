@@ -1,14 +1,24 @@
+import Image from "next/image";
+
 type Props = {
   children: string;
   type: "submit" | "button";
   onClick?: () => void;
   disabled?: boolean;
+  loading?: boolean;
   classNames?: string;
 };
 
-const Button = ({ children, onClick, type, disabled, classNames }: Props) => {
+const Button = ({
+  children,
+  onClick,
+  type,
+  disabled,
+  classNames,
+  loading,
+}: Props) => {
   const conditions = `${type === "submit" ? "h-[44px]" : "h-[26px]"} ${
-    disabled
+    disabled || loading
       ? "pointer-events-none border bg-neutral-900 border-white text-white opacity-[40%]"
       : "bg-accent text-black"
   }`;
@@ -17,9 +27,20 @@ const Button = ({ children, onClick, type, disabled, classNames }: Props) => {
     <button
       onClick={onClick}
       type={type}
-      disabled={disabled}
-      className={`rounded-md px-[13px] text-sm transition-[background] hover:bg-[#AA6600] ${conditions} ${classNames || ''}`}
+      disabled={disabled || loading}
+      className={`relative rounded-md px-[13px] text-sm transition-[background] hover:bg-[#AA6600] ${conditions} ${
+        classNames || ""
+      }`}
     >
+      {loading && (
+        <Image
+          src={"/icons/loadingSpinner.svg"}
+          className="absolute left-1/2 -translate-x-1/2"
+          height={24}
+          width={24}
+          alt="loading spinner"
+        />
+      )}
       {children}
     </button>
   );

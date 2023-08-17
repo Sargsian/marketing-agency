@@ -39,7 +39,7 @@ const Hero = () => {
 
   return (
     <>
-      <Leva collapsed  />
+      <Leva collapsed />
       <div
         onMouseDown={() => {
           if (!userInteracted) {

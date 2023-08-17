@@ -24,6 +24,7 @@ export type submitType = formData & BudgetType;
 const ApplicationForm = () => {
   const [selectedBudget, setSelectedBudget] = useState({ budget: "500$" });
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { t } = useTranslation("form");
   const router = useRouter();
 
@@ -52,9 +53,8 @@ const ApplicationForm = () => {
   });
 
   const submitData = async (data: formData) => {
-    console.log(data);
-    // return;
     if (isValid && termsAccepted) {
+      setLoading(true);
       const res = await fetch("/api/formSender", {
         method: "POST",
         body: JSON.stringify({
@@ -67,10 +67,10 @@ const ApplicationForm = () => {
           },
         }),
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json",
         },
       });
-
+      setLoading(false);
       if (res.ok) {
         void router.push("/success");
       }
@@ -110,7 +110,7 @@ const ApplicationForm = () => {
           showAt="xl"
         />
         <form
-          onSubmit={void handleSubmit(submitData)}
+          onSubmit={handleSubmit(submitData)}
           className="mx-auto flex max-w-[600px] flex-col gap-[59px] py-[66px]"
         >
           <div className="flex flex-col gap-10 sm:flex-row sm:gap-5">
@@ -293,6 +293,7 @@ const ApplicationForm = () => {
             <Button
               classNames="flex-[2]"
               disabled={!isValid || !termsAccepted}
+              loading={loading}
               type="submit"
             >
               {t("button")}
