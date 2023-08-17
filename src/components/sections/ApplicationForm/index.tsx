@@ -71,7 +71,7 @@ const ApplicationForm = () => {
         },
       });
       setLoading(false);
-      if (res.ok) {
+      if (res.status === 200) {
         void router.push("/success");
       }
 

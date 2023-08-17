@@ -6,7 +6,7 @@ const success = () => {
   return (
     <>
       <Head>
-        <title>Boost - 404</title>
+        <title>Boost - Success</title>
         <meta name="title" content="Page doesnt exist" />
         <meta name="robots" content="noindex,nofollow" />
         <link rel="icon" href="/logo.svg" />
