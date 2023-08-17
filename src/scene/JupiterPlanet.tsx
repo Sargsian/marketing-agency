@@ -3,6 +3,8 @@ import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
+import { useScene } from "src/store/SceneContext";
+import { useOffset } from "src/hooks/useOffset";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -15,14 +17,18 @@ type GLTFResult = GLTF & {
 
 const JupiterPlanet = ({
   rotationSpeed,
+  pause,
 }: {
   rotationSpeed: number;
+  pause: boolean;
 }) => {
   const { nodes, materials } = useGLTF(
     "/assets/models/jupiterPlanet/scene.glb"
   ) as GLTFResult;
 
-  const crystalRef = useRef<THREE.Group>(null);
+  const jupiterRef = useRef<THREE.Group>(null);
+
+  const animationTime = useOffset(pause);
 
   const { offset, scale, distanceFromSun, speed } = useControls(
     "Jupiter Planet",
@@ -43,8 +49,16 @@ const JupiterPlanet = ({
   const z = 20;
 
   useFrame(() => {
-    if (!crystalRef.current) return;
-    crystalRef.current.rotation.y -= 0.003;
+    if (!jupiterRef.current) return;
+    jupiterRef.current.rotation.y -= 0.003;
+
+    if (pause) return;
+
+    jupiterRef.current.position.x =
+      Math.sin(animationTime() * (speed / 10) + offset) * x * distanceFromSun;
+
+    jupiterRef.current.position.z =
+      Math.cos(animationTime() * (speed / 10) + offset) * x * distanceFromSun;
   });
 
   return (
@@ -55,7 +69,7 @@ const JupiterPlanet = ({
         Math.cos(offset) * distanceFromSun * z,
       ]}
       dispose={null}
-      ref={crystalRef}
+      ref={jupiterRef}
     >
       <mesh
         geometry={nodes.Mars.geometry}

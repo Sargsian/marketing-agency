@@ -7,6 +7,7 @@ import type { Group } from "three";
 import { useFrame } from "@react-three/fiber";
 import { useScene } from "src/store/SceneContext";
 import PlanetHtml from "src/components/Scene/PlanetHtml";
+import { useOffset } from "src/hooks/useOffset";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -21,8 +22,10 @@ const LavaPlanet = forwardRef(function LavaPlanet(
   {
     onClick,
     rotationSpeed,
+    pause
   }: {
     onClick: () => void;
+    pause: boolean;
     rotationSpeed: number;
   },
   ref
@@ -38,6 +41,8 @@ const LavaPlanet = forwardRef(function LavaPlanet(
 
   const { companyIsChosen } = useScene();
 
+  const animationTime = useOffset(pause);
+
   const { nodes, materials } = useGLTF(
     "/assets/models/lavaPlanet/scene.glb"
   ) as GLTFResult;
@@ -50,6 +55,14 @@ const LavaPlanet = forwardRef(function LavaPlanet(
   useFrame(() => {
     if (!lavaRef.current) return;
     lavaRef.current.rotation.y -= 0.003 * rotationSpeed;
+
+    if (pause) return;
+
+    lavaRef.current.position.x =
+      Math.sin(animationTime() * (speed / 10) + offset) * x * distanceFromSun;
+
+    lavaRef.current.position.z =
+      Math.cos(animationTime() * (speed / 10) + offset) * x * distanceFromSun;
   });
 
   return (

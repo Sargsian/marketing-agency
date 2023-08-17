@@ -4,6 +4,8 @@ import type { GLTF } from "three-stdlib";
 import type { Group } from "three";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
+import { useScene } from "src/store/SceneContext";
+import { useOffset } from "src/hooks/useOffset";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -15,12 +17,10 @@ type GLTFResult = GLTF & {
   };
 };
 
-const MarsPlanet = ({
-  rotationSpeed,
-}: {
-  rotationSpeed: number;
-}) => {
+const MarsPlanet = ({ rotationSpeed, pause }: { rotationSpeed: number, pause: boolean; }) => {
   const marsRef = useRef<Group>(null);
+
+  const animationTime = useOffset(pause);
 
   const { offset, scale, distanceFromSun, speed } = useControls("Mars Planet", {
     offset: {
@@ -40,6 +40,14 @@ const MarsPlanet = ({
   useFrame(() => {
     if (!marsRef.current) return;
     marsRef.current.rotation.y -= 0.003;
+
+    if (pause) return;
+
+    marsRef.current.position.x =
+      Math.sin(animationTime() * (speed / 10) + offset) * x * distanceFromSun;
+
+    marsRef.current.position.z =
+      Math.cos(animationTime() * (speed / 10) + offset) * x * distanceFromSun;
   });
 
   const { nodes, materials } = useGLTF(

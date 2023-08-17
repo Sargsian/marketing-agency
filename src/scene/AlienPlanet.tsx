@@ -2,11 +2,12 @@ import React, { type RefObject, forwardRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
-import { type Group} from "three";
+import { type Group } from "three";
 import { useControls } from "leva";
 
 import { useScene } from "src/store/SceneContext";
 import PlanetHtml from "src/components/Scene/PlanetHtml";
+import { useOffset } from "src/hooks/useOffset";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -23,8 +24,10 @@ const AlienPlanet = forwardRef(function AlienPlanet(
   {
     onClick,
     rotationSpeed,
+    pause,
   }: {
     onClick: () => void;
+    pause: boolean;
     rotationSpeed: number;
   },
   ref
@@ -36,6 +39,8 @@ const AlienPlanet = forwardRef(function AlienPlanet(
   const [hovered, setHovered] = useState(false);
 
   const { companyIsChosen } = useScene();
+
+  const animationTime = useOffset(pause);
 
   const alienRef = ref as RefObject<Group>;
 
@@ -60,6 +65,14 @@ const AlienPlanet = forwardRef(function AlienPlanet(
   useFrame(() => {
     if (!alienRef.current) return;
     alienRef.current.rotation.y -= 0.003 * rotationSpeed;
+
+    if (pause) return;
+
+    alienRef.current.position.x =
+      Math.sin(animationTime() * (speed / 10) + offset) * x * distanceFromSun;
+
+    alienRef.current.position.z =
+      Math.cos(animationTime() * (speed / 10) + offset) * x * distanceFromSun;
   });
 
   return (

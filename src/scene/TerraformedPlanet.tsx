@@ -23,8 +23,10 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
   {
     rotationSpeed,
     onClick,
+    pause,
   }: {
     rotationSpeed: number;
+    pause: boolean;
     onClick: () => void;
   },
   ref
@@ -34,15 +36,12 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
   ) as GLTFResult;
 
   const TerraformedRef = ref as RefObject<Group>;
-  const moonRef = useRef<Mesh>(null);
-  const moonGroupRef = useRef<Group>(null);
 
   const [hovered, setHovered] = useState(false);
 
-  const animationTime = useOffset();
-
   const { companyIsChosen } = useScene();
-  const textureMap = useTexture("/assets/models/moon.jpg");
+
+  const animationTime = useOffset(pause);
 
   const { offset, scale, distanceFromSun, speed } = useControls(
     "Terraformed Planet",
@@ -63,70 +62,54 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
   const z = 20;
 
   useFrame(() => {
-    if (!TerraformedRef.current || !moonRef.current || !moonGroupRef.current)
-      return;
+    if (!TerraformedRef.current) return;
     TerraformedRef.current.rotation.y -= 0.003 * rotationSpeed;
-    moonRef.current.rotation.y = animationTime() / 4;
-    moonGroupRef.current.rotation.y = animationTime() / 4;
+
+    if (pause) return;
+
+    TerraformedRef.current.position.x =
+      Math.sin(animationTime() * (speed / 10) + offset) * x * distanceFromSun;
+
+    TerraformedRef.current.position.z =
+      Math.cos(animationTime() * (speed / 10) + offset) * x * distanceFromSun;
   });
 
   return (
-    <>
-      <group
-        position={[
-          Math.sin(offset) * distanceFromSun * x,
-          0,
-          Math.cos(offset) * distanceFromSun * z,
-        ]}
-        ref={TerraformedRef}
-        onClick={() => onClick()}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-        dispose={null}
-      >
-        {!companyIsChosen && (
-          <PlanetHtml
-            hovered={hovered}
-            onClick={onClick}
-            setHovered={setHovered}
-            name="Meta"
-          />
-        )}
+    <group
+      position={[
+        Math.sin(offset) * distanceFromSun * x,
+        0,
+        Math.cos(offset) * distanceFromSun * z,
+      ]}
+      ref={TerraformedRef}
+      onClick={() => onClick()}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+      dispose={null}
+    >
+      {!companyIsChosen && (
+        <PlanetHtml
+          hovered={hovered}
+          onClick={onClick}
+          setHovered={setHovered}
+          name="Meta"
+        />
+      )}
 
-        <mesh
-          receiveShadow
-          scale={0.004 + scale * 0.001}
-          geometry={nodes.Esfera_Mat_0.geometry}
-          material={materials.material}
-          rotation={[Math.PI, 0.211, -Math.PI]}
-        />
-        <mesh
-          receiveShadow
-          scale={0.00405 + scale * 0.001}
-          geometry={nodes.Esfera_1_Mat1_0.geometry}
-          material={materials["Mat.1"]}
-        />
-      </group>
-      <group
-        position={[
-          Math.sin(offset) * distanceFromSun * x,
-          0,
-          Math.cos(offset) * distanceFromSun * z,
-        ]}
-        ref={moonGroupRef}
-      >
-        <mesh
-          castShadow
-          receiveShadow
-          ref={moonRef}
-          material-envMapIntensity={5}
-          position={[Math.sin(offset) + 7, 0, Math.cos(offset) + 7]}
-        >
-          <sphereBufferGeometry args={[1, 40, 40]} />
-          <meshStandardMaterial map={textureMap} color={"white"} />
-        </mesh>
-      </group>
-    </>
+      <mesh
+        receiveShadow
+        scale={0.004 + scale * 0.001}
+        geometry={nodes.Esfera_Mat_0.geometry}
+        material={materials.material}
+        rotation={[Math.PI, 0.211, -Math.PI]}
+      />
+      <mesh
+        receiveShadow
+        scale={0.00405 + scale * 0.001}
+        geometry={nodes.Esfera_1_Mat1_0.geometry}
+        material={materials["Mat.1"]}
+      />
+    </group>
   );
 });
 

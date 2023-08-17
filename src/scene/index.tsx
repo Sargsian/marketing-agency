@@ -157,22 +157,25 @@ const Scene = () => {
         <group ref={groupRef}>
           {/* <ambientLight intensity={0.5} /> */}
           <AlienPlanet
+            pause={pause}
             onClick={() => handleRoute("tiktok")}
             ref={alienRef}
             rotationSpeed={router.pathname === "/tiktok" ? 0.2 : 1}
           />
-          <MarsPlanet rotationSpeed={0.3} />
+          <MarsPlanet pause={pause} rotationSpeed={0.3} />
           <LavaPlanet
+            pause={pause}
             onClick={() => handleRoute("bigo")}
             ref={lavaRef}
             rotationSpeed={router.pathname === "/bigo" ? 0.2 : 1}
           />
           <TerraformedPlanet
+            pause={pause}
             rotationSpeed={router.pathname === "/meta" ? 0.2 : 1}
             ref={terraformedRef}
             onClick={() => handleRoute("meta")}
           />
-          <JupiterPlanet rotationSpeed={0.3} />
+          <JupiterPlanet pause={pause} rotationSpeed={0.3} />
         </group>
       </group>
     </>
