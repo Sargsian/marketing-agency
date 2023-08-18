@@ -30,8 +30,7 @@ const telegramBot = async (
   );
 
   if (ret.status === 200) {
-    console.log(message);
-    return res.status(200).redirect("/success");
+    return res.send(200);
   }
 };
 

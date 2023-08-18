@@ -72,7 +72,7 @@ const ApplicationForm = () => {
       });
       setLoading(false);
       if (res.status === 200) {
-        void router.push("/success");
+        void router.replace("/success");
       }
 
       console.log(res, "response");
