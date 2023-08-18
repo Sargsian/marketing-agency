@@ -14,16 +14,17 @@ const success = () => {
       <Header />
       <div className="relative h-screen w-full">
         <Image
+          priority
           src={"/assets/images/success.png"}
           alt="404"
           style={{ objectFit: "contain" }}
           fill
         />
-        <div className="absolute top-1/2 flex left-1/2 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center text-center">
-          <h1 className="w-full font-jost text-[80px] [@media_(max-width:400px)]:whitespace-normal whitespace-nowrap md:text-[96px] font-semibold leading-[100%] tracking-[-5px]">
+        <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center text-center">
+          <h1 className="w-full whitespace-nowrap font-jost text-[80px] font-semibold leading-[100%] tracking-[-5px] md:text-[96px] [@media_(max-width:400px)]:whitespace-normal">
             Thank you
           </h1>
-          <h3 className="max-w-[370px] mt-[40px] heading-5">
+          <h3 className="mt-[40px] max-w-[370px] heading-5">
             We will review your request and get back to you as soon as possible
           </h3>
         </div>
