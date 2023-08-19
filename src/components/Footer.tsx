@@ -85,12 +85,12 @@ const Footer = () => {
             </div>
           </div>
           <div className="order-3 flex flex-col items-end space-y-3 font-jetbrains font-medium sm:whitespace-nowrap sm:text-lg xl:order-none">
-            <p className="text-right leading-none text-white text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100 sm:leading-normal">
+            <Link href='/policy' className="text-right leading-none text-white text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100 sm:leading-normal">
               {t("privacyPolicy")}
-            </p>
-            <p className="text-right leading-none text-white text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100 sm:leading-normal">
+            </Link>
+            <Link scroll={false} href='/policy#terms' className="text-right leading-none text-white text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100 sm:leading-normal">
               {t("terms")}
-            </p>
+            </Link>
           </div>
         </div>
       </div>

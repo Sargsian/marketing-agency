@@ -37,7 +37,7 @@ const Header = () => {
 
   return (
     <>
-      <SmoothScrollbar />
+      {/* <SmoothScrollbar /> */}
       <header className="fixed left-0 right-0 z-50 flex h-[60px] items-center justify-between px-[18px] pt-[30px] sm:px-10">
         <div>
           <Link href={"/"}>

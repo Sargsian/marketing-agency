@@ -47,6 +47,7 @@ const SmoothScrollbar = () => {
   };
 
   useEffect(() => {
+    console.log('object')
     initializeSmoothScroll();
     console.log('scrollEvent')
     initialize({
