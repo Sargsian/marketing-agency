@@ -38,7 +38,7 @@ const SidebarApplication = ({
         <Menu>
           <div className="fixed bottom-0 right-0 top-0 -z-10 flex w-full max-w-[660px] flex-col overflow-auto bg-[hsl(0,0%,7%)] py-[95px] font-jost shadow-2xl">
             <div className="mx-auto flex h-full w-full sm:pl-[136px] sm:pr-10 flex-col justify-between px-[10px] sm:mx-0">
-              <div className="mb-14 w-full border-b pb-1 uppercase text-white opacity-30 heading-5">
+              <div className="mb-1 w-full border-b pb-1 uppercase text-white opacity-30 heading-5">
                 <span className="cursor-default">{t("applicationHeader")}</span>
               </div>
               <div className="w-full @container">
