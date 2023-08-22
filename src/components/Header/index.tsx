@@ -40,8 +40,7 @@ const Header = () => {
   return (
     <>
       {/* <SmoothScrollbar /> */}
-      <header className="fixed left-0 right-0 z-[50] flex h-[60px] items-center justify-between pt-[30px] px-[10px] sm:px-10">
-        {/* <div className="bg-clip-padding backdrop-blur-sm h-[60px] absolute top-0 left-0 w-full -z-10 backdrop-filter border-b border-white bg-opacity-10 border-opacity-20 bg-gray-400"></div> */}
+      <header className="fixed left-0 right-0 z-[50000000] flex h-[60px] items-center justify-between pt-[30px] px-[10px] sm:px-10">
         <div>
           <Link href={"/"}>
             <Image
