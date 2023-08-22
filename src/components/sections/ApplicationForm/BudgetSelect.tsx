@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { type BudgetType } from "src/components/sections/ApplicationForm";
 import { useTranslation } from "next-i18next";
+import { type BudgetType } from "src/components/sections/ApplicationForm/Form";
 
 const budget = [{ budget: "500$" }, { budget: "1000$" }, { budget: "10000$" }];
 
