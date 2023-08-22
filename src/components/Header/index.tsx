@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Button from "src/components/Button";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Listbox } from "@headlessui/react";
 import MobileMenu from "./MobileMenu";
 import Hamburger from "./Hamburger";
 import { useTranslation } from "next-i18next";
-import SmoothScrollbar from "./SmoothScrollbar";
 import Sidebar from "src/components/Header/Sidebar";
 import Link from "next/link";
 import SidebarApplication from "src/components/Header/SidebarApplication";
@@ -39,7 +38,6 @@ const Header = () => {
 
   return (
     <>
-      {/* <SmoothScrollbar /> */}
       <header className="fixed left-0 right-0 z-[50000000] flex h-[60px] items-center justify-between pt-[30px] px-[10px] sm:px-10">
         <div>
           <Link href={"/"}>
