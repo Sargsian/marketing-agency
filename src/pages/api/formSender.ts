@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { submitType } from "src/components/sections/ApplicationForm";
+import { type submitType } from "src/components/sections/ApplicationForm/Form";
 import { env } from "src/env.mjs";
 
 interface ExtendedNextApiRequest extends NextApiRequest {
