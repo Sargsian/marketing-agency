@@ -36,7 +36,7 @@ const Policy = () => {
         className="absolute origin-top scale-[150%] md:left-[20%] md:top-0 md:scale-100"
         height={100}
       />
-      <div className="relative px-[10px] pt-[130px] font-jost md:px-10">
+      <div className="relative mb-6 px-[10px] pt-[130px] font-jost md:px-10">
         <h1 className="max-w-[600px] text-[32px] font-semibold leading-none tracking-tighter drop-shadow-lg sm:text-6xl md:text-7xl md:leading-[96px] xl:text-[96px]">
           {t("title")}
         </h1>

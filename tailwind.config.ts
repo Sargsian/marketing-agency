@@ -21,6 +21,13 @@ export default {
         jetbrains: ["JetBrains Mono", "monospace"],
       },
       fontSize: {},
+      containers: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1536px",
+      },
     },
   },
   plugins: [
@@ -64,6 +71,9 @@ export default {
           "@apply text-[12px] font-medium font-jetbrains tracking-[2px] leading-[16px]":
             {},
         },
+        ".subtitle-3": {
+          "@apply text-[10px] font-medium font-jetbrains tracking-[-0.6px]": {},
+        },
         ".placeholder": {
           "@apply text-[14px] font-normal font-jetbrains leading-[20px]": {},
         },
@@ -77,5 +87,6 @@ export default {
         },
       });
     }),
+    require("@tailwindcss/container-queries"),
   ],
 } satisfies Config;

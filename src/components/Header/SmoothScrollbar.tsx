@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useOverlayScrollbars } from "overlayscrollbars-react";
 import "overlayscrollbars/overlayscrollbars.css";
 
@@ -21,7 +21,7 @@ declare global {
   }
 }
 
-const SmoothScrollbar = () => {
+const SmoothScrollbar = ({children}: {children: ReactNode}) => {
   const [initialize, instance] = useOverlayScrollbars({
     options: {
       scrollbars: { theme: "os-theme-light" },
@@ -47,9 +47,8 @@ const SmoothScrollbar = () => {
   };
 
   useEffect(() => {
-    console.log('object')
+    console.log('smoothScrollbar')
     initializeSmoothScroll();
-    console.log('scrollEvent')
     initialize({
       target: document.body,
       cancel: {
@@ -59,7 +58,7 @@ const SmoothScrollbar = () => {
     });
   }, []);
 
-  return null;
+  return <>{children}</>;
 };
 
 export default SmoothScrollbar;

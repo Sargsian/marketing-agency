@@ -9,12 +9,14 @@ import { useTranslation } from "next-i18next";
 import SmoothScrollbar from "./SmoothScrollbar";
 import Sidebar from "src/components/Header/Sidebar";
 import Link from "next/link";
+import SidebarApplication from "src/components/Header/SidebarApplication";
 
 const locales = [{ name: "eng" }, { name: "rus" }];
 
 const Header = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [application, setApplication] = useState(false);
   const { t } = useTranslation("header");
 
   const switchLanguage = () => {
@@ -37,8 +39,9 @@ const Header = () => {
 
   return (
     <>
-      <SmoothScrollbar />
-      <header className="fixed left-0 right-0 z-50 flex h-[60px] items-center justify-between px-[18px] pt-[30px] sm:px-10">
+      {/* <SmoothScrollbar /> */}
+      <header className="fixed left-0 right-0 z-[50] flex h-[60px] items-center justify-between pt-[30px] px-[10px] sm:px-10">
+        {/* <div className="bg-clip-padding backdrop-blur-sm h-[60px] absolute top-0 left-0 w-full -z-10 backdrop-filter border-b border-white bg-opacity-10 border-opacity-20 bg-gray-400"></div> */}
         <div>
           <Link href={"/"}>
             <Image
@@ -75,18 +78,24 @@ const Header = () => {
         <div className="flex h-full items-center gap-6">
           <Button
             type="button"
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
+            onClick={() => (
+              setApplication((prevState) => !prevState), setOpen(false)
+            )}
           >
-            {t("close")}
+            {t("contact")}
           </Button>
           <Hamburger
-            onClick={() => setOpen((prevState) => !prevState)}
+            onClick={() => (
+              setOpen((prevState) => !prevState), setApplication(false)
+            )}
             open={open}
           />
           <MobileMenu closeMenu={() => setOpen(false)} open={open} />
           <Sidebar closeMenu={() => setOpen(false)} open={open} />
+          <SidebarApplication
+            closeApplication={() => setApplication(false)}
+            open={application}
+          />
         </div>
       </header>
     </>

@@ -32,7 +32,7 @@ const HowToStart = () => {
       </div>
       <div className="flex flex-col justify-between xl:flex-row">
         <div>
-          <span className="mb-[42px] mr-[243px] inline-block tag">
+          <span className="mb-[42px] mr-[243px] whitespace-nowrap inline-block tag">
             {t("tag")}
           </span>
         </div>

@@ -1,5 +1,11 @@
 {
   "scroll": "Прокрутить вниз",
   "back": "Назад",
-  "planet": "Планета"
+  "planet": "Планета",
+  "planetTags": "Товары, услуги, личный бренд",
+  "planetProducts": "Продукты",
+  "planetVerticals": "Серые вертикали",
+  "planetCommission": "Комиссия от",
+  "planetArbitrage": "Арбитраж",
+  "planetPayment": "Способы оплаты"
 }

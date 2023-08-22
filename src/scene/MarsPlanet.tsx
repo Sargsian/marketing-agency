@@ -24,14 +24,14 @@ const MarsPlanet = ({ rotationSpeed, pause }: { rotationSpeed: number, pause: bo
 
   const { offset, scale, distanceFromSun, speed } = useControls("Mars Planet", {
     offset: {
-      value: 2.512,
+      value: 0,
       min: 0,
       max: Math.PI * 2,
       step: 0.01,
     },
-    scale: { value: 2.8, min: 0, max: 20, step: 0.01 },
-    distanceFromSun: { value: 4.8, min: 1, max: 10, step: 0.1 },
-    speed: { value: 1 * rotationSpeed, min: 0.01, max: 10, step: 0.005 },
+    scale: { value: 3.73, min: 0, max: 20, step: 0.01 },
+    distanceFromSun: { value: 7.5, min: 1, max: 10, step: 0.1 },
+    speed: { value: 0.24, min: 0.01, max: 10, step: 0.005 },
   });
 
   const x = 20;

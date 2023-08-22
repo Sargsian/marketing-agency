@@ -208,11 +208,11 @@ const Company = ({ companyName }: CompanyTypes) => {
           ))}
         </Swiper>
       </div>
-      <div className="relative flex justify-between border-y border-white border-opacity-20 py-5 font-jetbrains text-sm font-medium leading-[18px] tracking-tighter">
+      <div className="relative flex justify-between border-t sm:border-b border-white border-opacity-20 py-5 font-jetbrains text-sm font-medium leading-[18px] tracking-tighter">
         <Dot side="left" verticalSide="top" />
         <Dot side="right" verticalSide="top" />
-        <Dot side="left" verticalSide="bottom" />
-        <Dot side="right" verticalSide="bottom" />
+        <Dot side="left" verticalSide="bottom" showAt="sm" />
+        <Dot side="right" verticalSide="bottom" showAt="sm" />
 
         <div className="hidden w-full sm:flex">
           <span className="mr-auto">

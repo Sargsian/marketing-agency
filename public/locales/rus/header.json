@@ -1,8 +1,9 @@
 {
-    "close": "Закрыть",
+    "contact": "Связаться",
     "socials": "Соцсети",
     "email": "Почта",
     "telegram": "Telegram",
     "navigation": "Навигация",
-    "contacts": "Контакты"
+    "contacts": "Контакты",
+    "applicationHeader": "Оставить заявку"
 }

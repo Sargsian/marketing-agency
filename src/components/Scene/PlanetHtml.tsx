@@ -1,13 +1,7 @@
 import { Html } from "@react-three/drei";
-import {
-  MutableRefObject,
-  ReactNode,
-  RefObject,
-  useCallback,
-  useEffect,
-  useRef,
-} from "react";
-import { useTranslation } from "react-i18next";
+import { useCallback } from "react";
+import { useTranslation } from "next-i18next";
+import PlanetDesc from "src/components/Scene/PlanetDesc";
 import PlanetTitleHover from "src/components/Scene/PlanetTitleHover";
 import { type Camera, type Object3D, Vector3 } from "three";
 
@@ -81,7 +75,7 @@ const PlanetHtml = ({ hovered, onClick, setHovered, name }: Props) => {
           <span
             onPointerOver={() => setHovered(true)}
             onPointerOut={() => setHovered(false)}
-            className="absolute bottom-[-41px] right-[95%] inline-block h-5 min-w-[150px] -rotate-[35deg]"
+            className="absolute bottom-[-62px] right-[89%] inline-block h-5 w-[223px] -rotate-[35deg]"
           >
             <span className="text-sm font-medium tracking-[-1.4px]">
               {/* TikTok Planet */}
@@ -90,12 +84,7 @@ const PlanetHtml = ({ hovered, onClick, setHovered, name }: Props) => {
                   {`${t("planet")} ${name}`}
                 </PlanetTitleHover>
               </span>
-              <div className="absolute top-[30px] w-full rounded-sm bg-white p-1 text-[10px] leading-[14px] text-black [backface-visibility:hidden]">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est
-                delectus, asperiores architecto sint hic illo impedit maiores
-                reiciendis maxime in nulla labore ratione quod eveniet pariatur
-                repellendus voluptas ab doloremque.
-              </div>
+              <PlanetDesc t={t} name={name} />
             </span>
             <span className="absolute bottom-[-5px] left-[1px] h-[1px] w-[calc(100%)] cursor-auto rounded bg-white [backface-visibility:hidden]"></span>
           </span>

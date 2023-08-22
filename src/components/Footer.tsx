@@ -9,9 +9,9 @@ const Footer = () => {
 
   return (
     <footer className="font-jetbrains text-base font-medium tracking-[-1px] md:text-lg">
-      <div className="mx-auto px-5 py-16 sm:px-10">
-        <div className="grid grid-cols-2 gap-y-14 xl:grid-cols-5 xl:gap-8">
-          <div className="order-2 xl:order-none">
+      <div className="mx-auto py-6 sm:px-10">
+        <div className="grid grid-cols-2 gap-y-16 xl:grid-cols-5 xl:gap-8">
+          <div className="xl:order-none">
             <Link href={"/"}>
               <Image src="/logo.svg" width={84} height={26} alt="logo" />
             </Link>
@@ -19,8 +19,8 @@ const Footer = () => {
               Boost {year} &copy;
             </span>
           </div>
-          <div className="col-span-2 grid grid-cols-2 gap-y-10 sm:grid-cols-3 lg:col-span-3 lg:grid-cols-3">
-            <div className="flex justify-center">
+          <div className="col-span-2 order-3 grid grid-cols-2 gap-y-16 sm:grid-cols-3 lg:col-span-3 lg:grid-cols-3">
+            <div className="flex sm:justify-center">
               <ul className="space-y-3">
                 <li>
                   <a
@@ -44,7 +44,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex sm:justify-center">
               <ul className="space-y-3">
                 <li>
                   <a href="#" className="transition hover:opacity-75">
@@ -63,7 +63,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-span-2 flex justify-center sm:col-span-1">
+            <div className="col-span-2 flex sm:justify-center sm:col-span-1">
               <ul className="space-y-3">
                 <li>
                   <a
@@ -84,7 +84,7 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="order-3 flex flex-col items-end space-y-3 font-jetbrains font-medium sm:whitespace-nowrap sm:text-lg xl:order-none">
+          <div className="flex flex-col items-end space-y-3 font-jetbrains font-medium sm:whitespace-nowrap sm:text-lg xl:order-3">
             <Link href='/policy' className="text-right leading-none text-white text-opacity-60 transition hover:cursor-pointer hover:text-opacity-100 sm:leading-normal">
               {t("privacyPolicy")}
             </Link>

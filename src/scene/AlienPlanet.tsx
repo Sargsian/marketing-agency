@@ -48,14 +48,14 @@ const AlienPlanet = forwardRef(function AlienPlanet(
     "Alien Planet",
     {
       offset: {
-        value: 0,
+        value: 4.64,
         min: 0,
         max: Math.PI * 2,
         step: 0.01,
       },
       scale: { value: 0, min: 0, max: 20, step: 0.01 },
-      distanceFromSun: { value: 4.2, min: 1, max: 10, step: 0.1 },
-      speed: { value: 1.34, min: 0.01, max: 10, step: 0.005 },
+      distanceFromSun: { value: 2.2, min: 1, max: 10, step: 0.1 },
+      speed: { value: 2.08, min: 0.01, max: 10, step: 0.005 },
     }
   );
 

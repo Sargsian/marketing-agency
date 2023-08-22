@@ -33,10 +33,10 @@ const LavaPlanet = forwardRef(function LavaPlanet(
   const [hovered, setHovered] = useState(false);
 
   const { offset, scale, distanceFromSun, speed } = useControls("Lava Planet", {
-    offset: { value: 1.256, min: 0, max: Math.PI * 2, step: 0.01 },
-    scale: { value: 3.1, min: 0, max: 20, step: 0.01 },
-    distanceFromSun: { value: 2.4, min: 1, max: 10, step: 0.1 },
-    speed: { value: 3.61, min: 0.01, max: 10, step: 0.005 },
+    offset: { value: 1.12, min: 0, max: Math.PI * 2, step: 0.01 },
+    scale: { value: 3.09, min: 0, max: 20, step: 0.01 },
+    distanceFromSun: { value: 5.7, min: 1, max: 10, step: 0.1 },
+    speed: { value: 1.09, min: 0.01, max: 10, step: 0.005 },
   });
 
   const { companyIsChosen } = useScene();

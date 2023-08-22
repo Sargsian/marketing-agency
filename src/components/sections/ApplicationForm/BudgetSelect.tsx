@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { type BudgetType } from "src/components/sections/ApplicationForm";
+import { useTranslation } from "next-i18next";
 
 const budget = [{ budget: "500$" }, { budget: "1000$" }, { budget: "10000$" }];
 
@@ -15,6 +16,7 @@ const BudgedSelect = ({
   setSelectedBudget,
   isValid,
 }: Props) => {
+  const { t } = useTranslation("form");
   return (
     <Listbox value={selectedBudget} onChange={setSelectedBudget}>
       {({ open }) => (
@@ -24,17 +26,21 @@ const BudgedSelect = ({
               isValid ? "text-green-500" : ""
             }`}
           >
-            Бюджет
+            {t("budget")}
             <span className="absolute top-[-7px] pl-1">*</span>
           </span>
-          <span className={`absolute bottom-2 right-0 text-xs font-medium ${
+          <span
+            className={`absolute bottom-2 right-0 text-xs font-medium ${
               isValid ? "text-green-500" : ""
-            }`}>
+            }`}
+          >
             {open ? "[-]" : "[+]"}
           </span>
           <Listbox.Button
             className={`border-b border-opacity-40 bg-transparent py-2 text-start text-sm outline-none ${
-              isValid ? "text-green-500 border-green-500" : "text-white border-white"
+              isValid
+                ? "border-green-500 text-green-500"
+                : "border-white text-white"
             }`}
           >
             {selectedBudget?.budget}

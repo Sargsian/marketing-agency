@@ -1,5 +1,11 @@
 {
   "scroll": "Scroll down",
   "back": "Back",
-  "planet": "Planet"
+  "planet": "Planet",
+  "planetTags": "Goods, services, personal brand",
+  "planetProducts": "Products",
+  "planetVerticals": "Gray verticals",
+  "planetCommission": "commission from",
+  "planetArbitrage": "Arbitration",
+  "planetPayment": "Payment methods"
 }

@@ -4,17 +4,9 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const menuList = [
-  { name: "Tiktok", link: "/tiktok" },
+  { name: "TikTok", link: "/tiktok" },
   { name: "Bigo", link: "/bigo" },
   { name: "Meta", link: "/meta" },
-];
-
-const socials = [
-  { name: "Dribble" },
-  { name: "Instagram" },
-  { name: "Github" },
-  { name: "Twitter" },
-  { name: "YouTube" },
 ];
 
 const MobileMenu = ({
@@ -33,50 +25,43 @@ const MobileMenu = ({
         open ? "bottom-0" : "bottom-[100%]"
       }`}
     >
-      <div className="flex h-screen flex-col justify-between overflow-auto">
-        <ul className="mt-[60px] cursor-default p-[18px] sm:p-10">
-          {menuList.map((item, i) => (
-            <li
-              onClick={closeMenu}
-              style={
-                item.link === pathname ? { color: "#FFA217", opacity: 1 } : {}
-              }
-              className="w-fit py-[6px] text-[32px] leading-[90%] tracking-[-0.96px] opacity-60 hover:cursor-pointer hover:text-accent hover:opacity-100"
-              key={i}
-            >
-              <Link href={item.link}>{item.name}</Link>
-            </li>
-          ))}
-        </ul>
-        <div className="flex px-[18px] pb-[18px] sm:px-10">
-          <div className="mr-auto">
-            <span>{t("socials")}</span>
-            <ul className="mt-4 cursor-default">
-              {socials.map((social, i) => (
-                <li className="hover:cursor-pointer hover:text-accent" key={i}>
-                  {social.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <div>
-              <span>{t("email")}</span>
+      <div className="flex flex-col overflow-auto h-screen pt-24">
+        <div className="mx-auto mb-[38px] w-[calc(100%-20px)] uppercase text-white opacity-30 subtitle">
+          <span className="cursor-default">{t("navigation")}</span>
+          <span className="mt-2 block h-[1px] w-full bg-white"></span>
+        </div>
+        <div className="flex flex-1 flex-col justify-between">
+          <ul className="cursor-default p-[10px] sm:p-10">
+            {menuList.map((item, i) => (
+              <li
+                onClick={closeMenu}
+                style={
+                  item.link === pathname ? { color: "#FFA217", opacity: 1 } : {}
+                }
+                className="mb-5 w-fit font-jost text-[36px] font-semibold leading-[100%] tracking-[-1.8px] hover:cursor-pointer hover:text-accent hover:opacity-100"
+                key={i}
+              >
+                <Link href={item.link}>{item.name}</Link>
+              </li>
+            ))}
+          </ul>
+          <div className="p-[10px] pb-[21px]">
+            <span className="mb-[23px] inline-block uppercase opacity-30 subtitle">
+              {t("contacts")}
+            </span>
+            <div className="flex flex-col justify-between gap-y-1 [@media(min-width:320px)]:flex-row">
               <Link
                 href="mailto:boostads.org@gmail.com"
-                className="mt-2 block hover:cursor-pointer hover:text-accent"
+                className="inline-block font-jetbrains text-sm font-medium uppercase underline hover:cursor-pointer hover:text-accent"
               >
                 boostads.org@gmail.com
               </Link>
-            </div>
-            <div className="mt-6">
-              <span>{t("telegram")}</span>
               <a
                 href="https://t.me/dmitriiboost"
                 target="_blank"
-                className="mt-2 block hover:cursor-pointer hover:text-accent"
+                className="inline-block font-jetbrains text-sm font-medium uppercase underline hover:cursor-pointer hover:text-accent"
               >
-                @dmitriiboost
+                telegram
               </a>
             </div>
           </div>

@@ -40,9 +40,6 @@ const Geo = ({ companyName }: CompanyTypes) => {
           <h1 className="mr-6 inline-block py-6 uppercase tracking-tighter text-white heading-1 lg:mr-4 xl:py-7 2xl:py-10">
             {t("heading")}
           </h1>
-          <Link className="uppercase link" href="#">
-            {t("fullList")}
-          </Link>
         </span>
         <span className="mt-14 hidden flex-col gap-9 lg:flex">
           <Image

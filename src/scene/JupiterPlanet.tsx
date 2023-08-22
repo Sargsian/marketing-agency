@@ -34,14 +34,14 @@ const JupiterPlanet = ({
     "Jupiter Planet",
     {
       offset: {
-        value: 5.024,
+        value: 4.10,
         min: 0,
         max: Math.PI * 2,
         step: 0.01,
       },
       scale: { value: 0, min: 0, max: 20, step: 0.01 },
-      distanceFromSun: { value: 4, min: 1, max: 10, step: 0.1 },
-      speed: { value: 1.235 * rotationSpeed, min: 0.01, max: 10, step: 0.005 },
+      distanceFromSun: { value: 9.5, min: 1, max: 10, step: 0.1 },
+      speed: { value: 0.01, min: 0.01, max: 10, step: 0.005 },
     }
   );
 

@@ -47,14 +47,14 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
     "Terraformed Planet",
     {
       offset: {
-        value: 3.768,
+        value: 3,
         min: 0,
         max: Math.PI * 2,
         step: 0.01,
       },
-      scale: { value: 0.8, min: 0, max: 20, step: 0.01 },
-      distanceFromSun: { value: 3.0, min: 1, max: 10, step: 0.1 },
-      speed: { value: 3.07 * rotationSpeed, min: 0.01, max: 10, step: 0.005 },
+      scale: { value: 1.93, min: 0, max: 20, step: 0.01 },
+      distanceFromSun: { value: 3.9, min: 1, max: 10, step: 0.1 },
+      speed: { value: 1.30, min: 0.01, max: 10, step: 0.005 },
     }
   );
 

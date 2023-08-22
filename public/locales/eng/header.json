@@ -1,8 +1,9 @@
 {
-  "close": "Close",
+  "contact": "Contact",
   "socials": "Socials",
   "email": "Email",
   "telegram": "Telegram",
   "navigation": "Navigation",
-  "contacts": "Contacts"
+  "contacts": "Contacts",
+  "applicationHeader": "Submit your application"
 }
