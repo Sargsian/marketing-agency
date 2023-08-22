@@ -28,7 +28,7 @@ const Button = ({
       onClick={onClick}
       type={type}
       disabled={disabled || loading}
-      className={`relative rounded-md px-[13px] text-sm transition-[background] hover:bg-[#AA6600] ${conditions} ${
+      className={`relative rounded-md px-[13px] text-sm transition-[background] active:bg-[#AA6600] [@media(hover:hover)]:hover:bg-[#AA6600] ${conditions} ${
         classNames || ""
       }`}
     >
