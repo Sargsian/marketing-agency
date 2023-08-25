@@ -8,7 +8,7 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
-    NEXT_TELEGRAM_TOKEN: z.enum(["6446752010:AAHCkWH5-jJaCVt_aFp8mugyVWQX1htik3I", "6446752010:AAHCkWH5-jJaCVt_aFp8mugyVWQX1htik3I", "6446752010:AAHCkWH5-jJaCVt_aFp8mugyVWQX1htik3I"]),
+    NEXT_TELEGRAM_TOKEN: z.enum(["6666236868:AAHSsbeR1Jb4yYY3p8Cap4kTJLuPtGOjjfQ", "6666236868:AAHSsbeR1Jb4yYY3p8Cap4kTJLuPtGOjjfQ", "6666236868:AAHSsbeR1Jb4yYY3p8Cap4kTJLuPtGOjjfQ"]),
   },
 
   /**
