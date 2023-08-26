@@ -1,12 +1,12 @@
 {
-  "heading": "Company",
-  "tiktokInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "bundleInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "pangleInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "facebookInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "instagramInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "metaInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "messengerInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "likeeInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "imoInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  "heading": "Placements",
+  "tiktokInfo": "Running ads in TikTok app.",
+  "bundleInfo": "Running ads in CapCut & Fizzo apps.",
+  "pangleInfo": "Running ads on 3rd party apps.",
+  "facebookInfo": "Running ads in Facebook app.",
+  "instagramInfo": "Running ads in Instagram app.",
+  "metaInfo": "Running ads on 3rd party apps.",
+  "messengerInfo": "Running ads in Messenger app.",
+  "likeeInfo": "Running ads in Likee app.",
+  "imoInfo": "Running ads in IMO app."
 }

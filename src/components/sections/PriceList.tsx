@@ -22,17 +22,14 @@ const metaProducts = [
 ];
 
 const tiktokPayments = [
-  { text: "tiktokPayment1" },
   { text: "tiktokPayment2" },
   { text: "tiktokPayment3" },
 ];
 const bigoPayments = [
-  { text: "bigoPayment1" },
   { text: "bigoPayment2" },
   { text: "bigoPayment3" },
 ];
 const metaPayments = [
-  { text: "metaPayment1" },
   { text: "metaPayment2" },
   { text: "metaPayment3" },
 ];
