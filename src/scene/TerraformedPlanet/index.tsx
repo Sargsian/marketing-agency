@@ -97,6 +97,6 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
   );
 });
 
-useGLTF.preload("/assets/models/terraformedPlanet/scene.glb");
+useGLTF.preload("/assets/models/terraformedPlanet/scene-low.glb");
 
 export default TerraformedPlanet;

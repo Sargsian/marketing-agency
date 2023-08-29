@@ -88,4 +88,4 @@ const LavaPlanet = forwardRef(function LavaPlanet(
 
 export default LavaPlanet;
 
-useGLTF.preload("/assets/models/lavaPlanet/scene.glb");
+useGLTF.preload("/assets/models/lavaPlanet/scene-low.glb");

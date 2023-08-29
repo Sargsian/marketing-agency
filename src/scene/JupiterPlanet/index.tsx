@@ -66,6 +66,6 @@ const JupiterPlanet = ({
   );
 };
 
-useGLTF.preload("/assets/models/jupiterPlanet/scene.glb");
+useGLTF.preload("/assets/models/jupiterPlanet/scene-low.glb");
 
 export default JupiterPlanet;
