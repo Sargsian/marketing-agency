@@ -41,4 +41,4 @@ const Sun = () => {
 
 export default Sun;
 
-useGLTF.preload("/assets/models/sun/scene-low.glb");
+useGLTF.preload("/assets/models/sun/scene.glb");

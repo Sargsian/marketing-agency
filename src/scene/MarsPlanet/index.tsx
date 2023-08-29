@@ -78,7 +78,7 @@ const MarsPlanet = ({ pause }: { rotationSpeed: number; pause: boolean }) => {
     </group>
   );
 };
-useGLTF.preload("/assets/models/marsPlanet/scene-low.glb");
+useGLTF.preload("/assets/models/marsPlanet/scene.glb");
 
 export default MarsPlanet;
 

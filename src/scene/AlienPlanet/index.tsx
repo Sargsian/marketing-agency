@@ -100,4 +100,4 @@ const AlienPlanet = forwardRef(function AlienPlanet(
 });
 export default AlienPlanet;
 
-useGLTF.preload("/assets/models/alienPlanet/scene-low.glb");
+useGLTF.preload("/assets/models/alienPlanet/scene.glb");

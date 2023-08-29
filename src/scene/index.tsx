@@ -7,7 +7,7 @@ import {
   useProgress,
   useTexture,
 } from "@react-three/drei";
-import { type RefObject, useEffect, useRef, useState, Suspense } from "react";
+import { type RefObject, useEffect, useRef, useState } from "react";
 import { type Group } from "three";
 import { Perf } from "r3f-perf";
 import { useFrame } from "@react-three/fiber";
@@ -29,7 +29,7 @@ const Scene = () => {
   const dispatch = useSceneDispatch();
   const { loaded, active } = useProgress();
   const [isFirstRender, setIsFirstRender] = useState(true);
-  // const envMap = useEnvironment({ files: "/assets/models/galaxy.hdr" });
+  const envMap = useEnvironment({ files: "/assets/models/galaxy.hdr" });
 
   const [pause, setPause] = useState(false);
 
@@ -90,7 +90,7 @@ const Scene = () => {
   };
 
   useEffect(() => {
-    if (!cameraRef.current || !isFirstRender) return;
+    if (active || !cameraRef.current || !isFirstRender) return;
     cameraRef.current.mouseButtons.right = 0;
 
     setTimeout(() => {
@@ -102,7 +102,7 @@ const Scene = () => {
   }, [active, dispatch, isFirstRender]);
 
   useEffect(() => {
-    // if (!loaded) return;
+    if (!loaded) return;
     if (!alienRef.current || !cameraRef.current || isFirstRender) return;
     if (router.pathname === "/tiktok") {
       panToPlanet(alienRef);
@@ -142,7 +142,7 @@ const Scene = () => {
 
       <directionalLight castShadow intensity={1} />
 
-      {/* <Environment background map={envMap} /> */}
+      <Environment background map={envMap} />
 
       <group>
         <AnimatedStars />
@@ -153,10 +153,9 @@ const Scene = () => {
           size={4426}
           speed={10.4}
         />
-
         <Sun />
-
         <group ref={groupRef}>
+          {/* <ambientLight intensity={0.5} /> */}
           <AlienPlanet
             pause={pause}
             onClick={() => handleRoute("tiktok")}
@@ -185,4 +184,4 @@ const Scene = () => {
 
 export default Scene;
 
-// useTexture.preload("/assets/models/galaxy.hdr");
+useTexture.preload("/assets/models/galaxy.hdr");
