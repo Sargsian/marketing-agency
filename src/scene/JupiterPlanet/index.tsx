@@ -1,31 +1,17 @@
-import React, { useRef } from "react";
+import React, { Suspense, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import type { GLTF } from "three-stdlib";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
 import { useScene } from "src/store/SceneContext";
 import { useOffset } from "src/hooks/useOffset";
-
-type GLTFResult = GLTF & {
-  nodes: {
-    Mars: THREE.Mesh;
-  };
-  materials: {
-    Mars: THREE.MeshStandardMaterial;
-  };
-};
+import Meshes from "./Meshes";
 
 const JupiterPlanet = ({
-  rotationSpeed,
   pause,
 }: {
   rotationSpeed: number;
   pause: boolean;
 }) => {
-  const { nodes, materials } = useGLTF(
-    "/assets/models/jupiterPlanet/scene.glb"
-  ) as GLTFResult;
-
   const jupiterRef = useRef<THREE.Group>(null);
 
   const animationTime = useOffset(pause);
@@ -34,7 +20,7 @@ const JupiterPlanet = ({
     "Jupiter Planet",
     {
       offset: {
-        value: 4.10,
+        value: 4.1,
         min: 0,
         max: Math.PI * 2,
         step: 0.01,
@@ -71,15 +57,15 @@ const JupiterPlanet = ({
       dispose={null}
       ref={jupiterRef}
     >
-      <mesh
-        geometry={nodes.Mars.geometry}
-        material={materials.Mars}
-        scale={6.354}
-      />
+      <Suspense
+        fallback={<Meshes url="/assets/models/jupiterPlanet/scene-low.glb" />}
+      >
+        <Meshes url="/assets/models/jupiterPlanet/scene.glb" />
+      </Suspense>
     </group>
   );
 };
 
-useGLTF.preload("/assets/models/jupiterPlanet/scene.glb");
+useGLTF.preload("/assets/models/jupiterPlanet/scene-low.glb");
 
 export default JupiterPlanet;

@@ -1,23 +1,12 @@
-import React, { type RefObject, forwardRef, useRef, useState } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
-import type { GLTF } from "three-stdlib";
+import { type RefObject, forwardRef, useState, Suspense } from "react";
+import { useGLTF } from "@react-three/drei";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
 import { useScene } from "src/store/SceneContext";
-import { type Group, type Mesh } from "three";
+import { type Group } from "three";
 import PlanetHtml from "src/components/Scene/PlanetHtml";
 import { useOffset } from "src/hooks/useOffset";
-
-type GLTFResult = GLTF & {
-  nodes: {
-    Esfera_Mat_0: THREE.Mesh;
-    Esfera_1_Mat1_0: THREE.Mesh;
-  };
-  materials: {
-    material: THREE.MeshStandardMaterial;
-    ["Mat.1"]: THREE.MeshStandardMaterial;
-  };
-};
+import Meshes from "./Meshes";
 
 const TerraformedPlanet = forwardRef(function TerraformedPlanet(
   {
@@ -31,10 +20,6 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
   },
   ref
 ) {
-  const { nodes, materials } = useGLTF(
-    "/assets/models/terraformedPlanet/scene.glb"
-  ) as GLTFResult;
-
   const TerraformedRef = ref as RefObject<Group>;
 
   const [hovered, setHovered] = useState(false);
@@ -54,7 +39,7 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
       },
       scale: { value: 1.93, min: 0, max: 20, step: 0.01 },
       distanceFromSun: { value: 3.9, min: 1, max: 10, step: 0.1 },
-      speed: { value: 1.30, min: 0.01, max: 10, step: 0.005 },
+      speed: { value: 1.3, min: 0.01, max: 10, step: 0.005 },
     }
   );
 
@@ -95,24 +80,23 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
           name="Meta"
         />
       )}
-
-      <mesh
-        receiveShadow
-        scale={0.004 + scale * 0.001}
-        geometry={nodes.Esfera_Mat_0.geometry}
-        material={materials.material}
-        rotation={[Math.PI, 0.211, -Math.PI]}
-      />
-      <mesh
-        receiveShadow
-        scale={0.00405 + scale * 0.001}
-        geometry={nodes.Esfera_1_Mat1_0.geometry}
-        material={materials["Mat.1"]}
-      />
+      <Suspense
+        fallback={
+          <Meshes
+            scale={scale}
+            url="/assets/models/terraformedPlanet/scene-low.glb"
+          />
+        }
+      >
+        <Meshes
+          scale={scale}
+          url="/assets/models/terraformedPlanet/scene.glb"
+        />
+      </Suspense>
     </group>
   );
 });
 
-useGLTF.preload("/assets/models/terraformedPlanet/scene.glb");
+useGLTF.preload("/assets/models/terraformedPlanet/scene-low.glb");
 
 export default TerraformedPlanet;

@@ -3,7 +3,15 @@ import { Listbox, Transition } from "@headlessui/react";
 import { useTranslation } from "next-i18next";
 import { type BudgetType } from "src/components/sections/ApplicationForm/Form";
 
-const budget = [{ budget: "500$" }, { budget: "1000$" }, { budget: "10000$" }];
+const budget = [
+  { budget: "100-500$" },
+  { budget: "500-1000$" },
+  { budget: "1000-3000$" },
+  { budget: "3000-5000$" },
+  { budget: "5000 - 10000$" },
+  { budget: "10000 - 20000$" },
+  { budget: "20000 $" },
+];
 
 type Props = {
   selectedBudget: BudgetType;

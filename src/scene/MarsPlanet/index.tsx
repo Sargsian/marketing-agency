@@ -1,23 +1,12 @@
-import React, { useRef } from "react";
+import React, { Suspense, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import type { GLTF } from "three-stdlib";
 import type { Group } from "three";
 import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
-import { useScene } from "src/store/SceneContext";
 import { useOffset } from "src/hooks/useOffset";
+import Meshes from "./Meshes";
 
-type GLTFResult = GLTF & {
-  nodes: {
-    ["4_mars_mars_shader_0"]: THREE.Mesh;
-    ["4_mars_mars_shader_0_1"]: THREE.Mesh;
-  };
-  materials: {
-    mars_shader: THREE.MeshStandardMaterial;
-  };
-};
-
-const MarsPlanet = ({ rotationSpeed, pause }: { rotationSpeed: number, pause: boolean; }) => {
+const MarsPlanet = ({ pause }: { rotationSpeed: number; pause: boolean }) => {
   const marsRef = useRef<Group>(null);
 
   const animationTime = useOffset(pause);
@@ -50,10 +39,6 @@ const MarsPlanet = ({ rotationSpeed, pause }: { rotationSpeed: number, pause: bo
       Math.cos(animationTime() * (speed / 10) + offset) * x * distanceFromSun;
   });
 
-  const { nodes, materials } = useGLTF(
-    "/assets/models/marsPlanet/scene.glb"
-  ) as GLTFResult;
-
   return (
     <group
       ref={marsRef}
@@ -78,16 +63,13 @@ const MarsPlanet = ({ rotationSpeed, pause }: { rotationSpeed: number, pause: bo
                 rotation={[-Math.PI / 2, -0.436, 0]}
                 scale={140}
               >
-                <mesh
-                  name="4_mars_mars_shader_0"
-                  geometry={nodes["4_mars_mars_shader_0"].geometry}
-                  material={materials.mars_shader}
-                />
-                <mesh
-                  name="4_mars_mars_shader_0_1"
-                  geometry={nodes["4_mars_mars_shader_0_1"].geometry}
-                  material={materials.mars_shader}
-                />
+                <Suspense
+                  fallback={
+                    <Meshes url="/assets/models/marsPlanet/scene-low.glb" />
+                  }
+                >
+                  <Meshes url="/assets/models/marsPlanet/scene.glb" />
+                </Suspense>
               </group>
             </group>
           </group>
@@ -96,7 +78,7 @@ const MarsPlanet = ({ rotationSpeed, pause }: { rotationSpeed: number, pause: bo
     </group>
   );
 };
+useGLTF.preload("/assets/models/marsPlanet/scene-low.glb");
 
 export default MarsPlanet;
 
-useGLTF.preload("/assets/models/marsPlanet/scene.glb");

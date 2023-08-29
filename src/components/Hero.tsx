@@ -58,11 +58,11 @@ const Hero = () => {
           dpr={[1, 1]}
           camera={{ fov: 45, near: 1, far: 5000, position: [0, 0, 185] }}
         >
-          <Suspense fallback={null}>
             <Scene />
-          </Suspense>
+          {/* <Suspense fallback={null}>
+          </Suspense> */}
         </Canvas>
-        <Loader dataInterpolation={(span) => `Loading ${span.toFixed(0)}%`} />
+        {/* <Loader dataInterpolation={(span) => `Loading ${span.toFixed(0)}%`} /> */}
         <button
           className={`absolute bottom-[100px] left-8 z-20 text-white hover:cursor-pointer md:left-[100px] ${
             router.pathname === "/"

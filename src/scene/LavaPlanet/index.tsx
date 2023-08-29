@@ -1,22 +1,15 @@
-import { type RefObject, forwardRef, useState } from "react";
+import { type RefObject, forwardRef, useState, Suspense } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useControls } from "leva";
 
-import type { GLTF } from "three-stdlib";
 import type { Group } from "three";
 import { useFrame } from "@react-three/fiber";
 import { useScene } from "src/store/SceneContext";
 import PlanetHtml from "src/components/Scene/PlanetHtml";
 import { useOffset } from "src/hooks/useOffset";
+import Meshes from "./Meshes";
 
-type GLTFResult = GLTF & {
-  nodes: {
-    defaultMaterial: THREE.Mesh;
-  };
-  materials: {
-    DefaultMaterial: THREE.MeshStandardMaterial;
-  };
-};
+
 
 const LavaPlanet = forwardRef(function LavaPlanet(
   {
@@ -43,10 +36,7 @@ const LavaPlanet = forwardRef(function LavaPlanet(
 
   const animationTime = useOffset(pause);
 
-  const { nodes, materials } = useGLTF(
-    "/assets/models/lavaPlanet/scene.glb"
-  ) as GLTFResult;
-
+ 
   const lavaRef = ref as RefObject<Group>;
 
   const x = 20;
@@ -87,14 +77,15 @@ const LavaPlanet = forwardRef(function LavaPlanet(
           name="Bigo"
         />
       )}
-      <mesh
-        geometry={nodes.defaultMaterial.geometry}
-        material={materials.DefaultMaterial}
-      />
+      <Suspense
+          fallback={<Meshes url="/assets/models/lavaPlanet/scene-low.glb" />}
+        >
+          <Meshes url="/assets/models/lavaPlanet/scene.glb" />
+        </Suspense>
     </group>
   );
 });
 
 export default LavaPlanet;
 
-useGLTF.preload("/assets/models/lavaPlanet/scene.glb");
+useGLTF.preload("/assets/models/lavaPlanet/scene-low.glb");

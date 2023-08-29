@@ -1,24 +1,13 @@
-import React, { type RefObject, forwardRef, useState } from "react";
+import React, { type RefObject, forwardRef, useState, Suspense } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import type { GLTF } from "three-stdlib";
 import { type Group } from "three";
 import { useControls } from "leva";
 
 import { useScene } from "src/store/SceneContext";
 import PlanetHtml from "src/components/Scene/PlanetHtml";
 import { useOffset } from "src/hooks/useOffset";
-
-type GLTFResult = GLTF & {
-  nodes: {
-    Object_4: THREE.Mesh;
-    Object_6: THREE.Mesh;
-  };
-  materials: {
-    Planet: THREE.MeshStandardMaterial;
-    Clouds: THREE.MeshStandardMaterial;
-  };
-};
+import Meshes from "./Meshes";
 
 const AlienPlanet = forwardRef(function AlienPlanet(
   {
@@ -32,10 +21,6 @@ const AlienPlanet = forwardRef(function AlienPlanet(
   },
   ref
 ) {
-  const { nodes, materials } = useGLTF(
-    "/assets/models/alienPlanet/scene.glb"
-  ) as GLTFResult;
-
   const [hovered, setHovered] = useState(false);
 
   const { companyIsChosen } = useScene();
@@ -96,12 +81,11 @@ const AlienPlanet = forwardRef(function AlienPlanet(
         ref={alienRef}
         dispose={null}
       >
-        <mesh geometry={nodes.Object_4.geometry} material={materials.Planet} />
-        <mesh
-          geometry={nodes.Object_6.geometry}
-          material={materials.Clouds}
-          scale={1.025}
-        />
+        <Suspense
+          fallback={<Meshes url="/assets/models/alienPlanet/scene-low.glb" />}
+        >
+          <Meshes url="/assets/models/alienPlanet/scene.glb" />
+        </Suspense>
         {!companyIsChosen && (
           <PlanetHtml
             hovered={hovered}
@@ -116,4 +100,4 @@ const AlienPlanet = forwardRef(function AlienPlanet(
 });
 export default AlienPlanet;
 
-useGLTF.preload("/assets/models/alienPlanet/scene.glb");
+useGLTF.preload("/assets/models/alienPlanet/scene-low.glb");
