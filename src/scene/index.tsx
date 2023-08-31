@@ -29,7 +29,7 @@ const Scene = () => {
   const dispatch = useSceneDispatch();
   const { loaded, active } = useProgress();
   const [isFirstRender, setIsFirstRender] = useState(true);
-  // const envMap = useEnvironment({ files: "/assets/models/galaxy.hdr" });
+  const envMap = useEnvironment({ files: "/assets/models/galaxy.hdr" });
   const { sceneIsCreated } = useScene();
 
   console.log("loaded: ", loaded, "active: ", active);
@@ -145,7 +145,7 @@ const Scene = () => {
 
       <directionalLight castShadow intensity={1} />
 
-      {/* <Environment background map={envMap} /> */}
+      <Environment background map={envMap} />
 
       <group>
         <AnimatedStars />
@@ -186,4 +186,4 @@ const Scene = () => {
 
 export default Scene;
 
-// useTexture.preload("/assets/models/galaxy.hdr");
+useTexture.preload("/assets/models/galaxy.hdr");
