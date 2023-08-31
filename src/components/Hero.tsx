@@ -1,4 +1,4 @@
-import { Loader } from "@react-three/drei";
+import { Loader, Preload } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Scene from "src/scene";
 import { Leva } from "leva";
@@ -53,16 +53,21 @@ const Hero = () => {
             scroll ? "visible absolute opacity-100" : "invisible opacity-0"
           }`}
         />
-        <Canvas
-          shadows
-          dpr={[1, 1]}
-          camera={{ fov: 45, near: 1, far: 5000, position: [0, 0, 185] }}
+        <Suspense
+          fallback={
+            <Loader
+              dataInterpolation={(span) => `Loading ${span.toFixed(0)}%`}
+            />
+          }
         >
-          <Suspense fallback={null}>
+          <Canvas
+            shadows
+            dpr={[1, 1]}
+            camera={{ fov: 45, near: 1, far: 5000, position: [0, 0, 185] }}
+          >
             <Scene />
-          </Suspense>
-        </Canvas>
-        <Loader dataInterpolation={(span) => `Loading ${span.toFixed(0)}%`} />
+          </Canvas>
+        </Suspense>
         <button
           className={`absolute bottom-[100px] left-8 z-20 text-white hover:cursor-pointer md:left-[100px] ${
             router.pathname === "/"

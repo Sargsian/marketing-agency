@@ -29,7 +29,9 @@ const Scene = () => {
   const dispatch = useSceneDispatch();
   const { loaded, active } = useProgress();
   const [isFirstRender, setIsFirstRender] = useState(true);
-  const envMap = useEnvironment({ files: "/assets/models/galaxy.hdr" });
+  // const envMap = useEnvironment({ files: "/assets/models/galaxy.hdr" });
+
+  console.log('loaded: ', loaded, 'active: ', active)
 
   const [pause, setPause] = useState(false);
 
@@ -131,7 +133,7 @@ const Scene = () => {
 
   return (
     <>
-      {/* <Perf /> */}
+      <Perf />
       <CameraControls
         polarAngle={Math.PI * 2}
         maxDistance={5000}
@@ -142,7 +144,7 @@ const Scene = () => {
 
       <directionalLight castShadow intensity={1} />
 
-      <Environment background map={envMap} />
+      {/* <Environment background map={envMap} /> */}
 
       <group>
         <AnimatedStars />
@@ -155,7 +157,6 @@ const Scene = () => {
         />
         <Sun />
         <group ref={groupRef}>
-          {/* <ambientLight intensity={0.5} /> */}
           <AlienPlanet
             pause={pause}
             onClick={() => handleRoute("tiktok")}
@@ -184,4 +185,4 @@ const Scene = () => {
 
 export default Scene;
 
-useTexture.preload("/assets/models/galaxy.hdr");
+// useTexture.preload("/assets/models/galaxy.hdr");

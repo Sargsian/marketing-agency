@@ -14,6 +14,7 @@ type GLTFResult = GLTF & {
 
 const Meshes = ({ url, scale }: { url: string; scale: number }) => {
   const { nodes, materials } = useGLTF(url) as GLTFResult;
+  
   return (
     <>
       <mesh

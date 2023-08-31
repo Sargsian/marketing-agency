@@ -11,7 +11,6 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@hookform/resolvers": "^3.1.1",
-    "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.77.4",
     "@react-three/fiber": "^8.13.4",
     "@t3-oss/env-nextjs": "^0.3.1",
@@ -23,7 +22,6 @@
     "next-i18next": "^14.0.0",
     "overlayscrollbars": "^2.2.0",
     "overlayscrollbars-react": "^0.5.0",
-    "r3f-perf": "^7.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.2",
@@ -50,6 +48,7 @@
     "postcss": "^8.4.21",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.8",
+    "r3f-perf": "^7.1.2",
     "typescript": "^5.0.4"
   },
   "ct3aMetadata": {
