@@ -18,7 +18,7 @@ import Sun from "src/scene/Sun";
 import * as THREE from "three";
 import MarsPlanet from "src/scene/MarsPlanet";
 import { useControls } from "leva";
-import { useSceneDispatch } from "src/store/SceneContext";
+import { useScene, useSceneDispatch } from "src/store/SceneContext";
 import { useRouter } from "next/router";
 import JupiterPlanet from "src/scene/JupiterPlanet";
 import TerraformedPlanet from "src/scene/TerraformedPlanet";
@@ -30,8 +30,9 @@ const Scene = () => {
   const { loaded, active } = useProgress();
   const [isFirstRender, setIsFirstRender] = useState(true);
   // const envMap = useEnvironment({ files: "/assets/models/galaxy.hdr" });
+  const { sceneIsCreated } = useScene();
 
-  console.log('loaded: ', loaded, 'active: ', active)
+  console.log("loaded: ", loaded, "active: ", active);
 
   const [pause, setPause] = useState(false);
 
@@ -92,7 +93,7 @@ const Scene = () => {
   };
 
   useEffect(() => {
-    if (active || !cameraRef.current || !isFirstRender) return;
+    if (sceneIsCreated || !cameraRef.current || !isFirstRender) return;
     cameraRef.current.mouseButtons.right = 0;
 
     setTimeout(() => {
@@ -101,7 +102,7 @@ const Scene = () => {
       void cameraRef.current?.dollyTo(200, true);
       setIsFirstRender(false);
     }, 500);
-  }, [active, dispatch, isFirstRender]);
+  }, [sceneIsCreated, dispatch, isFirstRender]);
 
   useEffect(() => {
     if (!loaded) return;
@@ -133,7 +134,7 @@ const Scene = () => {
 
   return (
     <>
-      <Perf />
+      {/* <Perf /> */}
       <CameraControls
         polarAngle={Math.PI * 2}
         maxDistance={5000}

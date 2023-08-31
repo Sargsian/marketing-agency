@@ -11,6 +11,7 @@ const initialScene = {
   scroll: false,
   pause: false,
   companyIsChosen: false,
+  sceneIsCreated: false,
 };
 
 // Context
@@ -49,7 +50,8 @@ export function SceneProvider({ children }: { children: ReactNode }) {
 type ACTIONTYPE =
   | { type: "scroll"; payload: { scroll: boolean } }
   | { type: "pause"; payload: { pause: boolean } }
-  | { type: "companyIsChosen"; payload: { companyIsChosen: boolean } };
+  | { type: "companyIsChosen"; payload: { companyIsChosen: boolean } }
+  | { type: "sceneIsCreated"; payload: { sceneIsCreated: boolean } };
 
 // Reducer function
 function sceneReducer(scene: typeof initialScene, action: ACTIONTYPE) {
@@ -64,6 +66,9 @@ function sceneReducer(scene: typeof initialScene, action: ACTIONTYPE) {
 
     case "companyIsChosen": {
       return { ...scene, companyIsChosen: action.payload.companyIsChosen };
+    }
+    case "sceneIsCreated": {
+      return { ...scene, sceneIsCreated: action.payload.sceneIsCreated };
     }
 
     default:
