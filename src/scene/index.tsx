@@ -190,4 +190,4 @@ const Scene = () => {
 
 export default Scene;
 
-useTexture.preload("/assets/models/galaxy.hdr");
+useTexture.preload("/assets/models/galaxy-low.hdr");
