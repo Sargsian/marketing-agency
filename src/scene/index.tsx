@@ -7,7 +7,7 @@ import {
   useProgress,
   useTexture,
 } from "@react-three/drei";
-import { type RefObject, useEffect, useRef, useState } from "react";
+import { type RefObject, useEffect, useRef, useState, Suspense } from "react";
 import { type Group } from "three";
 import { Perf } from "r3f-perf";
 import { useFrame } from "@react-three/fiber";
@@ -23,13 +23,13 @@ import { useRouter } from "next/router";
 import JupiterPlanet from "src/scene/JupiterPlanet";
 import TerraformedPlanet from "src/scene/TerraformedPlanet";
 import { useOffset } from "src/hooks/useOffset";
+import SceneEnvironment from "src/scene/SceneEnvironment/SceneEnvironment";
 
 const Scene = () => {
   const router = useRouter();
   const dispatch = useSceneDispatch();
   const { loaded, active } = useProgress();
   const [isFirstRender, setIsFirstRender] = useState(true);
-  const envMap = useEnvironment({ files: "/assets/models/galaxy.hdr" });
   const { sceneIsCreated } = useScene();
 
   console.log("loaded: ", loaded, "active: ", active);
@@ -145,7 +145,11 @@ const Scene = () => {
 
       <directionalLight castShadow intensity={1} />
 
-      <Environment background map={envMap} />
+      <Suspense
+        fallback={<SceneEnvironment url="/assets/models/galaxy-low.hdr" />}
+      >
+        <SceneEnvironment url="/assets/models/galaxy.hdr" />
+      </Suspense>
 
       <group>
         <AnimatedStars />
