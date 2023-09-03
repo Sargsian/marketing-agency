@@ -54,6 +54,7 @@ const Hero = () => {
             scroll ? "visible absolute opacity-100" : "invisible opacity-0"
           }`}
         />
+        <Loader />
         <Suspense fallback={<Loader />}>
           <Canvas
             shadows

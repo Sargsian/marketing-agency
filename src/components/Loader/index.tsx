@@ -42,7 +42,7 @@ const Loader = () => {
             />
             <span className="text-accent subtitle">Loading</span>
           </div>
-          <div className="absolute left-1/2 top-[-35px] lg:translate-x-0 -translate-x-1/2 lg:static">
+          <div className="absolute top-[-35px] w-full text-center lg:static lg:w-auto">
             <span className="text-accent subtitle">
               {progress < 33
                 ? links.tiktok
@@ -53,9 +53,7 @@ const Loader = () => {
           </div>
         </div>
       </div>
-      <div className="hidden lg:block">
-        {/* <CustomCursor /> */}
-      </div>
+      <div className="hidden lg:block">{/* <CustomCursor /> */}</div>
       <div className="w-[56px]flex absolute bottom-[32px] h-[56px] justify-center lg:hidden">
         <span className="bar bar-small bar-1" />
         <span className="bar bar-small bar-2" />
