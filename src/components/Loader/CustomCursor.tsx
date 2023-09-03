@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import LoadingSpinner from "src/components/LoadingSpinner";
 
 const CustomCursor = () => {
   const mainCursor = useRef<HTMLDivElement>(null);
@@ -16,7 +15,7 @@ const CustomCursor = () => {
   });
 
   useEffect(() => {
-    document.addEventListener("mousemove", (e) => {
+    const eventListener = (e: MouseEvent) => {
       if (!mainCursor.current || !secondaryCursor.current) return;
       const { clientX, clientY } = e;
 
@@ -30,8 +29,12 @@ const CustomCursor = () => {
       mainCursor.current.style.transform = `translate3d(${
         mouseX - mainCursor.current.clientWidth / 2
       }px, ${mouseY - mainCursor.current.clientHeight / 2}px, 0)`;
-    });
-    // return () => {};
+    };
+
+    document.addEventListener("mousemove", eventListener);
+    return () => {
+      document.removeEventListener("mousemove", eventListener);
+    };
   }, []);
 
   useEffect(() => {
@@ -72,8 +75,13 @@ const CustomCursor = () => {
   return (
     <div>
       <div className="absolute left-0 top-0" ref={mainCursor}></div>
-      <div className="absolute left-[-100px] top-[-150px]" ref={secondaryCursor}>
-        <LoadingSpinner />
+      <div className="absolute left-[25px] top-[-35px]" ref={secondaryCursor}>
+        <span className="bar bar-small bar-1" />
+        <span className="bar bar-small bar-2" />
+        <span className="bar bar-small bar-3" />
+        <span className="bar bar-small bar-4" />
+        <span className="bar bar-small bar-5" />
+        <span className="bar bar-small bar-6" />
       </div>
     </div>
   );

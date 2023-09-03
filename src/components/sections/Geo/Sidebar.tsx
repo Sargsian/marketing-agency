@@ -1,6 +1,5 @@
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import LoadingSpinner from "src/components/LoadingSpinner";
 
 const Sidebar = ({ isWest }: { isWest: boolean }) => {
   const { t } = useTranslation("geo");
@@ -8,7 +7,12 @@ const Sidebar = ({ isWest }: { isWest: boolean }) => {
   return (
     <div className="relative flex h-full min-h-[700px] w-full min-w-[241px] max-w-[290px] flex-col bg-accent p-3 font-jetbrains text-sm sm:w-[290px] sm:min-w-[290px] sm:p-[25px]">
       <div className="mx-auto mb-8 flex aspect-square w-[calc(100%-24px)] items-center justify-center rounded-[25px] border border-black sm:mx-0 sm:h-60 sm:w-60">
-        <LoadingSpinner />
+        <span className="bar bar-1" />
+        <span className="bar bar-2" />
+        <span className="bar bar-3" />
+        <span className="bar bar-4" />
+        <span className="bar bar-5" />
+        <span className="bar bar-6" />
       </div>
       {/* animated stuff start */}
       {/* isWest === true case */}

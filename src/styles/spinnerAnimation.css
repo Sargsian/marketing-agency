@@ -8,6 +8,12 @@
   animation: 2s infinite rotation;
 }
 
+.bar-small {
+  width: 11px;
+  height: 56px;
+  background-image: url("/icons/bar-small.svg");
+}
+
 @keyframes rotation {
   from {
     transform: rotate(0deg);

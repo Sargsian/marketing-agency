@@ -1,7 +1,6 @@
 import { useProgress } from "@react-three/drei";
 import Image from "next/image";
 import CustomCursor from "src/components/Loader/CustomCursor";
-import LoadingSpinner from "src/components/LoadingSpinner";
 
 const Loader = () => {
   const { active, progress, errors, item, loaded, total } = useProgress();
@@ -26,14 +25,14 @@ const Loader = () => {
           {progress.toFixed(0)}%
         </span>
       </span>
-      <div className="relative h-[1px] w-full max-w-[1220px]">
+      <div className="relative h-[1px] w-full max-w-[min(1220px,90%)]">
         <span className="absolute block h-full w-full bg-accent opacity-40"></span>
         <span
           style={{ width: `${progress.toFixed(0)}%` }}
           className="absolute block h-full bg-accent"
         ></span>
         <div className="mt-3 flex w-full items-center justify-between">
-          <div className="flex gap-2">
+          <div className="hidden gap-2 lg:flex">
             <Image
               src={"/icons/loadingIcon.svg"}
               width={12}
@@ -43,7 +42,7 @@ const Loader = () => {
             />
             <span className="text-accent subtitle">Loading</span>
           </div>
-          <div>
+          <div className="absolute left-1/2 top-[-35px] lg:translate-x-0 -translate-x-1/2 lg:static">
             <span className="text-accent subtitle">
               {progress < 33
                 ? links.tiktok
@@ -54,7 +53,17 @@ const Loader = () => {
           </div>
         </div>
       </div>
-      <CustomCursor />
+      <div className="hidden lg:block">
+        <CustomCursor />
+      </div>
+      <div className="w-[56px]flex absolute bottom-[32px] h-[56px] justify-center lg:hidden">
+        <span className="bar bar-small bar-1" />
+        <span className="bar bar-small bar-2" />
+        <span className="bar bar-small bar-3" />
+        <span className="bar bar-small bar-4" />
+        <span className="bar bar-small bar-5" />
+        <span className="bar bar-small bar-6" />
+      </div>
     </div>
   );
 };
