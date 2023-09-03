@@ -1,14 +1,13 @@
 {
   "heading": "Geo",
-  "fullList": "full list of available geos",
   "tag": "Geo targeting",
-  "loadingInfo": "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT.",
-  "loadingFooter": "Lorem ipsum",
-  "easternEurope": "Eastern Europe",
-  "europe": "Europe",
-  "latinAmerica": "Latin America",
-  "northAmerica": "North America",
+  "loadingFooter": "Loading",
+  "nearEast": "Middle East, North Africa and Turkey",
+  "northeastAsia": "Northeast Asia",
   "southeastAsia": "Southeast Asia",
-  "nearEast": "Near East",
-  "over100Countries": "Over 100 countries"
+  "oceania": "Oceania",
+  "northAmerica": "North America",
+  "latinAmerica": "Latin America",
+  "europe": "Europe, United Kingdom and Israel",
+  "centralEurope": "Central and Eastern Europe"
 }

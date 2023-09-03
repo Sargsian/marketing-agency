@@ -3,11 +3,8 @@
   background-image: url("/icons/bar.svg");
   background-repeat: no-repeat;
   width: 35px;
-  z-index: 10;
   height: 192px;
-}
-
-.bar {
+  z-index: 10;
   animation: 2s infinite rotation;
 }
 

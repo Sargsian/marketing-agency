@@ -3,6 +3,8 @@
     "name": "Name / Organization name",
     "telegram": "Telegram / Skype",
     "budget": "Budget",
+    "perMonth": "a month",
+    "moreThan": ">",
     "email": "Email",
     "message": "Message",
     "terms": "I agree to the terms and conditions",

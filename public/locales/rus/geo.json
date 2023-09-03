@@ -1,14 +1,13 @@
 {
   "heading": "Гео",
-  "fullList": "Полный список доступных гео",
   "tag": "Гео таргетинг",
-  "loadingInfo": "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT.",
-  "loadingFooter": "Lorem ipsum",
-  "easternEurope": "Восточная Европа",
-  "europe": "Европа",
-  "latinAmerica": "Латинская Америка",
-  "northAmerica": "Северная Америка",
+  "loadingFooter": "Загружается",
+  "nearEast": "Ближний Восток, Северная Африка и Турция",
+  "northeastAsia": "Северо-Восточная Азия",
   "southeastAsia": "Юго-Восточная Азия",
-  "nearEast": "Ближний Восток",
-  "over100Countries": "Более 100 стран"
+  "oceania": "Океания",
+  "northAmerica": "Северная Америка",
+  "latinAmerica": "Латинская Америка",
+  "europe": "Европа, Соединенное Королевство и Израиль",
+  "centralEurope": "Центральная и Восточная Европа"
 }

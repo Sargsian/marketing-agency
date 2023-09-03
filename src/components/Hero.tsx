@@ -1,4 +1,3 @@
-import { Loader, Preload } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Scene from "src/scene";
 import { Leva } from "leva";
@@ -8,6 +7,7 @@ import dynamic from "next/dynamic";
 import { useScene, useSceneDispatch } from "src/store/SceneContext";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Loader from "./Loader";
 
 const Hero = () => {
   const { scroll } = useScene();
@@ -54,13 +54,8 @@ const Hero = () => {
             scroll ? "visible absolute opacity-100" : "invisible opacity-0"
           }`}
         />
-        <Suspense
-          fallback={
-            <Loader
-              dataInterpolation={(span) => `Loading ${span.toFixed(0)}%`}
-            />
-          }
-        >
+        {/* <Loader /> */}
+        <Suspense fallback={<Loader />}>
           <Canvas
             shadows
             dpr={[1, 1]}

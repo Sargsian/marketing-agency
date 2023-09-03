@@ -13,7 +13,7 @@ const Page = ({ companyName }: CompanyTypes) => {
     <>
       <ApplicationForm />
       <Company companyName={companyName} />
-      <Geo companyName={companyName} />
+      <Geo />
       <Advantages companyName={companyName} />
       <PriceList companyName={companyName} />
       <HowToStart />

@@ -28,6 +28,16 @@ export default {
         xl: "1280px",
         "2xl": "1536px",
       },
+      keyframes: {
+        blink: {
+          "50%": {
+            opacity: "0",
+          },
+        },
+      },
+      animation: {
+        blink: "blink 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      },
     },
   },
   plugins: [

@@ -8,9 +8,9 @@ const budget = [
   { budget: "500-1000$" },
   { budget: "1000-3000$" },
   { budget: "3000-5000$" },
-  { budget: "5000 - 10000$" },
-  { budget: "10000 - 20000$" },
-  { budget: "20000 $" },
+  { budget: "5000-10000$" },
+  { budget: "10000-20000$" },
+  { budget: "20000$" },
 ];
 
 type Props = {
@@ -61,7 +61,7 @@ const BudgedSelect = ({
           >
             <Listbox.Options
               static
-              className="absolute top-[calc(100%+13px)] z-10 max-h-60 w-full rounded-md bg-black text-base text-white focus:outline-none sm:text-sm"
+              className="absolute top-[calc(100%+13px)] z-[60] max-h-60 w-full rounded-md bg-black text-white focus:outline-none text-sm"
             >
               {budget.map((item, amountIdx) => (
                 <Listbox.Option
@@ -80,8 +80,12 @@ const BudgedSelect = ({
                           selected ? "font-medium" : "font-normal"
                         }`}
                       >
-                        <span className="mr-auto inline-block">Budget</span>
-                        {item.budget}
+                        <span className="mr-auto inline-block">
+                          {t("budget")}
+                        </span>
+                        {`${item.budget === "20000$" ? t("moreThan") : ""} ${
+                          item.budget
+                        } ${t("perMonth")} `}
                       </span>
                       {selected ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"></span>

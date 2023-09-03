@@ -33,10 +33,13 @@ body {
 @import url("./scrollAnimation.css");
 
 /* Geo screen loading animation */
-@import url("./loadingAnimation.css");
+@import url("./spinnerAnimation.css");
 
 /* Music playing animation */
 @import url("./musicBarsAnimation.css");
 
 /* Fonts */
 @import url("./fonts.css");
+
+/* Cursor */
+@import url("./cursorStyles.css");
