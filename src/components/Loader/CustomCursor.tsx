@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const CustomCursor = () => {
   const mainCursor = useRef<HTMLDivElement>(null);
   const secondaryCursor = useRef<HTMLDivElement>(null);
+  const [isInteracted, setIsInteracted] = useState(false);
 
   const positionRef = useRef({
     mouseX: 0,
@@ -32,6 +33,7 @@ const CustomCursor = () => {
     };
 
     document.addEventListener("mousemove", eventListener);
+
     return () => {
       document.removeEventListener("mousemove", eventListener);
     };

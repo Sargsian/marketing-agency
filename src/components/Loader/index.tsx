@@ -54,7 +54,7 @@ const Loader = () => {
         </div>
       </div>
       <div className="hidden lg:block">
-        <CustomCursor />
+        {/* <CustomCursor /> */}
       </div>
       <div className="w-[56px]flex absolute bottom-[32px] h-[56px] justify-center lg:hidden">
         <span className="bar bar-small bar-1" />
