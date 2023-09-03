@@ -57,7 +57,7 @@ const MobileMenu = ({
                 boostads.org@gmail.com
               </Link>
               <a
-                href="https://t.me/dmitriiboost"
+                href="https://t.me/boostdep"
                 target="_blank"
                 className="inline-block font-jetbrains text-sm font-medium uppercase underline hover:cursor-pointer hover:text-accent"
               >

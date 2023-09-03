@@ -72,7 +72,7 @@ const Sidebar = ({
                     boostads.org@gmail.com
                   </Link>
                   <a
-                    href="https://t.me/dmitriiboost"
+                    href="https://t.me/boostdep"
                     target="_blank"
                     className="font-jetbrains text-sm font-medium tracking-[-0.7px] underline transition hover:opacity-75"
                   >

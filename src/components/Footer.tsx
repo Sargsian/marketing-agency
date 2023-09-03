@@ -25,7 +25,7 @@ const Footer = () => {
                 <li>
                   <a
                     target="_blank"
-                    href="https://t.me/dmitriiboost"
+                    href="https://t.me/boostdep"
                     className="transition hover:opacity-75"
                   >
                     Telegram
@@ -67,10 +67,10 @@ const Footer = () => {
               <ul className="space-y-3">
                 <li>
                   <a
-                    href="tel:+7 777 777 77 77"
+                    href="tel:+7 911 979 11 10"
                     className="transition hover:opacity-75"
                   >
-                    +7 (777) 777 77-77
+                    +7 (911) 979-11-10
                   </a>
                 </li>
                 <li>
