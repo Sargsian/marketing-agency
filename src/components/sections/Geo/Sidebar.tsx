@@ -8,7 +8,7 @@ const Sidebar = ({ isWest }: { isWest: boolean }) => {
   return (
     <div className="relative flex h-full min-h-[700px] w-full min-w-[241px] max-w-[290px] flex-col bg-accent p-3 font-jetbrains text-sm sm:w-[290px] sm:min-w-[290px] sm:p-[25px]">
       <div className="mx-auto mb-8 flex aspect-square w-[calc(100%-24px)] items-center justify-center rounded-[25px] border border-black sm:mx-0 sm:h-60 sm:w-60">
-        <LoadingSpinner width={35} height={192} />
+        <LoadingSpinner />
       </div>
       {/* animated stuff start */}
       {/* isWest === true case */}
