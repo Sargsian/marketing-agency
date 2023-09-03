@@ -54,12 +54,13 @@ const PlanetHtml = ({ hovered, onClick, setHovered, name }: Props) => {
   return (
     <Html calculatePosition={overrideCalculatePosition} ref={htmlRef} as="div">
       <span
-        className={`absolute right-0 top-0 inline-block h-[8px] w-[8px] rounded-full font-jetbrains outline outline-1 outline-offset-1 outline-[#ffffff77] before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-white before:transition-all before:delay-150 ${
+        className={`absolute right-0 top-0 inline-block h-[8px] w-[8px] rounded-full font-jetbrains before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-white before:transition-all before:delay-150 ${
           hovered
             ? "before:h-[10px] before:w-[10px]"
             : "before:h-[6px] before:w-[6px]"
         }`}
       >
+        <span className="absolute left-1/2 top-1/2 block h-[11px] w-[11px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[1px] border-[#ffffff77]"></span>
         <span
           className={`pointer-events-none absolute right-[calc(100%+3px)] h-2 rotate-1 font-jost transition-opacity ${
             !hovered ? "opacity-100 delay-[2s]" : "opacity-0 delay-500"
@@ -78,7 +79,6 @@ const PlanetHtml = ({ hovered, onClick, setHovered, name }: Props) => {
             className="absolute bottom-[-62px] right-[89%] inline-block h-5 w-[223px] -rotate-[35deg]"
           >
             <span className="text-sm font-medium tracking-[-1.4px]">
-              {/* TikTok Planet */}
               <span className="[backface-visibility:hidden]">
                 <PlanetTitleHover onClick={onClick}>
                   {`${t("planet")} ${name}`}
