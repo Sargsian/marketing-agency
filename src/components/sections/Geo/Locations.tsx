@@ -7,7 +7,7 @@ const Locations = ({ isWest }: { isWest: boolean }) => {
 
   return (
     <div className="flex w-full flex-col justify-between md:w-[445px] md:min-w-[280px] lg:min-w-[350px]">
-      <div>
+      <div className="h-[460px]">
         <span className="mb-9 inline-block tag">{t("tag")}</span>
         <div className="relative flex w-full items-center justify-between border-t border-white border-opacity-20 py-7 text-right uppercase heading-3">
           <Dot side="left" verticalSide="top" />
