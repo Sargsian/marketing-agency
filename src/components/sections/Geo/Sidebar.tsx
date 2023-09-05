@@ -16,7 +16,7 @@ const Sidebar = ({ isWest }: { isWest: boolean }) => {
       </div>
       {/* animated stuff start */}
       {/* isWest === true case */}
-      <div className="relative w-full flex-1 bg-red-300">
+      <div className="relative w-full flex-1">
         <div
           className={`absolute left-0 h-full w-full transition-all duration-500 ${
             isWest ? "opacity-100" : "opacity-0"
