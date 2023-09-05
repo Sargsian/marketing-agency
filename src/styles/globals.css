@@ -43,3 +43,6 @@ body {
 
 /* Cursor */
 @import url("./cursorStyles.css");
+
+/* Map translate animation */
+@import url("./mapAnimation.css");

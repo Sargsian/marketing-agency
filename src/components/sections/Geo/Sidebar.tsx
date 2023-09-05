@@ -16,37 +16,39 @@ const Sidebar = ({ isWest }: { isWest: boolean }) => {
       </div>
       {/* animated stuff start */}
       {/* isWest === true case */}
-      <div className="relative">
+      <div className="relative w-full flex-1 bg-red-300">
         <div
-          className={`absolute left-0 transition-all duration-500 ${
+          className={`absolute left-0 h-full w-full transition-all duration-500 ${
             isWest ? "opacity-100" : "opacity-0"
           }`}
         >
           <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px] ">
-              {isWest ? t("northAmerica") : t("nearEast")}:
+            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
+              {t("northAmerica")}:
+            </p>
+            <div className="text-sm">us,ca</div>
+          </div>
+          <div className="mb-5 uppercase text-black">
+            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
+              {t("latinAmerica")}:
             </p>
             <div className="text-sm">
-              bh,eg,iq,jo,kw,lb,ma,om,pk qa,sa,za,tr,uae
+              ar,&#8203;br,&#8203;cl,&#8203;co,&#8203;ec,&#8203;mx,&#8203;pe,&#8203;uy
+            </div>
+          </div>
+          <div className="mb-5 w-full uppercase text-black">
+            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
+              {t("europe")}:
+            </p>
+            <div className="text-sm">
+              at,&#8203;be,&#8203;bg,&#8203;cz,&#8203;dk,&#8203;fi,&#8203;fr,&#8203;de,&#8203;gr,&#8203;hu,&#8203;ie,&#8203;il,&#8203;it,&#8203;lu,&#8203;nl,&#8203;no,&#8203;pl,&#8203;pt,&#8203;ro,&#8203;es,&#8203;se,&#8203;ch,&#8203;uk
             </div>
           </div>
           <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px] ">
-              {isWest ? t("latinAmerica") : t("northeastAsia")}:
+            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
+              {t("centralEurope")}:
             </p>
-            <div className="text-sm">p,kr,tw</div>
-          </div>
-          <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px] ">
-              {isWest ? t("europe") : t("southeastAsia")}:
-            </p>
-            <div className="text-sm">kh,id,my,ph,sg,th,vn</div>
-          </div>
-          <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px] ">
-              {isWest ? t("centralEurope") : t("oceania")}:
-            </p>
-            <div className="text-sm">au,nz</div>
+            <div className="text-sm">by,&#8203;kz,&#8203;ru,&#8203;ua</div>
           </div>
         </div>
         {/* isWest === false case */}
@@ -56,30 +58,33 @@ const Sidebar = ({ isWest }: { isWest: boolean }) => {
           }`}
         >
           <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px] ">
-              {isWest ? t("northAmerica") : t("nearEast")}:
+            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
+              {t("nearEast")}:
             </p>
             <div className="text-sm">
-              bh,eg,iq,jo,kw,lb,ma,om,pk qa,sa,za,tr,uae
+              bh,&#8203;eg,&#8203;iq,&#8203;jo,&#8203;kw,&#8203;lb,&#8203;ma,&#8203;om,&#8203;pk
+              qa,&#8203;sa,&#8203;za,&#8203;tr,&#8203;uae
             </div>
           </div>
           <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px] ">
-              {isWest ? t("latinAmerica") : t("northeastAsia")}:
+            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
+              {t("northeastAsia")}:
             </p>
-            <div className="text-sm">p,kr,tw</div>
+            <div className="text-sm">jp,&#8203;kr,&#8203;tw</div>
           </div>
           <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px] ">
-              {isWest ? t("europe") : t("southeastAsia")}:
+            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
+              {t("southeastAsia")}:
             </p>
-            <div className="text-sm">kh,id,my,ph,sg,th,vn</div>
+            <div className="text-sm">
+              kh,&#8203;id,&#8203;my,&#8203;ph,&#8203;sg,&#8203;th,&#8203;vn
+            </div>
           </div>
           <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px] ">
-              {isWest ? t("centralEurope") : t("oceania")}:
+            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
+              {t("oceania")}:
             </p>
-            <div className="text-sm">au,nz</div>
+            <div className="text-sm">au,&#8203;nz</div>
           </div>
         </div>
 
