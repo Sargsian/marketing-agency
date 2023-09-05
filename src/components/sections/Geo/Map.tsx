@@ -10,7 +10,7 @@ const Map = () => {
           fill
           style={{ objectFit: "cover" }}
           alt="map"
-          className="-translate-x-[20%] brightness-200"
+          className=" brightness-200"
         />
       </div>
   );
