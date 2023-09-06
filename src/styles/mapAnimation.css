@@ -8,5 +8,5 @@
 }
 
 .loop {
-  animation: slideAnimation linear infinite;
+  animation: slideAnimation 3s linear infinite;
 }

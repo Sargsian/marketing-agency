@@ -38,7 +38,6 @@ const PlanetDesc = ({ name, t }: { name: "Bigo" | "Tiktok" | "Meta", t: (arg: st
           <div className="mb-1 text-accent subtitle">
             Wire Transfer (min. 500$)
           </div>
-          <div className="text-accent subtitle">Capitalist EUR, USD, RUR</div>
         </div>
       </div>
     </div>

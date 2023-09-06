@@ -14,12 +14,12 @@ interface PrimaryLayoutProps extends React.PropsWithChildren {
 
 export const PrimaryLayout = ({
   children,
-  title = "Boost Agency",
-  description = "Маркетинговое агентство - Boost",
-  keywords = "маркетинг, продвижение",
+  title = "BOOST - Mobile App Marketing Agency",
+  description = "Promote your mobile apps and brands worldwide on the leading ad platforms and social media.",
+  keywords = "маркетинг, продвижение, marketing, promotion",
   type = "website",
-  url = "https://boost.ru",
-  image,
+  url = "https://boost-ads.io/",
+  image = '/assets/images/metaImage.jpg',
 }: PrimaryLayoutProps) => {
   return (
     <>
