@@ -19,7 +19,7 @@ export const PrimaryLayout = ({
   keywords = "маркетинг, продвижение, marketing, promotion",
   type = "website",
   url = "https://boost-ads.io/",
-  image = '/assets/images/metaImage.jpg',
+  image = "/assets/images/metaImage.jpg",
 }: PrimaryLayoutProps) => {
   return (
     <>
@@ -29,12 +29,15 @@ export const PrimaryLayout = ({
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
         <meta name="robots" content="noindex,nofollow" />
+        <meta name="twitter:card" content="summary_large_image" />
 
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content={type} />
         <meta property="og:url" content={url} />
         <meta property="og:image" content={image} />
+        <meta property="twitter:image" content={image} />
+        <meta property="twitter:description" content={description} />
 
         <link rel="icon" href="/logo.svg" />
       </Head>
