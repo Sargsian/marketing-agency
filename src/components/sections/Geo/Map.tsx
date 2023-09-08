@@ -5,6 +5,7 @@ import * as THREE from "three";
 import React, { useRef } from "react";
 import { Environment, useEnvironment, useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
+import SceneEnvironment from "src/scene/SceneEnvironment/SceneEnvironment";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -16,8 +17,6 @@ type GLTFResult = GLTF & {
 };
 
 const Map = () => {
-  const envMap = useEnvironment({ files: "/assets/models/galaxy-low.hdr" });
-
   return (
     <div className="relative flex aspect-square w-full max-w-[min(785px,80%)] items-center justify-center overflow-hidden rounded-[10px] border border-white border-opacity-50 ">
       {/* <div>
@@ -33,7 +32,9 @@ const Map = () => {
       </div> */}
       <Suspense fallback={null}>
         <Canvas camera={{ fov: 45, position: [0, 0, 285] }}>
-          <Environment background map={envMap} />
+          <Suspense fallback={null}>
+            <SceneEnvironment url="/assets/models/galaxy-low.hdr" />
+          </Suspense>
           <ambientLight intensity={5} />
           <pointLight color="white" intensity={10} position={[100, 100, 100]} />
           <directionalLight castShadow intensity={10} />
