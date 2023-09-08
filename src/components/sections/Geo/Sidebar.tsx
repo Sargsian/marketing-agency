@@ -42,7 +42,7 @@ const Sidebar = ({ isWest, companyName }: Props) => {
           <SidebarSection companyName={"Bigo"} continent={t("White List")}>
             us
           </SidebarSection>
-          <SidebarSection companyName={"Bigo"} continent={t("southAmerica")}>
+          <SidebarSection companyName={"Bigo"} continent={t("latinAmerica")}>
             br
           </SidebarSection>
           <SidebarSection companyName={"Bigo"} continent={t("europe")}>
