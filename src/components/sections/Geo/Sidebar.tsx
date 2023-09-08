@@ -1,7 +1,11 @@
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import type { CompanyTypes } from "src/components/Page";
+import SidebarSection from "./SidebarSection";
 
-const Sidebar = ({ isWest }: { isWest: boolean }) => {
+type Props = { isWest: boolean } & CompanyTypes;
+
+const Sidebar = ({ isWest, companyName }: Props) => {
   const { t } = useTranslation("geo");
 
   return (
@@ -22,34 +26,28 @@ const Sidebar = ({ isWest }: { isWest: boolean }) => {
             isWest ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
-              {t("northAmerica")}:
-            </p>
-            <div className="text-sm">us,ca</div>
-          </div>
-          <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
-              {t("latinAmerica")}:
-            </p>
-            <div className="text-sm">
-              ar,&#8203;br,&#8203;cl,&#8203;co,&#8203;ec,&#8203;mx,&#8203;pe,&#8203;uy
-            </div>
-          </div>
-          <div className="mb-5 w-full uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
-              {t("europe")}:
-            </p>
-            <div className="text-sm">
-              at,&#8203;be,&#8203;bg,&#8203;cz,&#8203;dk,&#8203;fi,&#8203;fr,&#8203;de,&#8203;gr,&#8203;hu,&#8203;ie,&#8203;il,&#8203;it,&#8203;lu,&#8203;nl,&#8203;no,&#8203;pl,&#8203;pt,&#8203;ro,&#8203;es,&#8203;se,&#8203;ch,&#8203;uk
-            </div>
-          </div>
-          <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
-              {t("centralEurope")}:
-            </p>
-            <div className="text-sm">by,&#8203;kz,&#8203;ru,&#8203;ua</div>
-          </div>
+          <SidebarSection companyName={"Tiktok"} continent={t("northAmerica")}>
+            us,ca
+          </SidebarSection>
+          <SidebarSection companyName={"Tiktok"} continent={t("latinAmerica")}>
+            ar,br,cl,co,ec,mx,pe,uy
+          </SidebarSection>
+
+          <SidebarSection companyName={"Tiktok"} continent={t("europeUkIsrael")}>
+            at,be,bg,cz,dk,fi,fr,de,gr,hu,ie,il,it,lu,nl,no,pl,pt,ro,es,se,ch,uk
+          </SidebarSection>
+          <SidebarSection companyName={"Tiktok"} continent={t("centralEasternEurope")}>
+            by,kz,ru,ua
+          </SidebarSection>
+          <SidebarSection companyName={"Bigo"} continent={t("White List")}>
+            us
+          </SidebarSection>
+          <SidebarSection companyName={"Bigo"} continent={t("southAmerica")}>
+            br
+          </SidebarSection>
+          <SidebarSection companyName={"Bigo"} continent={t("europe")}>
+            ru,by
+          </SidebarSection>
         </div>
         {/* isWest === false case */}
         <div
@@ -57,37 +55,43 @@ const Sidebar = ({ isWest }: { isWest: boolean }) => {
             isWest ? "opacity-0" : "opacity-100"
           }`}
         >
-          <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
-              {t("nearEast")}:
-            </p>
-            <div className="text-sm">
-              bh,&#8203;eg,&#8203;iq,&#8203;jo,&#8203;kw,&#8203;lb,&#8203;ma,&#8203;om,&#8203;pk
-              qa,&#8203;sa,&#8203;za,&#8203;tr,&#8203;uae
-            </div>
-          </div>
-          <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
-              {t("northeastAsia")}:
-            </p>
-            <div className="text-sm">jp,&#8203;kr,&#8203;tw</div>
-          </div>
-          <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
-              {t("southeastAsia")}:
-            </p>
-            <div className="text-sm">
-              kh,&#8203;id,&#8203;my,&#8203;ph,&#8203;sg,&#8203;th,&#8203;vn
-            </div>
-          </div>
-          <div className="mb-5 uppercase text-black">
-            <p className="text-lg font-medium leading-[140%] tracking-[-0.81px]">
-              {t("oceania")}:
-            </p>
-            <div className="text-sm">au,&#8203;nz</div>
-          </div>
+          <SidebarSection companyName={"Tiktok"} continent={t("nearEastNorthAfricaTurkey")}>
+            bh,eg,iq,jo,kw,lb,ma,om,pk,qa,sa,za,tr,uae
+          </SidebarSection>
+          <SidebarSection companyName={"Tiktok"} continent={t("northeastAsia")}>
+            jp,kr,tw
+          </SidebarSection>
+          <SidebarSection companyName={"Tiktok"} continent={t("southeastAsia")}>
+            kh,id,my,ph,sg,th,vn
+          </SidebarSection>
+          <SidebarSection companyName={"Tiktok"} continent={t("oceania")}>
+            au,nz
+          </SidebarSection>
+          <SidebarSection companyName={"Bigo"} continent={t("middleEast")}>
+            ae,kw
+          </SidebarSection>
+          <SidebarSection companyName={"Bigo"} continent={t("centralAsia")}>
+            uz,tj,kz,af,sa
+          </SidebarSection>
+          <SidebarSection companyName={"Bigo"} continent={t("southAsia")}>
+            in,bd,pk,lk,np
+          </SidebarSection>
+          <SidebarSection companyName={"Bigo"} continent={t("southeastAsia")}>
+            id,my,th,vn,ph,sg
+          </SidebarSection>
+          <SidebarSection companyName={"Bigo"} continent={t("africa")}>
+            ng,ss,et,ke,zm
+          </SidebarSection>
         </div>
-
+        {companyName === "Meta" && (
+          <a
+          className="relative z-50 text-black text-lg font-medium leading-[140%] tracking-[-0.81px] uppercase hover:opacity-70 transition-all"
+            href="https://www.facebook.com/business/help/1155157871341714?id=176276233019487"
+            target="_blank"
+          >
+            {t("fullList")}
+          </a>
+        )}
         {/*  animated stuff end */}
       </div>
       <div className="mt-auto flex-row">

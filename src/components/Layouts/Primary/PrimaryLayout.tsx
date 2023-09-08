@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Header from "src/components/Header";
 import Hero from "src/components/Hero";
+import { PlatformProvider } from "src/store/PlatformContext";
 import { SceneProvider } from "src/store/SceneContext";
 
 interface PrimaryLayoutProps extends React.PropsWithChildren {
@@ -46,12 +47,14 @@ export const PrimaryLayout = ({
       <SceneProvider>
         <Hero />
       </SceneProvider>
-      <main
-        id="main-content"
-        className="mx-auto max-w-[1550px] px-3 font-jost sm:px-5"
-      >
-        {children}
-      </main>
+      <PlatformProvider>
+        <main
+          id="main-content"
+          className="mx-auto max-w-[1550px] px-3 font-jost sm:px-5"
+        >
+          {children}
+        </main>
+      </PlatformProvider>
     </>
   );
 };

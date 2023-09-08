@@ -5,10 +5,11 @@ import Sidebar from "./Sidebar";
 import Locations from "./Locations";
 import Map from "./Map";
 import { useEffect, useState } from "react";
+import type { CompanyTypes } from "src/components/Page";
 
-const Geo = () => {
+const Geo = ({ companyName }: CompanyTypes) => {
   const { t } = useTranslation("geo");
-  const [isWest, setIsWest] = useState(false);
+  const [isWest, setIsWest] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -46,15 +47,15 @@ const Geo = () => {
         </span>
       </div>
       <div className="hidden flex-col gap-5 sm:px-16 md:flex-row md:gap-9 md:px-0 lg:gap-16 lg:px-7 xl:flex xl:h-[822px] xl:gap-5 xl:px-0">
-        <Sidebar isWest={isWest} />
+        <Sidebar companyName={companyName} isWest={isWest} />
         <Map />
-        <Locations isWest={isWest} />
+        <Locations companyName={companyName} isWest={isWest} />
       </div>
       <div className="mx-auto flex flex-col items-center gap-8 xl:hidden">
         <Map />
         <div className="flex w-full flex-col-reverse items-center justify-center gap-8 sm:flex-row">
-          <Sidebar isWest={isWest} />
-          <Locations isWest={isWest} />
+          <Sidebar companyName={companyName} isWest={isWest} />
+          <Locations companyName={companyName} isWest={isWest} />
         </div>
       </div>
     </div>

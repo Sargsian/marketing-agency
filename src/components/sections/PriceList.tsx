@@ -89,7 +89,7 @@ const PriceList = ({ companyName }: CompanyTypes) => {
                 className="w-[290px]"
                 key={i}
               >
-                <InfoCard text={info.text} key={i} />
+                <InfoCard text={t(info.text)} key={i} />
               </SwiperSlide>
             ))}
           </Swiper>
