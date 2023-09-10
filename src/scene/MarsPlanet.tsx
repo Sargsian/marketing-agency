@@ -2,9 +2,7 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 import type { Group } from "three";
-import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
-import { useScene } from "src/store/SceneContext";
 import { useOffset } from "src/hooks/useOffset";
 
 type GLTFResult = GLTF & {
@@ -17,22 +15,19 @@ type GLTFResult = GLTF & {
   };
 };
 
-const MarsPlanet = ({ rotationSpeed, pause }: { rotationSpeed: number, pause: boolean; }) => {
+const MarsPlanet = ({
+  pause,
+}: {
+  pause: boolean;
+}) => {
   const marsRef = useRef<Group>(null);
 
   const animationTime = useOffset(pause);
 
-  const { offset, scale, distanceFromSun, speed } = useControls("Mars Planet", {
-    offset: {
-      value: 0,
-      min: 0,
-      max: Math.PI * 2,
-      step: 0.01,
-    },
-    scale: { value: 3.73, min: 0, max: 20, step: 0.01 },
-    distanceFromSun: { value: 7.5, min: 1, max: 10, step: 0.1 },
-    speed: { value: 0.24, min: 0.01, max: 10, step: 0.005 },
-  });
+  const offset = 0;
+  const scale = 3.73;
+  const distanceFromSun = 7.5;
+  const speed = 0.24;
 
   const x = 20;
   const z = 20;

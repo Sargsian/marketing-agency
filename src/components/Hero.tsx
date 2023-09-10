@@ -1,17 +1,15 @@
 import { Canvas } from "@react-three/fiber";
 import Scene from "src/scene";
-import { Leva } from "leva";
 import { useTranslation } from "next-i18next";
 import { Suspense, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { useScene, useSceneDispatch } from "src/store/SceneContext";
+import { useScene } from "src/store/SceneContext";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Loader from "./Loader";
 
 const Hero = () => {
   const { scroll } = useScene();
-  const dispatch = useSceneDispatch();
   const router = useRouter();
   const [muteSong, setMuteSong] = useState(false);
   const [userInteracted, setUserInteracted] = useState(false);
@@ -40,7 +38,6 @@ const Hero = () => {
 
   return (
     <>
-      <Leva collapsed hidden />
       <div
         onMouseDown={() => {
           if (!userInteracted) {
@@ -58,12 +55,6 @@ const Hero = () => {
           <Canvas
             shadows
             dpr={[1, 1]}
-            onCreated={() =>
-              dispatch({
-                type: "sceneIsCreated",
-                payload: { sceneIsCreated: true },
-              })
-            }
             camera={{ fov: 45, near: 1, far: 5000, position: [0, 0, 185] }}
           >
             <Scene />

@@ -10,10 +10,10 @@ const SidebarSection = ({ companyName, children, continent }: Props) => {
   const { currentPlatform } = usePlatform();
   const childrenArr = children.split(",");
   const wrappableString = childrenArr.map((country, i) => (
-    <>
+    <span key={i}>
       {country}
       {childrenArr.length - 1 === i ? "" : ","}&#8203;
-    </>
+    </span>
   ));
   return (
     companyName === currentPlatform && (

@@ -14,8 +14,7 @@ import AnimatedStars from "src/scene/AnimatedStars";
 import Sun from "src/scene/Sun";
 import * as THREE from "three";
 import MarsPlanet from "src/scene/MarsPlanet";
-import { useControls } from "leva";
-import { useScene, useSceneDispatch } from "src/store/SceneContext";
+import { useSceneDispatch } from "src/store/SceneContext";
 import { useRouter } from "next/router";
 import JupiterPlanet from "src/scene/JupiterPlanet";
 import TerraformedPlanet from "src/scene/TerraformedPlanet";
@@ -27,7 +26,6 @@ const Scene = () => {
   const dispatch = useSceneDispatch();
   const { loaded, active } = useProgress();
   const [isFirstRender, setIsFirstRender] = useState(true);
-  const { sceneIsCreated } = useScene();
 
   console.log("loaded: ", loaded, "active: ", active);
 
@@ -52,7 +50,7 @@ const Scene = () => {
       void router.push(`/${route}`);
   };
 
-  console.log("rerender");
+  console.log("rerender", pause);
 
   useFrame(() => {
     if (!groupRef.current) return;
@@ -90,7 +88,7 @@ const Scene = () => {
   };
 
   useEffect(() => {
-    if (sceneIsCreated || !cameraRef.current || !isFirstRender) return;
+    if (!cameraRef.current || !isFirstRender) return;
     cameraRef.current.mouseButtons.right = 0;
 
     setTimeout(() => {
@@ -99,7 +97,7 @@ const Scene = () => {
       void cameraRef.current?.dollyTo(200, true);
       setIsFirstRender(false);
     }, 500);
-  }, [sceneIsCreated, dispatch, isFirstRender]);
+  }, [dispatch, isFirstRender]);
 
   useEffect(() => {
     if (!loaded) return;
@@ -121,12 +119,12 @@ const Scene = () => {
         alienRef.current.getWorldPosition(vec).distanceTo(sun) + 80;
       void cameraRef.current.dollyTo(distanceToSun, true);
       void cameraRef.current?.rotatePolarTo(Math.PI / 2.1, true);
-
+      if(isFirstRender) return
       setTimeout(() => {
         setPause(false);
+        console.log('object')
       }, 500);
     }
-    // }, 2000);
   }, [router.pathname, loaded, isFirstRender]);
 
   return (
@@ -160,7 +158,7 @@ const Scene = () => {
             ref={alienRef}
             rotationSpeed={router.pathname === "/tiktok" ? 0.2 : 1}
           />
-          <MarsPlanet pause={pause} rotationSpeed={0.3} />
+          <MarsPlanet pause={pause} />
           <LavaPlanet
             pause={pause}
             onClick={() => handleRoute("bigo")}
@@ -173,7 +171,7 @@ const Scene = () => {
             ref={terraformedRef}
             onClick={() => handleRoute("meta")}
           />
-          <JupiterPlanet pause={pause} rotationSpeed={0.3} />
+          <JupiterPlanet pause={pause} />
         </group>
       </group>
     </>

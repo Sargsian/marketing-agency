@@ -1,10 +1,9 @@
-import React, { type RefObject, forwardRef, useRef, useState } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import React, { type RefObject, forwardRef, useState } from "react";
+import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
-import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
 import { useScene } from "src/store/SceneContext";
-import { type Group, type Mesh } from "three";
+import { type Group } from "three";
 import PlanetHtml from "src/components/Scene/PlanetHtml";
 import { useOffset } from "src/hooks/useOffset";
 
@@ -43,20 +42,10 @@ const TerraformedPlanet = forwardRef(function TerraformedPlanet(
 
   const animationTime = useOffset(pause);
 
-  const { offset, scale, distanceFromSun, speed } = useControls(
-    "Terraformed Planet",
-    {
-      offset: {
-        value: 3,
-        min: 0,
-        max: Math.PI * 2,
-        step: 0.01,
-      },
-      scale: { value: 1.93, min: 0, max: 20, step: 0.01 },
-      distanceFromSun: { value: 3.9, min: 1, max: 10, step: 0.1 },
-      speed: { value: 1.30, min: 0.01, max: 10, step: 0.005 },
-    }
-  );
+  const offset = 3;
+  const scale = 1.93;
+  const distanceFromSun = 3.9;
+  const speed = 1.3;
 
   const x = 20;
   const z = 20;

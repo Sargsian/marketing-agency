@@ -3,7 +3,6 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 import { type Group } from "three";
-import { useControls } from "leva";
 
 import { useScene } from "src/store/SceneContext";
 import PlanetHtml from "src/components/Scene/PlanetHtml";
@@ -42,22 +41,14 @@ const AlienPlanet = forwardRef(function AlienPlanet(
 
   const animationTime = useOffset(pause);
 
+  console.log('unnecesary rerender')
+
   const alienRef = ref as RefObject<Group>;
 
-  const { offset, scale, distanceFromSun, speed } = useControls(
-    "Alien Planet",
-    {
-      offset: {
-        value: 4.64,
-        min: 0,
-        max: Math.PI * 2,
-        step: 0.01,
-      },
-      scale: { value: 0, min: 0, max: 20, step: 0.01 },
-      distanceFromSun: { value: 2.2, min: 1, max: 10, step: 0.1 },
-      speed: { value: 2.08, min: 0.01, max: 10, step: 0.005 },
-    }
-  );
+  const offset = 4.64;
+  const scale = 0;
+  const distanceFromSun = 2.2;
+  const speed = 2.08;
 
   const x = 20;
   const z = 20;

@@ -1,9 +1,7 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
-import { useControls } from "leva";
 import { useFrame } from "@react-three/fiber";
-import { useScene } from "src/store/SceneContext";
 import { useOffset } from "src/hooks/useOffset";
 
 type GLTFResult = GLTF & {
@@ -16,10 +14,8 @@ type GLTFResult = GLTF & {
 };
 
 const JupiterPlanet = ({
-  rotationSpeed,
   pause,
 }: {
-  rotationSpeed: number;
   pause: boolean;
 }) => {
   const { nodes, materials } = useGLTF(
@@ -30,20 +26,9 @@ const JupiterPlanet = ({
 
   const animationTime = useOffset(pause);
 
-  const { offset, scale, distanceFromSun, speed } = useControls(
-    "Jupiter Planet",
-    {
-      offset: {
-        value: 4.10,
-        min: 0,
-        max: Math.PI * 2,
-        step: 0.01,
-      },
-      scale: { value: 0, min: 0, max: 20, step: 0.01 },
-      distanceFromSun: { value: 9.5, min: 1, max: 10, step: 0.1 },
-      speed: { value: 0.01, min: 0.01, max: 10, step: 0.005 },
-    }
-  );
+  const offset = 4.1;
+  const distanceFromSun = 9.5;
+  const speed = 0.01;
 
   const x = 20;
   const z = 20;

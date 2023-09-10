@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import type { GLTF } from "three-stdlib";
 import { useFrame } from "@react-three/fiber";
-import { useControls } from "leva";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -22,11 +21,7 @@ const Sun = () => {
     "/assets/models/sun/scene-transformed.glb"
   ) as GLTFResult;
 
-  const { scale } = useControls("Sun", {
-    scale: 0.08,
-  });
-
-  // A failed attempt to solve the lag issue on hover
+  const scale = 0.08;
 
   useFrame(() => {
     if (!sunRef.current) return;
@@ -52,7 +47,6 @@ const Sun = () => {
         rotation={[-2.088, 0.384, -0.177]}
         scale={scale}
       >
-        {/* <pointLight castShadow color={'#FAFC8A'} intensity={5} /> */}
       </mesh>
 
       <pointLight castShadow intensity={1} />

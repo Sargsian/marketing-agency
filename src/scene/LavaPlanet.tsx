@@ -1,7 +1,5 @@
 import { type RefObject, forwardRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useControls } from "leva";
-
 import type { GLTF } from "three-stdlib";
 import type { Group } from "three";
 import { useFrame } from "@react-three/fiber";
@@ -22,7 +20,7 @@ const LavaPlanet = forwardRef(function LavaPlanet(
   {
     onClick,
     rotationSpeed,
-    pause
+    pause,
   }: {
     onClick: () => void;
     pause: boolean;
@@ -32,12 +30,10 @@ const LavaPlanet = forwardRef(function LavaPlanet(
 ) {
   const [hovered, setHovered] = useState(false);
 
-  const { offset, scale, distanceFromSun, speed } = useControls("Lava Planet", {
-    offset: { value: 1.12, min: 0, max: Math.PI * 2, step: 0.01 },
-    scale: { value: 3.09, min: 0, max: 20, step: 0.01 },
-    distanceFromSun: { value: 5.7, min: 1, max: 10, step: 0.1 },
-    speed: { value: 1.09, min: 0.01, max: 10, step: 0.005 },
-  });
+  const offset = 1.12;
+  const scale = 3.09;
+  const distanceFromSun = 5.7;
+  const speed = 1.09;
 
   const { companyIsChosen } = useScene();
 
