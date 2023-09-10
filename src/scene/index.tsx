@@ -20,6 +20,7 @@ import JupiterPlanet from "src/scene/JupiterPlanet";
 import TerraformedPlanet from "src/scene/TerraformedPlanet";
 import { useOffset } from "src/hooks/useOffset";
 import SceneEnvironment from "src/scene/SceneEnvironment";
+import { clearTimeout } from "timers";
 
 const Scene = () => {
   const router = useRouter();
@@ -119,11 +120,7 @@ const Scene = () => {
         alienRef.current.getWorldPosition(vec).distanceTo(sun) + 80;
       void cameraRef.current.dollyTo(distanceToSun, true);
       void cameraRef.current?.rotatePolarTo(Math.PI / 2.1, true);
-      if(isFirstRender) return
-      setTimeout(() => {
-        setPause(false);
-        console.log('object')
-      }, 500);
+      setPause(false);
     }
   }, [router.pathname, loaded, isFirstRender]);
 
