@@ -1,13 +1,10 @@
 import {
   CameraControls,
-  Environment,
   PerformanceMonitor,
   Sparkles,
-  useEnvironment,
   useProgress,
-  useTexture,
 } from "@react-three/drei";
-import { type RefObject, useEffect, useRef, useState, Suspense } from "react";
+import { type RefObject, useEffect, useRef, useState } from "react";
 import { type Group } from "three";
 import { Perf } from "r3f-perf";
 import { useFrame } from "@react-three/fiber";
@@ -23,7 +20,7 @@ import { useRouter } from "next/router";
 import JupiterPlanet from "src/scene/JupiterPlanet";
 import TerraformedPlanet from "src/scene/TerraformedPlanet";
 import { useOffset } from "src/hooks/useOffset";
-import SceneEnvironment from "src/scene/SceneEnvironment/SceneEnvironment";
+import SceneEnvironment from "src/scene/SceneEnvironment";
 
 const Scene = () => {
   const router = useRouter();
@@ -144,12 +141,7 @@ const Scene = () => {
       />
 
       <directionalLight castShadow intensity={1} />
-
-      <Suspense
-        fallback={<SceneEnvironment url="/assets/models/galaxy-low.hdr" />}
-      >
-        <SceneEnvironment url="/assets/models/galaxy.hdr" />
-      </Suspense>
+      <SceneEnvironment />
 
       <group>
         <AnimatedStars />
@@ -189,5 +181,3 @@ const Scene = () => {
 };
 
 export default Scene;
-
-useTexture.preload("/assets/models/galaxy-low.hdr");
