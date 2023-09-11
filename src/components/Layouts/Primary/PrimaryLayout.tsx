@@ -20,7 +20,7 @@ export const PrimaryLayout = ({
   keywords = "маркетинг, продвижение, marketing, promotion",
   type = "website",
   url = "https://boost-ads.io/",
-  image,
+  image = '/assets/images/meta-image.jpg',
 }: PrimaryLayoutProps) => {
   return (
     <>
