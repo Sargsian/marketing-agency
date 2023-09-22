@@ -20,7 +20,6 @@ import JupiterPlanet from "src/scene/JupiterPlanet";
 import TerraformedPlanet from "src/scene/TerraformedPlanet";
 import { useOffset } from "src/hooks/useOffset";
 import SceneEnvironment from "src/scene/SceneEnvironment";
-import { clearTimeout } from "timers";
 
 const Scene = () => {
   const router = useRouter();

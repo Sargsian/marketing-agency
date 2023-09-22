@@ -11,8 +11,7 @@ export const getStaticProps = async ({ locale = "rus" }) => {
       ...(await serverSideTranslations(locale)),
     },
   };
-  // console.log(locale) // Logs current locale
-  // // ...
+
 };
 
 export default function Custom404(props: SSRConfig) {

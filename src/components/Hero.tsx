@@ -32,6 +32,7 @@ const Hero = () => {
       void audio.pause();
     } else {
       void audio.play();
+      audio.loop = true;
       console.log("play song");
     }
   }, [muteSong, audio, userInteracted]);
