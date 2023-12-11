@@ -16,7 +16,7 @@ const Footer = () => {
               <Image src="/logo.svg" width={84} height={26} alt="logo" />
             </Link>
             <span className="mt-3 inline-block font-jetbrains text-base font-medium uppercase tracking-[-1px] text-white text-opacity-60 sm:mt-7">
-              Boost {year} &copy;
+              Ads Boost ltd {year} &copy;
             </span>
           </div>
           <div className="col-span-2 order-3 grid grid-cols-2 gap-y-16 sm:grid-cols-3 lg:col-span-3 lg:grid-cols-3">
