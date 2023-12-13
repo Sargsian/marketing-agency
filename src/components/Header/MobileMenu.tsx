@@ -25,7 +25,7 @@ const MobileMenu = ({
         open ? "bottom-0" : "bottom-[100%]"
       }`}
     >
-      <div className="flex flex-col overflow-auto h-screen pt-24">
+      <div className="flex h-screen flex-col overflow-auto pt-24">
         <div className="mx-auto mb-[38px] w-[calc(100%-20px)] uppercase text-white opacity-30 subtitle">
           <span className="cursor-default">{t("navigation")}</span>
           <span className="mt-2 block h-[1px] w-full bg-white"></span>
@@ -45,6 +45,20 @@ const MobileMenu = ({
               </li>
             ))}
           </ul>
+          <div className="p-[10px] uppercase">
+            <div className="mb-[30px] cursor-default opacity-30 heading-5">
+              {t("banks")}
+            </div>
+            <span className="text-sm">
+              <p>ADS BOOST LTD</p>
+              <p>
+                Address: Prodromou, 75, Oneworld Parkview House, 4th floor,
+                2063, Nicosia
+              </p>
+              <p>VAT No.: 10431912X</p>
+              <p>REG number: HE 431912</p>
+            </span>
+          </div>
           <div className="p-[10px] pb-[21px]">
             <span className="mb-[23px] inline-block uppercase opacity-30 subtitle">
               {t("contacts")}

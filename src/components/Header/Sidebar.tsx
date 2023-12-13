@@ -24,7 +24,11 @@ const Sidebar = ({
   return (
     <div className="hidden lg:block">
       {open && (
-        <div onClick={closeMenu} className="fixed -z-20 inset-0" aria-hidden="true" />
+        <div
+          onClick={closeMenu}
+          className="fixed inset-0 -z-20"
+          aria-hidden="true"
+        />
       )}
       <Transition
         show={open}
@@ -40,7 +44,7 @@ const Sidebar = ({
           <div className="fixed bottom-0 right-0 top-0 -z-10 flex w-[660px] flex-col bg-[#111] py-[95px] font-jost shadow-2xl">
             <div className="ml-[136px] flex h-full w-[435px] flex-col justify-between">
               <div className="mb-14 w-full border-b pb-1 uppercase text-white opacity-30 heading-5">
-                <span className="cursor-default">{t('navigation')}</span>
+                <span className="cursor-default">{t("navigation")}</span>
               </div>
               <div>
                 <ul>
@@ -61,8 +65,22 @@ const Sidebar = ({
                 </ul>
               </div>
               <div className="mt-auto uppercase">
+                <div className="mb-[30px]">
+                  <div className="mb-[30px] cursor-default opacity-30 heading-5">
+                    {t("banks")}
+                  </div>
+                  <span className="text-sm">
+                    <p>ADS BOOST LTD</p>
+                    <p>
+                      Address: Prodromou, 75, Oneworld Parkview House, 4th
+                      floor, 2063, Nicosia
+                    </p>
+                    <p>VAT No.: 10431912X</p>
+                    <p>REG number: HE 431912</p>
+                  </span>
+                </div>
                 <div className="mb-[30px] cursor-default opacity-30 heading-5">
-                  {t('contacts')}
+                  {t("contacts")}
                 </div>
                 <div className="flex justify-between">
                   <Link
